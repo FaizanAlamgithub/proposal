@@ -1,0 +1,10 @@
+1. Setup React Basic
+2. install Tailwind
+3. Install Important Libraries -> GSAP, Lenis, React-Router dom, .....
+4. Create Client page Frontend
+    Create indivisual client pages in react
+    create seperate route
+5. Create Admin dashboard
+    create individual admin proposal page
+6. Create Backend 
+    create admin amd client backend and connect it

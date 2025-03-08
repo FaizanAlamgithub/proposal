@@ -1,0 +1,1605 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+  /* width: 100vw; */
+  height: 100vh;
+  overflow: hidden;
+}
+
+/* ------------- Horizontal Scroll ------------------- */
+
+.horizontal-slide {
+  display: flex;
+  flex-wrap: nowrap;
+  overflow-x: scroll;
+  scroll-snap-type: x mandatory;
+  width: 100vw;
+}
+
+.section-1 {
+  padding: 0 3rem;
+  min-width: 100%;
+  height: 100%;
+  position: relative;
+  scroll-snap-align: start;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  justify-content: end;
+  padding: 1rem 0;
+}
+
+.hero-content {
+  width: 100%;
+  min-height: calc(100vh - 13rem);
+  position: relative;
+}
+
+.midlle-text-container {
+  margin-bottom: 5rem;
+}
+
+.proposal-text {
+  font-size: 6rem;
+  font-weight: 600;
+  font-family: "Bricolage Grotesque", serif;
+  color: #4a4a4a;
+  padding-bottom: 2rem;
+}
+
+.propasal-hero {
+  width: 32rem;
+  font-weight: 400;
+  font-size: 1.2rem;
+  font-family: "Work Sans", serif;
+  background-color: white;
+  line-height: 1.9375rem;
+  margin-bottom: 3rem;
+}
+
+.propasal-hero p {
+  color: #acacac;
+}
+
+.company-name {
+  color: #7f5cff;
+  font-weight: 600;
+  margin-left: 0.5rem;
+}
+
+.proposal {
+  font-size: 0.8125rem;
+  font-weight: 400;
+  color: #c7c7c7;
+  line-height: 0.5625rem;
+  font-family: "Bricolage Grotesque", serif;
+}
+
+.client-name {
+  padding: 1rem 0;
+  font-weight: 500;
+  font-size: 1.375rem;
+  color: #4a4a4a;
+  font-family: "Work Sans", serif;
+}
+
+.hero-text-bottom {
+  padding-bottom: 1rem;
+  display: flex;
+  justify-content: end;
+  gap: 5rem;
+  position: absolute;
+  bottom: 0;
+  right: 0;
+}
+
+.date-container {
+  display: flex;
+  gap: 5rem;
+}
+
+.hero-text-div {
+  width: 4.375rem;
+}
+
+.hero-text-address {
+  width: 17.1875rem;
+}
+
+.issue-date {
+  padding: 0.3125rem 0;
+  font-size: 0.8125rem;
+  font-weight: 400;
+  font-family: "Bricolage Grotesque", serif;
+  color: #c7c7c7;
+  line-height: 1.1875rem;
+}
+
+.date {
+  font-weight: 400;
+  font-size: 1rem;
+  font-family: "Work Sans", serif;
+  line-height: 1.5rem;
+  color: #4a4a4a;
+}
+
+.preparedBy {
+  padding: 0.3125rem 0;
+  font-size: 0.8125rem;
+  font-weight: 400;
+  font-family: "Bricolage Grotesque", serif;
+  color: #c7c7c7;
+  line-height: 1.1875rem;
+}
+
+.jordie-text {
+  font-weight: 500;
+  padding-bottom: 0.3125rem;
+  font-size: 1rem;
+  font-family: "Work Sans", serif;
+  line-height: 1.5rem;
+  color: #7f5cff;
+}
+
+.address {
+  font-size: 0.875rem;
+  font-weight: 400;
+  font-family: "Work Sans", serif;
+  line-height: 1.3125rem;
+  color: #beb5b5;
+}
+
+.section-1-bottom-text {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #616161;
+  padding: 1rem 0;
+  border-top: 1px solid #404040;
+}
+
+.section-1-bottom-text-content {
+  font-weight: 400;
+  font-family: "Bricolage Grotesque", serif;
+  font-size: 0.875rem;
+  line-height: 1.3125rem;
+  color: #b4b4b4;
+  padding: 0 1rem;
+}
+
+/* ----------- Slider ------------------ */
+.slider {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  background-color: #404040;
+  padding: 1rem 0;
+  position: fixed;
+  bottom: 0;
+  gap: 2rem;
+}
+
+.line {
+  width: 70vw;
+  height: 0.2rem;
+  background-color: #a3a1a1;
+  border-radius: 10px;
+}
+.line-bar {
+  /* width: 5rem; */
+  width: 0;
+  height: 100%;
+  background-color: white;
+  border-radius: 10px;
+}
+.slider-text {
+  color: white;
+  font-family: "Bricolage Grotesque", serif;
+  font-weight: 500;
+  font-size: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  cursor: pointer;
+}
+
+/* ------------------ section-2 ------------------ */
+
+.section-2 {
+  padding: 0 3rem;
+  min-width: 100%;
+  height: 100%;
+  position: relative;
+  background-color: #130e26;
+  scroll-snap-align: start;
+}
+
+.section-2-content {
+  width: 100%;
+  min-height: calc(100vh - 10rem);
+  /* background-color: #7f5cff; */
+  position: relative;
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid #404040;
+  padding: 1rem 0;
+  font-family: "Work Sans", serif;
+  color: #616161;
+  font-weight: 400;
+  size: 16px;
+}
+
+.header-text-1 {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.header-text-1 .company-name {
+  color: #616161;
+}
+
+.bottom-text {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  color: #616161;
+  padding: 1rem 0;
+  border-top: 1px solid #404040;
+}
+
+.section-2-inner-text {
+  display: flex;
+  justify-content: center;
+  color: white;
+}
+
+.section-2-text1 {
+  font-size: 6.5rem;
+  width: 40%;
+  font-weight: 600;
+  line-height: 5rem;
+  font-family: "Bricolage Grotesque", serif;
+  position: absolute;
+  top: 9%;
+  left: 15%;
+}
+.section-2-text2 {
+  margin-top: 5rem;
+  font-size: 1.5rem;
+  font-weight: 500;
+  font-family: "Bricolage Grotesque", serif;
+  position: absolute;
+  bottom: 13%;
+  right: 16%;
+}
+
+.section-2-text2 ul li {
+  text-decoration: none;
+  list-style: none;
+  padding: 0.3rem 0;
+}
+
+.bottom-text {
+  font-size: 14px;
+  font-family: "Work Sans", serif;
+  font-weight: 400;
+}
+
+.bottom-text a {
+  font-weight: 500;
+  text-decoration: none;
+  color: #616161;
+}
+
+/* ------------- Section - 3 -------------- */
+.section-3 {
+  padding: 0 3rem;
+  min-width: 100%;
+  height: 100%;
+  position: relative;
+  background-color: #fff;
+  scroll-snap-align: start;
+}
+.section-3-content {
+  width: 100%;
+  min-height: calc(100vh - 10rem);
+  /* background-color: #7f5cff; */
+  position: relative;
+}
+.section-3-inner-text {
+  display: flex;
+  justify-content: center;
+}
+.section-3-text1 {
+  color: #4a4a4a;
+  font-size: 1.375rem;
+  font-weight: 600;
+  line-height: 5rem;
+  font-family: "Bricolage Grotesque", serif;
+  position: absolute;
+  top: 5%;
+  left: 0;
+}
+.section-3-text2 {
+  width: 60%;
+  font-family: "Bricolage Grotesque", serif;
+  position: absolute;
+  bottom: 10%;
+  right: 10%;
+  font-weight: 400;
+  font-size: 1rem;
+  color: #686868;
+}
+.section-3-text2 p {
+  line-height: 28px;
+}
+.best-regards-text {
+  font-weight: 500;
+  color: #4a4a4a;
+}
+
+/* ------------- Section - 4 -------------- */
+.section-4 {
+  padding: 0 3rem;
+  min-width: 100%;
+  height: 100%;
+  position: relative;
+  background-color: #fff;
+  scroll-snap-align: start;
+}
+.section-4-content {
+  width: 100%;
+  min-height: calc(100vh - 10rem);
+  /* background-color: #7f5cff; */
+  position: relative;
+}
+.section-4-inner-text {
+  display: flex;
+  justify-content: center;
+}
+
+.section-4-text1 {
+  font-size: 7rem;
+  font-weight: 600;
+  font-family: "Bricolage Grotesque", serif;
+  color: #4a4a4a;
+  margin: 0 auto;
+  padding-bottom: 1rem;
+  position: absolute;
+  top: 1%;
+  left: 10%;
+}
+.section-4-text2 {
+  width: 60%;
+  font-family: "Bricolage Grotesque", serif;
+  position: absolute;
+  bottom: 10%;
+  right: 10%;
+  font-weight: 400;
+  font-size: 1rem;
+  color: #686868;
+}
+.section-4-text2 p {
+  line-height: 28px;
+}
+.section-4-text2 span {
+  color: #4a4a4a;
+}
+/* ------------- Section - 5 -------------- */
+.section-5 {
+  padding: 0 3rem;
+  min-width: 100%;
+  height: 100%;
+  position: relative;
+  background-color: #fff;
+  scroll-snap-align: start;
+}
+.section-5-content {
+  width: 100%;
+  min-height: calc(100vh - 10rem);
+  /* background-color: #7f5cff; */
+  position: relative;
+}
+.section-5-inner-text {
+  display: flex;
+  justify-content: center;
+}
+
+.section-5-text1 {
+  font-size: 5rem;
+  font-weight: 600;
+  font-family: "Bricolage Grotesque", serif;
+  color: #4a4a4a;
+  margin: 0 auto;
+  padding-bottom: 1rem;
+  position: absolute;
+  top: 5%;
+  left: 10%;
+}
+.section-5-text1 > p {
+  line-height: 4.5rem;
+}
+.section-5-text2 {
+  width: 60%;
+  font-family: "Bricolage Grotesque", serif;
+  position: absolute;
+  bottom: 5%;
+  right: 10%;
+  font-weight: 400;
+  color: #686868;
+}
+.section-5-text2 ul li {
+  list-style: none;
+  padding: 1rem;
+  font-size: 12px;
+  color: #686868;
+}
+.section-5-text2 span {
+  color: #4a4a4a;
+  font-size: 20px;
+}
+
+/* ------------------ Section - 6 ----------------------- */
+
+.section-6 {
+  padding: 0 3rem;
+  min-width: 100%;
+  height: 100%;
+  position: relative;
+  background-color: #fff;
+  scroll-snap-align: start;
+}
+.section-6-content {
+  width: 100%;
+  min-height: calc(100vh - 10rem);
+  /* background-color: #7f5cff; */
+  position: relative;
+}
+.section-6-inner-text {
+  display: flex;
+  justify-content: center;
+}
+
+.section-6-text1 {
+  font-size: 5rem;
+  font-weight: 600;
+  font-family: "Bricolage Grotesque", serif;
+  color: #4a4a4a;
+  margin: 0 auto;
+  padding-bottom: 1rem;
+  position: absolute;
+  top: 5%;
+  left: 10%;
+}
+.section-6-text1 > p {
+  line-height: 4.5rem;
+}
+.section-6-text2 {
+  width: 50%;
+  font-family: "Work Sans", serif;
+  position: absolute;
+  bottom: 5%;
+  right: 10%;
+  font-weight: 500;
+  color: #4a4a4a;
+  font-size: 1.5rem;
+  line-height: 2rem;
+}
+
+.objective-container {
+  padding: 2rem 0;
+  font-family: "Bricolage Grotesque", serif;
+  font-size: 0.8rem;
+  font-weight: 400;
+  color: #c7c7c7;
+  line-height: 19px;
+}
+.objective-content {
+  padding-top: 1rem;
+  font-family: "Work Sans", serif;
+  font-weight: 400;
+  font-size: 1rem;
+  line-height: 1.5rem;
+  color: #686868;
+}
+
+/* ------------------ Section - 7 ----------------------- */
+
+.section-7 {
+  padding: 0 3rem;
+  min-width: 100%;
+  height: 100%;
+  position: relative;
+  background-color: #fff;
+  scroll-snap-align: start;
+}
+.section-7-content {
+  width: 100%;
+  min-height: calc(100vh - 10rem);
+  position: relative;
+}
+.section-7-inner-text {
+  display: flex;
+  gap: 5rem;
+}
+.section-7-text1 {
+  display: block;
+  font-size: 5rem;
+  font-weight: 600;
+  font-family: "Bricolage Grotesque", serif;
+  color: #4a4a4a;
+  /* position: relative;
+  top: 1.5rem;
+  left: 10%; */
+}
+
+.section-7-text1 > p {
+  line-height: 3rem;
+  margin-top: 2rem;
+  margin-left: 8rem;
+}
+.section-7-below-text {
+  width: 45%;
+  font-size: 1.5rem;
+  line-height: 1.5rem;
+  font-family: "Work Sans", serif;
+  margin-top: 2rem;
+  margin-left: 8rem;
+}
+.section-7-branding-text {
+  /* margin-top: 3rem; */
+  display: block;
+  width: 40%;
+  margin-right: 5rem;
+  margin-top: 5rem;
+  /* position: relative;
+  left: 20%; */
+}
+.section-7-text2 {
+  display: block;
+}
+.section-7-text2 {
+  font-size: 1.5rem;
+  font-family: "Work Sans", serif;
+  font-weight: 600;
+  color: #4a4a4a;
+}
+.section-7-objective-content {
+  margin: 1rem 0;
+  font-size: 1rem;
+  color: #686868;
+  font-weight: 400;
+  line-height: 1.5rem;
+}
+/* ------------------ Section - 8 ----------------------- */
+
+.section-8 {
+  padding: 0 3rem;
+  min-width: 100%;
+  height: 100%;
+  /* position: relative; */
+  background-color: #fff;
+  scroll-snap-align: start;
+}
+.section-8-content {
+  width: 100%;
+  min-height: calc(100vh - 10rem);
+  /* background-color: #7f5cff; */
+  /* position: relative; */
+}
+.section-8-inner-text {
+  /* display: flex;
+  justify-content: center; */
+  width: 100%;
+  min-height: calc(100vh - 10rem);
+  position: relative;
+}
+.section-8-weeks {
+  position: absolute;
+  top: 5%;
+  right: 10%;
+  font-family: "Bricolage Grotesque", serif;
+  font-weight: 500;
+  font-size: 2rem;
+  color: #7f5cff;
+}
+.section-8-text1 {
+  font-size: 5rem;
+  font-weight: 600;
+  font-family: "Bricolage Grotesque", serif;
+  color: #4a4a4a;
+  margin: 0 auto;
+  /* padding-left: 8rem;
+  padding-right: 8rem; */
+  padding-top: 1rem;
+  /* margin-top: 1rem; */
+  position: absolute;
+  top: 5%;
+  left: 10%;
+}
+.section-8-text1 > p {
+  line-height: 4.5rem;
+}
+.section-8-table-container {
+  position: absolute;
+  bottom: 0;
+  margin: 0 12rem;
+}
+.table-data {
+  height: 40vh;
+  overflow-y: auto;
+}
+.section-8-table-container table {
+  width: 100%;
+}
+
+.section-8-table-container th {
+  font-weight: 400;
+  font-family: "Bricolage Grotesque", serif;
+  font-size: 1rem;
+  line-height: 30px;
+  text-align: left;
+  padding: 0 2rem;
+  color: #c4b4ff;
+}
+.section-8-table-container td {
+  padding: 1rem 2rem;
+  color: #686868;
+}
+.section-8-table-container thead {
+  border-bottom: 1px dashed #cccbcb;
+}
+
+/* Set last column (Deliverables) width to 30% */
+.section-8-table-container td:nth-child(1),
+.section-8-table-container th:nth-child(1) {
+  width: 20%;
+}
+.section-8-table-container td:nth-child(2),
+.section-8-table-container th:nth-child(2) {
+  width: 20%;
+}
+.section-8-table-container td:nth-child(3),
+.section-8-table-container th:nth-child(3) {
+  width: 30%;
+}
+
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}
+
+.scrollbar-hide {
+  -ms-overflow-style: none; /* Hide scrollbar for IE/Edge */
+  scrollbar-width: none; /* Hide scrollbar for Firefox */
+}
+/* -------------------- Section - 9 ------------------- */
+.section-9 {
+  padding: 0 3rem;
+  min-width: 100%;
+  height: 100%;
+  /* position: relative; */
+  background-color: #fff;
+  scroll-snap-align: start;
+}
+.section-9-content {
+  width: 100%;
+  min-height: calc(100vh - 10rem);
+  /* background-color: #7f5cff; */
+  position: relative;
+}
+.section-9-inner-text {
+  /* display: flex;
+  justify-content: center; */
+  width: 100%;
+  min-height: calc(100vh - 10rem);
+  position: relative;
+}
+.section-9-inr {
+  position: absolute;
+  top: 5%;
+  right: 10%;
+  font-family: "Bricolage Grotesque", serif;
+  font-weight: 500;
+  font-size: 2rem;
+  color: #7f5cff;
+}
+.bottom-text-inr {
+  position: absolute;
+  right: 0;
+  bottom: 2%;
+  color: #7f5cff;
+  font-family: "Bricolage Grotesque", serif;
+  font-weight: 600;
+  font-size: 1rem;
+  line-height: 1.2rem;
+}
+.section-9-text1 {
+  font-size: 5rem;
+  font-weight: 600;
+  font-family: "Bricolage Grotesque", serif;
+  color: #4a4a4a;
+  margin: 0 auto;
+  padding-left: 8rem;
+  padding-right: 8rem;
+  padding-top: 1rem;
+  /* margin-top: 1rem; */
+  /* position: absolute;
+  top: 5%;
+  left: 10%; */
+}
+.section-9-text1 > p {
+  line-height: 4.5rem;
+}
+.section-9-table-container {
+  position: absolute;
+  bottom: 0;
+  margin: 0 12rem;
+}
+.section-9-table-container table {
+  width: 100%;
+}
+
+.section-9-table-container th {
+  font-weight: 400;
+  font-family: "Bricolage Grotesque", serif;
+  font-size: 1rem;
+  line-height: 30px;
+  text-align: left;
+  padding: 0 2rem;
+  color: #c4b4ff;
+}
+.section-9-table-container td {
+  padding: 1rem 2rem;
+  color: #686868;
+}
+.section-9-table-container thead {
+  border-bottom: 1px dashed #cccbcb;
+}
+
+.all-prices-text {
+  position: absolute;
+  right: -20%;
+  bottom: 2%;
+  color: #7f5cff;
+  font-family: "Bricolage Grotesque", serif;
+  font-weight: 600;
+  font-size: 1rem;
+}
+/* Set last column (Deliverables) width to 30% */
+.section-9-table-container td:nth-child(1),
+.section-9-table-container th:nth-child(1) {
+  width: 15%;
+}
+.section-9-table-container td:nth-child(2),
+.section-9-table-container th:nth-child(2) {
+  width: 25%;
+}
+.section-9-table-container td:nth-child(3),
+.section-9-table-container th:nth-child(3) {
+  width: 10%;
+}
+
+/* ------------------ Section - 10 ----------------------- */
+
+.section-10 {
+  padding: 0 3rem;
+  min-width: 100%;
+  height: 100%;
+  position: relative;
+  background-color: #fff;
+  scroll-snap-align: start;
+}
+.section-10-content {
+  width: 100%;
+  min-height: calc(100vh - 10rem);
+  /* background-color: #7f5cff; */
+  position: relative;
+}
+.section-10-inner-text {
+  display: flex;
+  justify-content: center;
+}
+
+.section-10-text1 {
+  font-size: 5rem;
+  font-weight: 600;
+  font-family: "Bricolage Grotesque", serif;
+  color: #4a4a4a;
+  margin: 0 auto;
+  padding-left: 0rem;
+  padding-top: 1rem;
+  position: absolute;
+  top: 5%;
+  left: 10%;
+}
+.section-10-text1 > p {
+  line-height: 4.5rem;
+}
+
+.section-10-text2 {
+  width: 50%;
+  font-family: "Work Sans", serif;
+  position: absolute;
+  bottom: 10%;
+  right: 5%;
+  font-weight: 600;
+  color: #4a4a4a;
+  font-size: 1.5rem;
+  line-height: 2rem;
+}
+.section-10-objective-content li {
+  font-size: 1rem;
+  font-weight: 400;
+  line-height: 1rem;
+  color: #686868;
+  padding: 0.5rem 0;
+  list-style-type: disc;
+}
+
+/* ------------------ Section - 11 ----------------------- */
+
+.section-11 {
+  padding: 0 3rem;
+  min-width: 100%;
+  height: 100%;
+  position: relative;
+  background-color: #fff;
+  scroll-snap-align: start;
+}
+.section-11-content {
+  width: 100%;
+  min-height: calc(100vh - 10rem);
+  /* background-color: #7f5cff; */
+  position: relative;
+}
+.section-11-inner-text {
+  display: flex;
+  justify-content: center;
+}
+
+.section-11-text1 {
+  font-size: 5rem;
+  font-weight: 600;
+  font-family: "Bricolage Grotesque", serif;
+  color: #4a4a4a;
+  margin: 0 auto;
+  position: absolute;
+  top: 5%;
+  left: 10%;
+  width: 30%;
+}
+.section-11-text1 > p {
+  line-height: 4rem;
+  margin-bottom: 1rem;
+}
+.section-11-below-text p {
+  font-size: 1.2rem;
+  font-family: "Work Sans", serif;
+  line-height: 1.5rem;
+  font-weight: 400;
+  color: #686868;
+}
+.section-11-below-text span {
+  color: #7f5cff;
+  font-weight: 700;
+}
+.section-11-text2 {
+  width: 40%;
+  font-family: "Work Sans", serif;
+  position: absolute;
+  top: 15%;
+  right: 5%;
+  font-weight: 600;
+  color: #7f5cff;
+  font-size: 1.5rem;
+  line-height: 2rem;
+}
+.section-11-objective-content {
+  font-size: 1rem;
+  font-weight: 400;
+  line-height: 1.5rem;
+  color: #686868;
+  padding: 1.5rem 0;
+}
+
+.section-11-below-text-btn {
+  padding: 0.7rem 2rem;
+  border: none;
+  font-size: 1rem;
+  font-weight: 500;
+  border-radius: 3.5rem;
+}
+
+/* @media screen and (max-width: 1366px) {
+  .proposal-text p {
+    font-size: 10rem;
+  }
+  .propasal-hero {
+    font-size: 1.8rem;
+    line-height: 2.2rem;
+    width: 70%;
+  }
+  .proposal,
+  .issue-date,
+  .preparedBy,
+  .section-1-bottom-text-content {
+    font-size: 0.9rem;
+  }
+  .proposal {
+    margin-top: 5rem;
+  }
+  .hero-text-div {
+    width: 10%;
+  }
+  .hero-text-address {
+    width: 32%;
+  }
+  .client-name {
+    font-size: 1.8rem;
+    padding: 1.8rem 0;
+  }
+  .date,
+  .jordie-text,
+  .address {
+    font-size: 1.1rem;
+    line-height: 1.6rem;
+  }
+  .logo img {
+    width: 10%;
+  }
+} */
+
+@media screen and (min-width: 1440px) {
+  .hero-content {
+    min-height: calc(100vh - 14rem);
+  }
+  .proposal-text p {
+    font-size: 10rem;
+  }
+  .propasal-hero {
+    font-size: 2rem;
+    line-height: 2.5rem;
+    width: 65%;
+  }
+  .proposal,
+  .issue-date,
+  .preparedBy,
+  .section-1-bottom-text-content {
+    font-size: 1rem;
+  }
+  .proposal {
+    margin-top: 8rem;
+  }
+  .hero-text-div {
+    width: 25%;
+  }
+  .hero-text-address {
+    width: 30%;
+  }
+  .client-name {
+    font-size: 2rem;
+    padding: 2rem 0;
+  }
+  .date,
+  .jordie-text,
+  .address {
+    font-size: 1.2rem;
+    line-height: 1.8rem;
+  }
+  .logo img {
+    width: 16%;
+  }
+
+  /* --------------- Section - 2 --------------- */
+
+  .section-2-text1 {
+    font-size: 8rem;
+    width: 50%;
+    line-height: 10rem;
+    top: 10%;
+    left: 10%;
+  }
+  .section-2-text2 {
+    font-size: 1.5rem;
+    bottom: 15%;
+    right: 10%;
+  }
+  .section-2-text2 li {
+    margin: 1rem 0;
+  }
+
+  /* -------------- Section - 3 ---------------- */
+  .section-3-text1 {
+    font-size: 2rem;
+    top: 10%;
+  }
+  .section-3-text2,
+  .section-3-text2 p {
+    font-size: 1rem;
+    bottom: 18%;
+    line-height: 2rem;
+  }
+
+  /* --------------- Section - 4 ---------------- */
+  .section-4-text1 {
+    font-size: 8rem;
+    top: 1%;
+  }
+  .section-4-text2,
+  .section-4-text2 p {
+    font-size: 1rem;
+    bottom: 18%;
+    line-height: 2rem;
+  }
+
+  /* --------------- Section - 5 ---------------- */
+  .section-5-text1 {
+    font-size: 6rem;
+    top: 10%;
+  }
+  .section-5-text1 p {
+    line-height: 6rem;
+  }
+  .section-5-text2,
+  .section-5-text2 ul li {
+    font-size: 1rem;
+    bottom: 0;
+    line-height: 1.5rem;
+    padding-bottom: 2.5rem;
+  }
+  .section-5-text2 span {
+    font-size: 1.5rem;
+  }
+
+  /* --------------- Section - 6 ---------------- */
+  .section-6-text1 {
+    font-size: 6rem;
+    top: 10%;
+  }
+  .section-6-text1 p {
+    line-height: 6rem;
+  }
+  .section-6-text2 {
+    font-size: 2.5rem;
+    line-height: 3rem;
+  }
+  .objective-container {
+    font-size: 1rem;
+    line-height: 19px;
+  }
+  .objective-content {
+    font-size: 1.2rem;
+    line-height: 1.5rem;
+  }
+  /* --------------- Section - 7 ---------------- */
+  .section-7-text1 {
+    font-size: 6rem;
+    top: 4rem;
+  }
+  .section-7-text1 p {
+    line-height: 6rem;
+  }
+  .section-7-branding-text {
+    margin-top: 5rem;
+  }
+  .section-7-below-text p {
+    line-height: 2rem;
+  }
+  .section-7-text2 {
+    font-size: 2rem;
+    line-height: 3rem;
+  }
+  .section-7-objective-content {
+    font-size: 1rem;
+    line-height: 1rem;
+  }
+
+  /* --------------- Section - 8 ---------------- */
+  .section-8-text1 {
+    font-size: 6rem;
+    top: 4rem;
+  }
+  .section-8-text1 p {
+    line-height: 6rem;
+  }
+  .section-7-text2 {
+    font-size: 2rem;
+    line-height: 3rem;
+  }
+  .section-7-objective-content {
+    font-size: 1rem;
+    line-height: 1rem;
+  }
+  .section-8-weeks {
+    font-size: 3rem;
+  }
+  .section-9-inr {
+    font-size: 3rem;
+  }
+
+  /* --------------- Section - 10 ---------------- */
+  .section-10-text1 {
+    font-size: 6rem;
+    top: 4rem;
+  }
+  .section-10-text1 p {
+    line-height: 6rem;
+  }
+}
+
+@media screen and (min-width: 1920px) {
+  /* --------- Section - 1 -------------- */
+  .hero-content {
+    min-height: calc(100vh - 15rem);
+  }
+  .proposal-text p {
+    font-size: 12rem;
+  }
+  .propasal-hero {
+    font-size: 2.5rem;
+    line-height: 3rem;
+    width: 60%;
+  }
+  .proposal,
+  .issue-date,
+  .preparedBy,
+  .section-1-bottom-text-content {
+    font-size: 1.2rem;
+  }
+  .proposal {
+    margin-top: 10rem;
+  }
+  .hero-text-div {
+    width: 25%;
+  }
+  .hero-text-address {
+    width: 26%;
+  }
+  .client-name {
+    font-size: 2.5rem;
+    padding: 2.5rem 0;
+  }
+  .date,
+  .jordie-text,
+  .address {
+    font-size: 1.5rem;
+    line-height: 2rem;
+  }
+  .logo img {
+    width: 15%;
+  }
+  .hero-text-bottom {
+    padding-bottom: 2.5rem;
+  }
+
+  /* --------------- Section - 2 --------------- */
+
+  .header {
+    font-size: 1.2rem;
+  }
+  .bottom-text {
+    font-size: 1.2rem;
+  }
+  .section-2-content {
+    min-height: calc(100vh - 11rem);
+  }
+  .section-2-text1 {
+    font-size: 12rem;
+    width: 50%;
+    line-height: 10rem;
+    top: 10%;
+    left: 10%;
+  }
+  .section-2-text2 {
+    font-size: 2.5rem;
+    bottom: 15%;
+    right: 10%;
+  }
+  .section-2-text2 li {
+    margin: 1rem 0;
+  }
+
+  /* -------------- Section - 3 ---------------- */
+  .section-3-text1 {
+    font-size: 2.5rem;
+    top: 10%;
+  }
+  .section-3-text2,
+  .section-3-text2 p {
+    font-size: 1.5rem;
+    bottom: 15%;
+    line-height: 2.5rem;
+  }
+
+  /* --------------- Section - 4 ---------------- */
+  .section-4-text1 {
+    font-size: 12rem;
+    top: 10%;
+  }
+  .section-4-text2,
+  .section-4-text2 p {
+    font-size: 1.5rem;
+    bottom: 18%;
+    line-height: 2rem;
+  }
+
+  /* --------------- Section - 5 ---------------- */
+  .section-5-text1 {
+    font-size: 8rem;
+    top: 10%;
+  }
+  .section-5-text1 p {
+    line-height: 8rem;
+  }
+  .section-5-text2,
+  .section-5-text2 ul li {
+    font-size: 1.2rem;
+    bottom: 0;
+    line-height: 2rem;
+    padding-bottom: 3rem;
+  }
+  .section-5-text2 span {
+    font-size: 2rem;
+  }
+  /* --------------- Section - 6 ---------------- */
+  .section-6-text1 {
+    font-size: 9rem;
+    top: 10%;
+  }
+  .section-6-text1 p {
+    line-height: 8rem;
+  }
+  .section-6-text2 {
+    font-size: 3rem;
+    line-height: 3.2rem;
+  }
+  .objective-container {
+    font-size: 1.2rem;
+    line-height: 3rem;
+  }
+  .objective-content {
+    font-size: 1.5rem;
+    line-height: 2rem;
+  }
+  /* --------------- Section - 7 ---------------- */
+  .section-7-text1 {
+    font-size: 9rem;
+    top: 5rem;
+  }
+  .section-7-inner-text {
+    gap: 20rem;
+  }
+  .section-7-text1 > p {
+    line-height: 8rem;
+  }
+  .section-7-below-text {
+    width: 60%;
+  }
+  .section-7-below-text > p {
+    line-height: 2.5rem;
+    font-size: 2rem;
+  }
+  .section-7-text2 {
+    font-size: 3rem;
+    line-height: 3.2rem;
+  }
+  .section-7-objective-content {
+    font-size: 1.5rem;
+    line-height: 2rem;
+  }
+
+  /* --------------- Section - 8 ---------------- */
+  .section-8-text1 {
+    font-size: 9rem;
+    top: 10%;
+  }
+  .section-8-text1 > p {
+    line-height: 8rem;
+  }
+  .section-8-below-text > p {
+    line-height: 1.5rem;
+  }
+  .section-8-text2 {
+    font-size: 3rem;
+    line-height: 3.2rem;
+  }
+  .section-8-objective-content {
+    font-size: 1.5rem;
+    line-height: 2rem;
+  }
+  .section-8-weeks {
+    font-size: 3rem;
+  }
+  .section-8-table-container {
+    position: relative;
+    left: 0;
+    top: 25rem;
+  }
+
+  /* --------------- Section - 9 ---------------- */
+  .section-9-text1 {
+    font-size: 9rem;
+    top: 10%;
+  }
+  .section-9-text1 > p {
+    line-height: 8rem;
+  }
+  .section-9-below-text > p {
+    line-height: 1.5rem;
+  }
+  .section-9-text2 {
+    font-size: 3rem;
+    line-height: 3.2rem;
+  }
+  .section-9-objective-content {
+    font-size: 1.5rem;
+    line-height: 2rem;
+  }
+  .section-9-inr {
+    font-size: 3rem;
+  }
+}
+
+/* Responsive styles for mobile devices only */
+
+/* Responsive styles for mobile devices only */
+
+@media screen and (max-width: 768px) {
+  .hero-content {
+    display: block;
+    min-height: auto;
+    padding: 4rem 1.5rem;
+  }
+  .proposal-text p {
+    font-size: 4rem;
+  }
+  .propasal-hero {
+    font-size: 1.2rem;
+    line-height: 1.8rem;
+    width: 90%;
+  }
+  .hero-text-div {
+    width: 20%;
+  }
+  .hero-text-address {
+    width: 70%;
+  }
+  .client-name {
+    font-size: 1.2rem;
+  }
+  .date,
+  .jordie-text,
+  .address {
+    font-size: 0.9rem;
+  }
+  .logo img {
+    width: 25%;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .box {
+    padding: 0 1rem;
+  }
+  .hero-content {
+    display: block;
+    padding: 3rem 0;
+    min-height: 72vh;
+  }
+  .hero-text-bottom {
+    display: block;
+    gap: 5rem;
+  }
+  .hero-content {
+    padding-top: 7rem;
+  }
+  .section-1-bottom-text-content {
+    padding: 0;
+  }
+  .proposal-text p {
+    font-size: 4.5rem;
+  }
+  .propasal-hero {
+    font-size: 1.1rem;
+    line-height: 1.5rem;
+    width: 100%;
+  }
+  .date-container {
+    display: flex;
+    padding: 1.5rem 0;
+  }
+
+  .hero-text-div {
+    width: 30%;
+  }
+  .hero-text-address {
+    width: 90%;
+  }
+  .client-name {
+    font-size: 1rem;
+  }
+  .date,
+  .jordie-text,
+  .address {
+    font-size: 1rem;
+  }
+  .logo img {
+    width: 30%;
+  }
+
+  .slider {
+    padding: 1rem;
+  }
+  .prev p,
+  .next p {
+    font-size: 0.8rem;
+  }
+
+  /* ------------- Section - 2 ------------------ */
+
+  .horizontal-slide {
+    height: 100vh;
+  }
+
+  .header {
+    font-size: 0.5rem;
+  }
+  .bottom-text {
+    font-size: 0.5rem;
+  }
+  .section-2-content {
+    min-height: calc(100vh - 9.1rem);
+  }
+  .section-2-text1 {
+    font-size: 5rem;
+    width: 50%;
+    line-height: 5rem;
+    top: 10%;
+    left: 0;
+  }
+  .section-2-text2 {
+    font-size: 1rem;
+    bottom: 10%;
+    right: 0;
+  }
+  .section-2-text2 li {
+    margin: 1rem 0;
+  }
+  .bottom-text {
+    bottom: 0;
+  }
+  .bottom-text img {
+    width: 5rem;
+  }
+
+  /* ------------- Section - 3 ----------------- */
+
+  .section-3-content {
+    min-height: calc(100vh - 9.1rem);
+  }
+  .section-3-text1 {
+    font-size: 1.5rem;
+    width: 80%;
+    line-height: 5rem;
+    top: 10%;
+    left: 0;
+  }
+  .client-name {
+    font-size: 1.5rem;
+  }
+
+  .section-3-text2 {
+    font-size: 0.7rem;
+    bottom: 8%;
+    right: 0;
+  }
+
+  /* ------------- Section - 4 ----------------- */
+
+  .section-4-content {
+    min-height: calc(100vh - 9.1rem);
+  }
+  .section-4-text1 {
+    font-size: 4rem;
+    width: 80%;
+    line-height: 5rem;
+    top: 10%;
+    left: 0;
+  }
+
+  .section-4-text2 {
+    font-size: 0.7rem;
+    bottom: 8%;
+    right: 0;
+  }
+
+  /* ------------- Section - 5 ----------------- */
+
+  .section-5-content {
+    min-height: calc(100vh - 9.1rem);
+  }
+  .section-5-text1 {
+    font-size: 4.5rem;
+    width: 90%;
+    top: 10%;
+    left: 0;
+  }
+  .section-5-text1 p {
+    line-height: 5rem;
+  }
+  .section-5-text2 {
+    width: 70%;
+    font-size: 0.7rem;
+    bottom: 8%;
+    right: 0;
+  }
+
+  /* ------------- Section - 6 ----------------- */
+
+  .section-6-content {
+    min-height: calc(100vh - 9.1rem);
+  }
+  .section-6-text1 {
+    font-size: 4.5rem;
+    width: 80%;
+    top: 10%;
+    left: 0;
+  }
+  .section-6-text1 p {
+    line-height: 5rem;
+  }
+
+  .section-6-text2 {
+    width: 70%;
+    font-size: 1.5rem;
+    bottom: 8%;
+    right: 0;
+  }
+  .section-6-text2 p {
+    line-height: 2rem;
+  }
+  .objective-content {
+    font-size: 0.9rem;
+  }
+
+  /* --------------- Section - 7 ---------------- */
+  .section-7-content {
+    min-height: calc(100vh - 9.1rem);
+  }
+  .section-7-text1 {
+    font-size: 4.5rem;
+    width: 80%;
+    top: 10%;
+    left: 0;
+  }
+  .section-7-text1 > p {
+    line-height: 5rem;
+  }
+  .section-7-below-text {
+    width: 80%;
+  }
+  .section-7-below-text > p {
+    line-height: 1.5rem;
+    width: 100%;
+  }
+  .section-7-text2 {
+    width: 70%;
+    font-size: 1.5rem;
+    bottom: 8%;
+    right: 0;
+  }
+  .section-7-objective-content {
+    font-size: 0.9rem;
+  }
+}

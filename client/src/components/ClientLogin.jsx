@@ -72,7 +72,7 @@ const ClientLogin = ({ setProposal }) => {
     e.preventDefault();
     try {
       const response = await fetch(
-        "http://localhost:5000/api/proposals/login",
+        "https://proposal-backend-1dom.onrender.com/api/proposals/login",
         {
           method: "POST",
           headers: {

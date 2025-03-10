@@ -632,9 +632,9 @@ body {
   line-height: 4.5rem;
 }
 .section-8-table-container {
-  position: absolute;
-  bottom: 0;
-  margin: 0 12rem;
+  position: relative;
+  top: 15rem;
+  margin: 0 8rem;
 }
 .table-data {
   height: 40vh;
@@ -650,11 +650,10 @@ body {
   font-size: 1rem;
   line-height: 30px;
   text-align: left;
-  padding: 0 2rem;
   color: #c4b4ff;
 }
 .section-8-table-container td {
-  padding: 1rem 2rem;
+  /* padding: 1rem 2rem; */
   color: #686868;
 }
 .section-8-table-container thead {
@@ -662,17 +661,31 @@ body {
 }
 
 /* Set last column (Deliverables) width to 30% */
-.section-8-table-container td:nth-child(1),
+/* .section-8-table-container td:nth-child(1),
 .section-8-table-container th:nth-child(1) {
   width: 20%;
 }
 .section-8-table-container td:nth-child(2),
 .section-8-table-container th:nth-child(2) {
-  width: 20%;
+  width: 30%;
 }
 .section-8-table-container td:nth-child(3),
 .section-8-table-container th:nth-child(3) {
+  width: 40%;
+} */
+.section-8-table-container td:nth-child(1),
+.section-8-table-container th:nth-child(1) {
   width: 30%;
+}
+
+.section-8-table-container td:nth-child(2),
+.section-8-table-container th:nth-child(2) {
+  width: 35%;
+}
+
+.section-8-table-container td:nth-child(3),
+.section-8-table-container th:nth-child(3) {
+  width: 40%;
 }
 
 .scrollbar-hide::-webkit-scrollbar {
@@ -714,16 +727,7 @@ body {
   font-size: 2rem;
   color: #7f5cff;
 }
-.bottom-text-inr {
-  position: absolute;
-  right: 0;
-  bottom: 2%;
-  color: #7f5cff;
-  font-family: "Bricolage Grotesque", serif;
-  font-weight: 600;
-  font-size: 1rem;
-  line-height: 1.2rem;
-}
+
 .section-9-text1 {
   font-size: 5rem;
   font-weight: 600;
@@ -742,9 +746,9 @@ body {
   line-height: 4.5rem;
 }
 .section-9-table-container {
-  position: absolute;
-  bottom: 0;
-  margin: 0 12rem;
+  position: relative;
+  top: 15rem;
+  margin: 0 8rem;
 }
 .section-9-table-container table {
   width: 100%;
@@ -756,11 +760,10 @@ body {
   font-size: 1rem;
   line-height: 30px;
   text-align: left;
-  padding: 0 2rem;
   color: #c4b4ff;
 }
 .section-9-table-container td {
-  padding: 1rem 2rem;
+  padding: 1rem 0;
   color: #686868;
 }
 .section-9-table-container thead {
@@ -769,8 +772,8 @@ body {
 
 .all-prices-text {
   position: absolute;
-  right: -20%;
-  bottom: 2%;
+  right: -12%;
+  bottom: 0;
   color: #7f5cff;
   font-family: "Bricolage Grotesque", serif;
   font-weight: 600;
@@ -806,10 +809,10 @@ body {
   /* background-color: #7f5cff; */
   position: relative;
 }
-.section-10-inner-text {
+/* .section-10-inner-text {
   display: flex;
   justify-content: center;
-}
+} */
 
 .section-10-text1 {
   font-size: 5rem;
@@ -1211,6 +1214,9 @@ body {
   }
 
   /* -------------- Section - 3 ---------------- */
+  .section-3-content {
+    min-height: calc(100vh - 11rem);
+  }
   .section-3-text1 {
     font-size: 2.5rem;
     top: 10%;
@@ -1223,6 +1229,9 @@ body {
   }
 
   /* --------------- Section - 4 ---------------- */
+  .section-4-content {
+    min-height: calc(100vh - 11rem);
+  }
   .section-4-text1 {
     font-size: 12rem;
     top: 10%;
@@ -1235,6 +1244,9 @@ body {
   }
 
   /* --------------- Section - 5 ---------------- */
+  .section-5-content {
+    min-height: calc(100vh - 11rem);
+  }
   .section-5-text1 {
     font-size: 8rem;
     top: 10%;
@@ -1253,6 +1265,9 @@ body {
     font-size: 2rem;
   }
   /* --------------- Section - 6 ---------------- */
+  .section-6-content {
+    min-height: calc(100vh - 11rem);
+  }
   .section-6-text1 {
     font-size: 9rem;
     top: 10%;
@@ -1273,9 +1288,13 @@ body {
     line-height: 2rem;
   }
   /* --------------- Section - 7 ---------------- */
+  .section-7-content {
+    min-height: calc(100vh - 11rem);
+  }
   .section-7-text1 {
     font-size: 9rem;
-    top: 5rem;
+    margin-top: 5rem;
+    width: 60%;
   }
   .section-7-inner-text {
     gap: 20rem;
@@ -1284,8 +1303,9 @@ body {
     line-height: 8rem;
   }
   .section-7-below-text {
-    width: 60%;
+    width: 50%;
   }
+
   .section-7-below-text > p {
     line-height: 2.5rem;
     font-size: 2rem;
@@ -1300,6 +1320,12 @@ body {
   }
 
   /* --------------- Section - 8 ---------------- */
+  .section-8-inner-text {
+    min-height: calc(100vh - 11rem);
+  }
+  .section-8-content {
+    min-height: calc(100vh - 11rem);
+  }
   .section-8-text1 {
     font-size: 9rem;
     top: 10%;
@@ -1328,6 +1354,12 @@ body {
   }
 
   /* --------------- Section - 9 ---------------- */
+  .section-9-inner-text {
+    min-height: calc(100vh - 11rem);
+  }
+  .section-9-content {
+    min-height: calc(100vh - 11rem);
+  }
   .section-9-text1 {
     font-size: 9rem;
     top: 10%;
@@ -1347,6 +1379,34 @@ body {
     line-height: 2rem;
   }
   .section-9-inr {
+    font-size: 3rem;
+  }
+  /* --------------- Section - 10 ---------------- */
+  .section-10-inner-text {
+    min-height: calc(100vh - 11rem);
+  }
+  .section-10-content {
+    min-height: calc(100vh - 11rem);
+  }
+  .section-10-text1 {
+    font-size: 9rem;
+    top: 10%;
+  }
+  .section-10-text1 > p {
+    line-height: 8rem;
+  }
+  .section-10-below-text > p {
+    line-height: 1.5rem;
+  }
+  .section-10-text2 {
+    font-size: 3rem;
+    line-height: 3.2rem;
+  }
+  .section-10-objective-content {
+    font-size: 1.5rem;
+    line-height: 2rem;
+  }
+  .section-10-inr {
     font-size: 3rem;
   }
 }

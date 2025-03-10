@@ -1,617 +1,3 @@
-// import { useState } from "react";
-// import { useNavigate } from "react-router-dom";
-// import axios from "axios";
-// import { handleError, handleSuccess } from "../utils";
-// import { ToastContainer } from "react-toastify";
-
-// const CreateProposal = () => {
-//   const [formData, setFormData] = useState({
-//     companyName: "",
-//     clientName: "",
-//     expiryDate: "",
-//     description: "",
-//     clientId: "",
-//   });
-
-//   const navigate = useNavigate();
-
-//   // Handle input change
-//   const handleChange = (e) => {
-//     setFormData({ ...formData, [e.target.name]: e.target.value });
-//   };
-
-//   // Submit form
-//   const handleSubmit = async (e) => {
-//     e.preventDefault();
-
-//     // Check if all fields are filled
-//     if (Object.values(formData).some((val) => val.trim() === "")) {
-//       handleError("All fields are required.");
-//       return;
-//     }
-
-//     try {
-//       console.log("Sending Data:", formData); // Debugging log
-
-//       const response = await axios.post(
-//         "http://localhost:5000/api/proposals/create",
-//         formData
-//       );
-
-//       console.log("API Response:", response.data); // Debugging log
-
-//       handleSuccess(response.data.message);
-//       navigate("/dashboard"); // Redirect after successful creation
-//     } catch (error) {
-//       console.error("API Error:", error.response?.data || error.message);
-//       handleError(error.response?.data?.error || "Failed to create proposal");
-//     }
-//   };
-
-//   return (
-//     <div className="container mt-5">
-//       <h2 className="mb-4">Create New Proposal</h2>
-//       <form onSubmit={handleSubmit}>
-//         <div className="mb-3">
-//           <label className="form-label">Company Name</label>
-//           <input
-//             type="text"
-//             name="companyName"
-//             className="form-control"
-//             value={formData.companyName}
-//             onChange={handleChange}
-//             required
-//           />
-//         </div>
-
-//         <div className="mb-3">
-//           <label className="form-label">Client Name</label>
-//           <input
-//             type="text"
-//             name="clientName"
-//             className="form-control"
-//             value={formData.clientName}
-//             onChange={handleChange}
-//             required
-//           />
-//         </div>
-
-//         <div className="mb-3">
-//           <label className="form-label">Expiry Date</label>
-//           <input
-//             type="date"
-//             name="expiryDate"
-//             className="form-control"
-//             value={formData.expiryDate}
-//             onChange={handleChange}
-//             required
-//           />
-//         </div>
-
-//         <div className="mb-3">
-//           <label className="form-label">Description</label>
-//           <textarea
-//             name="description"
-//             className="form-control"
-//             value={formData.description}
-//             onChange={handleChange}
-//             required
-//           />
-//         </div>
-
-//         <div className="mb-3">
-//           <label className="form-label">Client ID</label>
-//           <input
-//             type="text"
-//             name="clientId"
-//             className="form-control"
-//             value={formData.clientId}
-//             onChange={handleChange}
-//             required
-//           />
-//         </div>
-
-//         <button type="submit" className="btn btn-primary">
-//           Create Proposal
-//         </button>
-//       </form>
-//       <ToastContainer />
-//     </div>
-//   );
-// };
-
-// export default CreateProposal;
-
-// import { useState } from "react";
-// import { useNavigate } from "react-router-dom";
-// import axios from "axios";
-// import { handleError, handleSuccess } from "../utils";
-// import { ToastContainer } from "react-toastify";
-
-// const CreateProposal = () => {
-//   const [formData, setFormData] = useState({
-//     companyName: "",
-//     clientName: "",
-//     expiryDate: "",
-//     description: "",
-//     clientId: "",
-//   });
-
-//   const navigate = useNavigate();
-
-//   // Handle input change
-//   const handleChange = (e) => {
-//     setFormData({ ...formData, [e.target.name]: e.target.value });
-//   };
-
-//   // Submit form
-//   const handleSubmit = async (e) => {
-//     e.preventDefault();
-
-//     // Check if all fields are filled
-//     if (Object.values(formData).some((val) => val.trim() === "")) {
-//       handleError("All fields are required.");
-//       return;
-//     }
-
-//     try {
-//       console.log("Sending Data:", formData); // Debugging log
-
-//       const response = await axios.post(
-//         "http://localhost:5000/api/proposals/create",
-//         formData
-//       );
-
-//       console.log("API Response:", response.data); // Debugging log
-
-//       handleSuccess(response.data.message);
-//       navigate("/dashboard"); // Redirect after successful creation
-//     } catch (error) {
-//       console.error("API Error:", error.response?.data || error.message);
-//       handleError(error.response?.data?.error || "Failed to create proposal");
-//     }
-//   };
-
-//   return (
-//     <div className="container mt-5 position-relative">
-//       {/* Cross button to close */}
-//       <button
-//         className="btn-close position-absolute top-0 end-0 m-3"
-//         onClick={() => navigate(-1)}
-//         aria-label="Close"
-//       ></button>
-
-//       <h2 className="mb-4">Create New Proposal</h2>
-//       <form onSubmit={handleSubmit}>
-//         <div className="mb-3">
-//           <label className="form-label">Company Name</label>
-//           <input
-//             type="text"
-//             name="companyName"
-//             className="form-control"
-//             value={formData.companyName}
-//             onChange={handleChange}
-//             required
-//           />
-//         </div>
-
-//         <div className="mb-3">
-//           <label className="form-label">Client Name</label>
-//           <input
-//             type="text"
-//             name="clientName"
-//             className="form-control"
-//             value={formData.clientName}
-//             onChange={handleChange}
-//             required
-//           />
-//         </div>
-
-//         <div className="mb-3">
-//           <label className="form-label">Expiry Date</label>
-//           <input
-//             type="date"
-//             name="expiryDate"
-//             className="form-control"
-//             value={formData.expiryDate}
-//             onChange={handleChange}
-//             required
-//           />
-//         </div>
-
-//         <div className="mb-3">
-//           <label className="form-label">Description</label>
-//           <textarea
-//             name="description"
-//             className="form-control"
-//             value={formData.description}
-//             onChange={handleChange}
-//             required
-//           />
-//         </div>
-
-//         <div className="mb-3">
-//           <label className="form-label">Client ID</label>
-//           <input
-//             type="text"
-//             name="clientId"
-//             className="form-control"
-//             value={formData.clientId}
-//             onChange={handleChange}
-//             required
-//           />
-//         </div>
-
-//         <button type="submit" className="btn btn-primary">
-//           Create Proposal
-//         </button>
-//       </form>
-//       <ToastContainer />
-//     </div>
-//   );
-// };
-
-// export default CreateProposal;
-
-// import { useState } from "react";
-// import { useNavigate } from "react-router-dom";
-// import { ToastContainer, toast } from "react-toastify";
-
-// const CreateProposal = () => {
-//   const [formData, setFormData] = useState({
-//     companyName: "",
-//     clientName: "",
-//     expiryDate: "",
-//     description: "",
-//     clientId: "",
-//   });
-
-//   const navigate = useNavigate();
-
-//   // Handle input change
-//   const handleChange = (e) => {
-//     setFormData({ ...formData, [e.target.name]: e.target.value });
-//   };
-
-//   // Show toast notification
-//   const showToast = (message, type = "success") => {
-//     if (type === "success") {
-//       toast.success(message);
-//     } else {
-//       toast.error(message);
-//     }
-//   };
-
-//   // Submit form
-//   const handleSubmit = async (e) => {
-//     e.preventDefault();
-
-//     // Check if all fields are filled
-//     if (Object.values(formData).some((val) => val.trim() === "")) {
-//       showToast("All fields are required.", "error");
-//       return;
-//     }
-
-//     try {
-//       console.log("Sending Data:", formData);
-
-//       const response = await fetch(
-//         "http://localhost:5000/api/proposals/create",
-//         {
-//           method: "POST",
-//           headers: {
-//             "Content-Type": "application/json",
-//           },
-//           body: JSON.stringify(formData),
-//         }
-//       );
-
-//       const data = await response.json();
-//       console.log("API Response:", data);
-
-//       if (!response.ok) {
-//         throw new Error(data.error || "Failed to create proposal");
-//       }
-
-//       showToast("Proposal created successfully!", "success");
-
-//       // Redirect after a short delay to show toast
-//       setTimeout(() => {
-//         navigate("/dashboard");
-//       }, 2000);
-//     } catch (error) {
-//       console.error("API Error:", error.message);
-//       showToast(error.message, "error");
-//     }
-//   };
-
-//   return (
-//     <div className="container mt-5 position-relative">
-//       {/* Close button */}
-//       <button
-//         className="btn-close position-absolute top-0 end-0 m-3"
-//         onClick={() => navigate(-1)}
-//         aria-label="Close"
-//       ></button>
-
-//       <h2 className="mb-4">Create New Proposal</h2>
-//       <form onSubmit={handleSubmit}>
-//         <div className="mb-3">
-//           <label className="form-label">Company Name</label>
-//           <input
-//             type="text"
-//             name="companyName"
-//             className="form-control"
-//             value={formData.companyName}
-//             onChange={handleChange}
-//           />
-//         </div>
-
-//         <div className="mb-3">
-//           <label className="form-label">Client Name</label>
-//           <input
-//             type="text"
-//             name="clientName"
-//             className="form-control"
-//             value={formData.clientName}
-//             onChange={handleChange}
-//           />
-//         </div>
-
-//         <div className="mb-3">
-//           <label className="form-label">Expiry Date</label>
-//           <input
-//             type="date"
-//             name="expiryDate"
-//             className="form-control"
-//             value={formData.expiryDate}
-//             onChange={handleChange}
-//           />
-//         </div>
-
-//         <div className="mb-3">
-//           <label className="form-label">Description</label>
-//           <textarea
-//             name="description"
-//             className="form-control"
-//             value={formData.description}
-//             onChange={handleChange}
-//           />
-//         </div>
-
-//         <div className="mb-3">
-//           <label className="form-label">Client ID</label>
-//           <input
-//             type="text"
-//             name="clientId"
-//             className="form-control"
-//             value={formData.clientId}
-//             onChange={handleChange}
-//           />
-//         </div>
-
-//         <button type="submit" className="btn btn-primary">
-//           Create Proposal
-//         </button>
-//       </form>
-
-//       {/* Toast Container */}
-//       <ToastContainer position="top-right" autoClose={3000} />
-//     </div>
-//   );
-// };
-
-// export default CreateProposal;
-
-// import { useState } from "react";
-// import { useNavigate } from "react-router-dom";
-// import { ToastContainer, toast } from "react-toastify";
-
-// const CreateProposal = () => {
-//   const [formData, setFormData] = useState({
-//     companyName: "",
-//     clientName: "",
-//     expiryDate: "",
-//     description: "",
-//     clientId: "",
-//     brands: [],
-//   });
-//   const [brandInput, setBrandInput] = useState("");
-
-//   const navigate = useNavigate();
-
-//   // Handle input change
-//   const handleChange = (e) => {
-//     setFormData({ ...formData, [e.target.name]: e.target.value });
-//   };
-
-//   // Handle brand input change
-//   const handleBrandChange = (e) => {
-//     setBrandInput(e.target.value);
-//   };
-
-//   // Add brand to list
-//   const addBrand = () => {
-//     if (brandInput.trim() !== "") {
-//       setFormData({ ...formData, brands: [...formData.brands, brandInput] });
-//       setBrandInput("");
-//     }
-//   };
-
-//   // Remove brand from list
-//   const removeBrand = (index) => {
-//     setFormData({
-//       ...formData,
-//       brands: formData.brands.filter((_, i) => i !== index),
-//     });
-//   };
-
-//   // Show toast notification
-//   const showToast = (message, type = "success") => {
-//     if (type === "success") {
-//       toast.success(message);
-//     } else {
-//       toast.error(message);
-//     }
-//   };
-
-//   // Submit form
-//   const handleSubmit = async (e) => {
-//     e.preventDefault();
-
-//     // Check if all fields are filled
-//     if (Object.values(formData).some((val) => val === "")) {
-//       showToast("All fields are required.", "error");
-//       return;
-//     }
-
-//     try {
-//       console.log("Sending Data:", formData);
-
-//       const response = await fetch(
-//         "http://localhost:5000/api/proposals/create",
-//         {
-//           method: "POST",
-//           headers: {
-//             "Content-Type": "application/json",
-//           },
-//           body: JSON.stringify(formData),
-//         }
-//       );
-
-//       const data = await response.json();
-//       console.log("API Response:", data);
-
-//       if (!response.ok) {
-//         throw new Error(data.error || "Failed to create proposal");
-//       }
-
-//       showToast("Proposal created successfully!", "success");
-
-//       // Redirect after a short delay to show toast
-//       setTimeout(() => {
-//         navigate("/dashboard");
-//       }, 2000);
-//     } catch (error) {
-//       console.error("API Error:", error.message);
-//       showToast(error.message, "error");
-//     }
-//   };
-
-//   return (
-//     <div className="container mt-5 position-relative">
-//       {/* Close button */}
-//       <button
-//         className="btn-close position-absolute top-0 end-0 m-3"
-//         onClick={() => navigate(-1)}
-//         aria-label="Close"
-//       ></button>
-
-//       <h2 className="mb-4">Create New Proposal</h2>
-//       <form onSubmit={handleSubmit}>
-//         <div className="mb-3">
-//           <label className="form-label">Company Name</label>
-//           <input
-//             type="text"
-//             name="companyName"
-//             className="form-control"
-//             value={formData.companyName}
-//             onChange={handleChange}
-//           />
-//         </div>
-
-//         <div className="mb-3">
-//           <label className="form-label">Client Name</label>
-//           <input
-//             type="text"
-//             name="clientName"
-//             className="form-control"
-//             value={formData.clientName}
-//             onChange={handleChange}
-//           />
-//         </div>
-
-//         <div className="mb-3">
-//           <label className="form-label">Expiry Date</label>
-//           <input
-//             type="date"
-//             name="expiryDate"
-//             className="form-control"
-//             value={formData.expiryDate}
-//             onChange={handleChange}
-//           />
-//         </div>
-
-//         <div className="mb-3">
-//           <label className="form-label">Description</label>
-//           <textarea
-//             name="description"
-//             className="form-control"
-//             value={formData.description}
-//             onChange={handleChange}
-//           />
-//         </div>
-
-//         <div className="mb-3">
-//           <label className="form-label">Client ID</label>
-//           <input
-//             type="text"
-//             name="clientId"
-//             className="form-control"
-//             value={formData.clientId}
-//             onChange={handleChange}
-//           />
-//         </div>
-
-//         <div className="mb-3">
-//           <label className="form-label">Brands</label>
-//           <div className="d-flex">
-//             <input
-//               type="text"
-//               className="form-control"
-//               value={brandInput}
-//               onChange={handleBrandChange}
-//             />
-//             <button
-//               type="button"
-//               className="btn btn-secondary ms-2"
-//               onClick={addBrand}
-//             >
-//               Add
-//             </button>
-//           </div>
-//           <ul className="list-group mt-2">
-//             {formData.brands.map((brand, index) => (
-//               <li
-//                 key={index}
-//                 className="list-group-item d-flex justify-content-between"
-//               >
-//                 {brand}
-//                 <button
-//                   type="button"
-//                   className="btn btn-danger btn-sm"
-//                   onClick={() => removeBrand(index)}
-//                 >
-//                   Remove
-//                 </button>
-//               </li>
-//             ))}
-//           </ul>
-//         </div>
-
-//         <button type="submit" className="btn btn-primary">
-//           Create Proposal
-//         </button>
-//       </form>
-
-//       {/* Toast Container */}
-//       <ToastContainer position="top-right" autoClose={3000} />
-//     </div>
-//   );
-// };
-
-// export default CreateProposal;
-
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { handleError, handleSuccess } from "../utils";
@@ -626,17 +12,32 @@ const CreateProposal = () => {
     expiryDate: "",
     proposalDescription: "",
     clientId: "",
+    proposalPassword: "",
     scopeOfWork: {
       title: "",
       objective: "",
       services: [""],
       description: [""],
     },
-    timelineDeliverables: {
-      week: [{ week1: "" }, { week2: "" }],
-      task: "",
-      deliverables: "",
+    timelineDeliverables: [
+      {
+        week: { week1: "", week2: "" }, // ✅ Fixed structure
+        task: "",
+        deliverables: "",
+      },
+    ],
+    timelineWeeks: {
+      startWeek: "", // ✅ Added start week
+      endWeek: "", // ✅ Added end week
     },
+    proposedInvestment: [
+      {
+        services: "",
+        description: "",
+        cost: "",
+      },
+    ],
+    proposedCost: "",
   });
 
   const handleChange = (e) => {
@@ -651,29 +52,112 @@ const CreateProposal = () => {
     });
   };
 
-  const handleTimelineChange = (e, field, weekIndex = null, key = null) => {
-    if (field === "week") {
-      // Create a deep copy of the week array
-      const newWeeks = proposal.timelineDeliverables.week.map((week, idx) =>
-        idx === weekIndex ? { ...week, [key]: e.target.value } : week
-      );
+  // const handleTimelineChange = (e, field, weekIndex = null, key = null) => {
+  //   if (field === "week") {
+  //     // Create a deep copy of the week array
+  //     const newWeeks = proposal.timelineDeliverables.week.map((week, idx) =>
+  //       idx === weekIndex ? { ...week, [key]: e.target.value } : week
+  //     );
 
-      setProposal((prevProposal) => ({
-        ...prevProposal,
-        timelineDeliverables: {
-          ...prevProposal.timelineDeliverables,
-          week: newWeeks,
-        },
-      }));
-    } else {
-      setProposal((prevProposal) => ({
-        ...prevProposal,
-        timelineDeliverables: {
-          ...prevProposal.timelineDeliverables,
+  //     setProposal((prevProposal) => ({
+  //       ...prevProposal,
+  //       timelineDeliverables: {
+  //         ...prevProposal.timelineDeliverables,
+  //         week: newWeeks,
+  //       },
+  //     }));
+  //   } else {
+  //     setProposal((prevProposal) => ({
+  //       ...prevProposal,
+  //       timelineDeliverables: {
+  //         ...prevProposal.timelineDeliverables,
+  //         [field]: e.target.value,
+  //       },
+  //     }));
+  //   }
+  // };
+
+  // Handle changes in Timeline & Deliverables
+  const handleTimelineChange = (e, timelineIndex, field, weekKey = null) => {
+    setProposal((prev) => {
+      const updatedTimeline = [...prev.timelineDeliverables];
+      if (field === "week" && weekKey) {
+        updatedTimeline[timelineIndex].week[weekKey] = e.target.value;
+      } else {
+        updatedTimeline[timelineIndex][field] = e.target.value;
+      }
+      return { ...prev, timelineDeliverables: updatedTimeline };
+    });
+  };
+
+  const handleProposedChange = (e, index, field) => {
+    setProposal((prev) => {
+      const updatedProposed = [...prev.proposedInvestment];
+
+      if (field === "Services") {
+        updatedProposed[index] = e.target.value;
+      } else if (updatedProposed[index]) {
+        updatedProposed[index] = {
+          ...updatedProposed[index],
           [field]: e.target.value,
-        },
-      }));
-    }
+        };
+      }
+
+      return { ...prev, proposedInvestment: updatedProposed };
+    });
+  };
+
+  // Add a new Timeline & Deliverables section
+  const addTimeline = () => {
+    setProposal((prev) => ({
+      ...prev,
+      timelineDeliverables: [
+        ...prev.timelineDeliverables,
+        { week: { week1: "", week2: "" }, task: "", deliverables: "" },
+      ],
+    }));
+  };
+
+  // Add a new Proposed Investment section
+  const addProposed = () => {
+    setProposal((prev) => ({
+      ...prev,
+      proposedInvestment: [
+        ...prev.proposedInvestment,
+        { services: "", description: "", cost: "" },
+      ],
+    }));
+  };
+
+  // Add a new week inside a specific Timeline & Deliverables section
+  // const addWeek = (timelineIndex) => {
+  //   setProposal((prev) => {
+  //     const updatedTimeline = [...prev.timelineDeliverables];
+  //     const weekKeys = Object.keys(updatedTimeline[timelineIndex].week);
+  //     const newWeekKey = `week${weekKeys.length + 1}`;
+  //     updatedTimeline[timelineIndex].week[newWeekKey] = "";
+  //     return { ...prev, timelineDeliverables: updatedTimeline };
+  //   });
+  // };
+
+  // Remove a Timeline & Deliverables section
+  const removeTimeline = (timelineIndex) => {
+    setProposal((prev) => {
+      const updatedTimeline = prev.timelineDeliverables.filter(
+        (_, index) => index !== timelineIndex
+      );
+      return { ...prev, timelineDeliverables: updatedTimeline };
+    });
+  };
+
+  // Remove a Proposed Investment section
+  const removeProposed = (Index) => {
+    setProposal((prev) => {
+      const updatedProposed = prev.proposedInvestment.filter(
+        (_, index) => index !== Index
+      );
+      return { ...prev, proposedInvestment: updatedProposed };
+    });
   };
 
   const handleArrayChange = (e, field, index) => {
@@ -742,64 +226,63 @@ const CreateProposal = () => {
 
         <div className="overflow-y-auto p-4 border border-gray-300 rounded-lg max-h-[80vh]">
           <form onSubmit={handleSubmit} className="space-y-4">
-            <div className="row align-items-start">
-              <div className="col">
-                <h3 className="text-lg font-semibold">Client detail</h3>
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                  {[
-                    { label: "Company Name", name: "companyName" },
-                    { label: "Client Name", name: "clientName" },
-                  ].map(({ label, name }) => (
-                    <div key={name}>
-                      <label className="block text-gray-700 font-medium">
-                        {label}
-                      </label>
-                      <input
-                        type="text"
-                        name={name}
-                        value={proposal[name] || ""}
-                        onChange={handleChange}
-                        className="w-full p-2 border rounded-md focus:ring focus:ring-blue-300"
-                        required
-                      />
-                    </div>
-                  ))}
-                </div>
+            <div className="col">
+              <h3 className="text-lg font-semibold">Client detail</h3>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                {[
+                  { label: "Company Name", name: "companyName" },
+                  { label: "Client Name", name: "clientName" },
+                ].map(({ label, name }) => (
+                  <div key={name}>
+                    <label className="block text-gray-700 font-medium">
+                      {label}
+                    </label>
+                    <input
+                      type="text"
+                      name={name}
+                      value={proposal[name] || ""}
+                      onChange={handleChange}
+                      className="w-full p-2 border rounded-md focus:ring focus:ring-blue-300"
+                      required
+                    />
+                  </div>
+                ))}
+              </div>
 
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                  {[
-                    { label: "Expiry Date", name: "expiryDate", type: "date" },
-                    { label: "Client ID", name: "clientId", type: "text" },
-                  ].map(({ label, name, type }) => (
-                    <div key={name}>
-                      <label className="block text-gray-700 font-medium mt-4">
-                        {label}
-                      </label>
-                      <input
-                        type={type}
-                        name={name}
-                        value={proposal[name] || ""}
-                        onChange={handleChange}
-                        className="w-full p-2 border rounded-md focus:ring focus:ring-blue-300"
-                        required
-                      />
-                    </div>
-                  ))}
-                </div>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                {[
+                  { label: "Expiry Date", name: "expiryDate", type: "date" },
+                  { label: "Client ID", name: "clientId", type: "text" },
+                ].map(({ label, name, type }) => (
+                  <div key={name}>
+                    <label className="block text-gray-700 font-medium mt-4">
+                      {label}
+                    </label>
+                    <input
+                      type={type}
+                      name={name}
+                      value={proposal[name] || ""}
+                      onChange={handleChange}
+                      className="w-full p-2 border rounded-md focus:ring focus:ring-blue-300"
+                      required
+                    />
+                  </div>
+                ))}
+              </div>
 
-                <div>
-                  <label className="block text-gray-700 font-medium mt-4">
-                    Proposal Description
-                  </label>
-                  <textarea
-                    name="proposalDescription"
-                    value={proposal.proposalDescription || ""}
-                    onChange={handleChange}
-                    className="w-full p-2 border rounded-md focus:ring focus:ring-blue-300"
-                    required
-                  />
-                </div>
-                {/* <h3 className="text-lg font-semibold">
+              <div>
+                <label className="block text-gray-700 font-medium mt-4">
+                  Proposal Description
+                </label>
+                <textarea
+                  name="proposalDescription"
+                  value={proposal.proposalDescription || ""}
+                  onChange={handleChange}
+                  className="w-full h-[25vh] p-2 border rounded-md focus:ring focus:ring-blue-300"
+                  required
+                />
+              </div>
+              {/* <h3 className="text-lg font-semibold">
                   Timeline & Deliverables
                 </h3>
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
@@ -822,117 +305,295 @@ const CreateProposal = () => {
                     </div>
                   ))}
                 </div> */}
-                <h3 className="text-lg font-semibold">
-                  Timeline & Deliverables
-                </h3>
-                <div className="flex gap-8">
-                  {[
-                    { label: "Task", name: "task" },
-                    { label: "Deliverables", name: "deliverables" },
-                  ].map(({ label, name }) => (
-                    <div key={name} className="w-50">
-                      <label className="block text-gray-700 font-medium">
-                        {label}
-                      </label>
-                      <input
+
+              {/* <h3 className="text-lg font-semibold">Timeline & Deliverables</h3>
+              <div className="flex gap-8">
+                {[
+                  { label: "Task", name: "task" },
+                  { label: "Deliverables", name: "deliverables" },
+                ].map(({ label, name }) => (
+                  <div key={name} className="w-50">
+                    <label className="block text-gray-700 font-medium">
+                      {label}
+                    </label>
+                    <input
+                      type="text"
+                      value={proposal.timelineDeliverables[name] || ""}
+                      onChange={(e) => handleTimelineChange(e, name)}
+                      className="w-full p-2 border rounded-md focus:ring focus:ring-blue-300"
+                      required
+                    />
+                  </div>
+                ))}
+              </div> */}
+
+              {/* <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mt-4">
+                <label className="block text-gray-700 font-medium">Week</label>
+                {proposal.timelineDeliverables.week.map((weekObj, index) =>
+                  Object.entries(weekObj).map(
+                    ([key, value]) =>
+                      key !== "_id" && ( // Exclude _id from rendering
+                        <div key={`${index}-${key}`} className="flex flex-col">
+                          <label className="block text-gray-600">{key}</label>
+                          <input
+                            type="text"
+                            value={value || ""}
+                            onChange={(e) =>
+                              handleTimelineChange(e, "week", index, key)
+                            }
+                            className="w-20 p-2 border rounded-md focus:ring focus:ring-blue-300"
+                            required
+                          />
+                        </div>
+                      )
+                  )
+                )}
+              </div> */}
+
+              {/* Timeline & Deliverables */}
+              <h3 className="text-lg font-semibold">Timeline & Deliverables</h3>
+              {/* Timeline Weeks Input */}
+              <div className="mt-2 flex gap-4">
+                <label className="font-medium">Weeks</label>
+                <input
+                  type="number"
+                  placeholder="Start"
+                  value={proposal.timelineWeeks.startWeek}
+                  onChange={(e) =>
+                    setProposal({
+                      ...proposal,
+                      timelineWeeks: {
+                        ...proposal.timelineWeeks,
+                        startWeek: e.target.value,
+                      },
+                    })
+                  }
+                  className="p-2 border rounded-md w-20"
+                />
+                <input
+                  type="number"
+                  placeholder="End"
+                  value={proposal.timelineWeeks.endWeek}
+                  onChange={(e) =>
+                    setProposal({
+                      ...proposal,
+                      timelineWeeks: {
+                        ...proposal.timelineWeeks,
+                        endWeek: e.target.value,
+                      },
+                    })
+                  }
+                  className="p-2 border rounded-md w-20"
+                />
+              </div>
+              {proposal.timelineDeliverables.map((timeline, timelineIndex) => (
+                <div
+                  key={timelineIndex}
+                  className="border p-4 rounded-md space-y-3"
+                >
+                  <div className="grid grid-cols-2 gap-4">
+                    <div>
+                      <label className="block font-medium">Task</label>
+                      <textarea
                         type="text"
-                        value={proposal.timelineDeliverables[name] || ""}
-                        onChange={(e) => handleTimelineChange(e, name)}
-                        className="w-full p-2 border rounded-md focus:ring focus:ring-blue-300"
+                        value={timeline.task}
+                        onChange={(e) =>
+                          handleTimelineChange(e, timelineIndex, "task")
+                        }
+                        className="w-full p-2 border rounded-md h-[25vh]"
                         required
                       />
                     </div>
-                  ))}
-                </div>
+                    <div>
+                      <label className="block font-medium">Deliverables</label>
+                      <textarea
+                        type="text"
+                        value={timeline.deliverables}
+                        onChange={(e) =>
+                          handleTimelineChange(e, timelineIndex, "deliverables")
+                        }
+                        className="w-full p-2 border rounded-md h-[25vh]"
+                        required
+                      />
+                    </div>
+                  </div>
 
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mt-4">
-                  <label className="block text-gray-700 font-medium">
-                    Week
-                  </label>
-                  {proposal.timelineDeliverables.week.map((weekObj, index) =>
-                    Object.entries(weekObj).map(
-                      ([key, value]) =>
-                        key !== "_id" && ( // Exclude _id from rendering
-                          <div
-                            key={`${index}-${key}`}
-                            className="flex flex-col"
-                          >
-                            <label className="block text-gray-600">{key}</label>
-                            <input
-                              type="text"
-                              value={value || ""}
-                              onChange={(e) =>
-                                handleTimelineChange(e, "week", index, key)
-                              }
-                              className="w-20 p-2 border rounded-md focus:ring focus:ring-blue-300"
-                              required
-                            />
-                          </div>
-                        )
-                    )
-                  )}
+                  {/* Weeks */}
+                  <div className="mt-2">
+                    <h4 className="font-medium">Weeks</h4>
+                    {Object.entries(timeline.week).map(
+                      ([weekKey, value], weekIndex) => (
+                        <div key={weekIndex} className="flex gap-4 mt-1">
+                          <label className="font-medium">{weekKey}</label>
+                          <input
+                            type="number"
+                            placeholder={`Value for ${weekKey}`}
+                            value={value}
+                            onChange={(e) =>
+                              handleTimelineChange(
+                                e,
+                                timelineIndex,
+                                "week",
+                                weekKey
+                              )
+                            }
+                            className="p-2 border rounded-md w-24"
+                            required
+                          />
+                        </div>
+                      )
+                    )}
+                  </div>
+                  <button
+                    type="button"
+                    onClick={() => removeTimeline(timelineIndex)}
+                    className="mt-2 p-1 bg-red-500 text-white rounded"
+                  >
+                    Remove Timeline & Deliverables
+                  </button>
                 </div>
+              ))}
+              <button
+                type="button"
+                onClick={addTimeline}
+                className="mt-4 p-2 bg-blue-500 text-white rounded-md"
+              >
+                Add Timeline & Deliverables
+              </button>
+            </div>
+            <div className="col">
+              {/* Proposed Investment */}
+              <h3 className="text-lg font-semibold">Proposed Investment</h3>
+              {/* Timeline Weeks Input */}
+              <div className="mt-2 flex gap-4 items-center">
+                <label className="font-medium">Cost</label>
+                <input
+                  type="number"
+                  placeholder="Enter cost"
+                  value={proposal.proposedCost || ""}
+                  onChange={(e) =>
+                    setProposal({
+                      ...proposal,
+                      proposedCost: e.target.value,
+                    })
+                  }
+                  className="p-2 border rounded-md w-30"
+                />
+              </div>
+              {proposal.proposedInvestment.map((proposed, Index) => (
+                <div key={Index} className="border p-4 rounded-md space-y-3">
+                  <div className="grid grid-cols-2 gap-4">
+                    <div>
+                      <label className="block font-medium">Services</label>
+                      <textarea
+                        type="text"
+                        value={proposed.services}
+                        onChange={(e) =>
+                          handleProposedChange(e, Index, "services")
+                        }
+                        className="w-full p-2 border rounded-md h-[25vh]"
+                        required
+                      />
+                    </div>
+                    <div>
+                      <label className="block font-medium">Description</label>
+                      <textarea
+                        type="text"
+                        value={proposed.description}
+                        onChange={(e) =>
+                          handleProposedChange(e, Index, "description")
+                        }
+                        className="w-full p-2 border rounded-md h-[25vh]"
+                        required
+                      />
+                    </div>
+                    <div>
+                      <label className="block font-medium">Cost </label>
+                      <textarea
+                        type="text"
+                        value={proposed.cost}
+                        onChange={(e) => handleProposedChange(e, Index, "cost")}
+                        className="w-full p-2 border rounded-md h-[25vh]"
+                        required
+                      />
+                    </div>
+                  </div>
+                  <button
+                    type="button"
+                    onClick={() => removeProposed(Index)}
+                    className="mt-2 p-1 bg-red-500 text-white rounded"
+                  >
+                    Remove Proposed Investment
+                  </button>
+                </div>
+              ))}
+              <button
+                type="button"
+                onClick={addProposed}
+                className="mt-4 p-2 bg-blue-500 text-white rounded-md"
+              >
+                Add Proposed Investment
+              </button>
+            </div>
+
+            <div className="col">
+              <h3 className="text-lg font-semibold">Scope of Work</h3>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                {[
+                  { label: "Title", key: "title" },
+                  { label: "Objective", key: "objective" },
+                ].map(({ label, key }) => (
+                  <div key={key}>
+                    <label className="block text-gray-700 font-medium">
+                      {label}
+                    </label>
+                    <textarea
+                      type="text"
+                      value={proposal.scopeOfWork?.[key] || ""}
+                      onChange={(e) => handleScopeChange(e, key)}
+                      className="w-full h-[20vh]  p-2 border rounded-md focus:ring focus:ring-blue-300"
+                      required
+                    />
+                  </div>
+                ))}
               </div>
 
-              <div className="col">
-                <h3 className="text-lg font-semibold">Scope of Work</h3>
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                  {[
-                    { label: "Title", key: "title" },
-                    { label: "Objective", key: "objective" },
-                  ].map(({ label, key }) => (
-                    <div key={key}>
-                      <label className="block text-gray-700 font-medium">
-                        {label}
-                      </label>
-                      <input
-                        type="text"
-                        value={proposal.scopeOfWork?.[key] || ""}
-                        onChange={(e) => handleScopeChange(e, key)}
-                        className="w-full p-2 border rounded-md focus:ring focus:ring-blue-300"
-                        required
-                      />
+              <div className="flex gap-8">
+                {[
+                  { title: "Services", key: "services" },
+                  { title: "Description", key: "description" },
+                ].map(({ title, key }) => (
+                  <div key={key}>
+                    <h4 className="font-medium mt-4">{title}</h4>
+                    <div className="space-y-2">
+                      {proposal.scopeOfWork?.[key]?.map((item, index) => (
+                        <div key={index} className="flex items-center gap-2">
+                          <textarea
+                            type="text"
+                            placeholder={title.slice(0, -1)}
+                            value={item}
+                            onChange={(e) => handleArrayChange(e, key, index)}
+                            className="w-[40vw] h-[20vh] p-2 border rounded-md focus:ring focus:ring-blue-300"
+                          />
+                          <button
+                            type="button"
+                            onClick={() => removeArrayField(key, index)}
+                            className="bg-red-200 px-2 py-1 rounded"
+                          >
+                            <i className="bi bi-trash text-danger"></i>
+                          </button>
+                        </div>
+                      ))}
                     </div>
-                  ))}
-                </div>
-
-                <div className="flex gap-8">
-                  {[
-                    { title: "Services", key: "services" },
-                    { title: "Description", key: "description" },
-                  ].map(({ title, key }) => (
-                    <div key={key} className="w-[20vw]">
-                      <h4 className="font-medium mt-4">{title}</h4>
-                      <div className="space-y-2">
-                        {proposal.scopeOfWork?.[key]?.map((item, index) => (
-                          <div key={index} className="flex items-center gap-2">
-                            <input
-                              type="text"
-                              placeholder={title.slice(0, -1)}
-                              value={item}
-                              onChange={(e) => handleArrayChange(e, key, index)}
-                              className="w-full p-2 border rounded-md focus:ring focus:ring-blue-300"
-                            />
-                            <button
-                              type="button"
-                              onClick={() => removeArrayField(key, index)}
-                              className="bg-red-200 px-2 py-1 rounded"
-                            >
-                              <i className="bi bi-trash text-danger"></i>
-                            </button>
-                          </div>
-                        ))}
-                      </div>
-                      <button
-                        type="button"
-                        onClick={() => addArrayField(key)}
-                        className="mt-2 px-4 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600"
-                      >
-                        + Add {title.slice(0, -1)}
-                      </button>
-                    </div>
-                  ))}
-                </div>
+                    <button
+                      type="button"
+                      onClick={() => addArrayField(key)}
+                      className="mt-2 px-4 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600"
+                    >
+                      + Add {title.slice(0, -1)}
+                    </button>
+                  </div>
+                ))}
               </div>
             </div>
 

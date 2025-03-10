@@ -260,7 +260,7 @@ function Dashboard({ downloadPDF }) {
   const fetchProposals = async () => {
     try {
       const token = localStorage.getItem("token") || "";
-      const url = "http://localhost:5000/api/proposals/?admin=true";
+      const url = "https://proposal-backend-1dom.onrender.com/api/proposals/?admin=true";
 
       const response = await fetch(url, {
         method: "GET",
@@ -289,7 +289,7 @@ function Dashboard({ downloadPDF }) {
     try {
       const token = localStorage.getItem("token") || "";
       const response = await fetch(
-        `http://localhost:5000/api/proposals/delete/${id}`,
+        `https://proposal-backend-1dom.onrender.com/api/proposals/delete/${id}`,
         {
           method: "DELETE",
           headers: {

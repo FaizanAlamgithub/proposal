@@ -191,7 +191,7 @@ function EditProposal() {
     try {
       const token = localStorage.getItem("token") || "";
       const response = await fetch(
-        `http://localhost:5000/api/proposals/${id}`,
+        `https://proposal-backend-1dom.onrender.com/api/proposals/${id}`,
         {
           method: "GET",
           headers: {
@@ -259,7 +259,7 @@ function EditProposal() {
     try {
       const token = localStorage.getItem("token") || "";
       const response = await fetch(
-        `http://localhost:5000/api/proposals/edit/${id}`,
+        `https://proposal-backend-1dom.onrender.com/api/proposals/edit/${id}`,
         {
           method: "PUT",
           headers: {

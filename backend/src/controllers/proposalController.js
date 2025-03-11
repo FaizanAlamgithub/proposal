@@ -44,52 +44,6 @@ const generatePassword = () => Math.random().toString(36).slice(-8);
 //   }
 // };
 
-const Proposal = require("../models/Proposal");
-
-// Generate a random password
-const generatePassword = () => Math.random().toString(36).slice(-8);
-
-// Create a new proposal (POST)
-// exports.createProposal = async (req, res) => {
-//   try {
-//     const { companyName, clientName, expiryDate, proposalDescription, clientId, scopeOfWork } =
-//       req.body;
-
-//     if (
-//       !companyName ||
-//       !clientName ||
-//       !expiryDate ||
-//       !proposalDescription ||
-//       !clientId
-//     ) {
-//       return res.status(400).json({ error: "All fields are required." });
-//     }
-
-//     // Generate auto password
-//     const proposalPassword = generatePassword();
-
-//     const newProposal = new Proposal({
-//       companyName,
-//       clientName,
-//       expiryDate: new Date(expiryDate),
-//       description,
-//       clientId,
-//       proposalPassword,
-//       isAccepted: false, // Default to false
-//       createdDate: new Date(), // Store the current date
-//       brands: brands || []
-//     });
-
-//     await newProposal.save();
-//     res.status(201).json({
-//       message: "Proposal created successfully",
-//       proposal: newProposal,
-//     });
-//   } catch (error) {
-//     res.status(500).json({ error: error.message });
-//   }
-// };
-
 exports.createProposal = async (req, res) => {
   try {
     const {

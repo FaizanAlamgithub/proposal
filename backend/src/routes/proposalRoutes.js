@@ -1,4 +1,6 @@
 const express = require("express");
+const Proposal = require("../models/Proposal");
+
 const {
   createProposal,
   getProposals,

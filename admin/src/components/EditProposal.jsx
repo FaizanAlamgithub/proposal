@@ -161,120 +161,84 @@
 // export default EditProposal;
 
 import React, { useState, useEffect } from "react";
-import { useNavigate, useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import { handleError, handleSuccess } from "../utils";
 import { ToastContainer } from "react-toastify";
 
-function EditProposal() {
-  const { id } = useParams();
+const EditProposal = () => {
+  const { id } = useParams(); // Get proposal ID from URL
   const navigate = useNavigate();
-
   const [proposal, setProposal] = useState({
     companyName: "",
     clientName: "",
     expiryDate: "",
-    clientId: "",
     proposalDescription: "",
+    clientId: "",
     scopeOfWork: {
       title: "",
       objective: "",
-      services: [],
-      description: [],
+      services: [""],
+      description: [""],
     },
+    timelineDeliverables: [
+      { week: { week1: "", week2: "" }, task: "", deliverables: "" },
+    ],
+    timelineWeeks: { startWeek: "", endWeek: "" },
+    proposedInvestment: [{ services: "", description: "", cost: "" }],
+    proposedCost: "",
   });
 
+  // Fetch existing proposal data
   useEffect(() => {
-    fetchProposal();
-  }, []);
+    fetch(`https://proposal-backend-1dom.onrender.com/api/proposals/${id}`)
+      .then((response) => response.json())
+      .then((data) => setProposal(data))
+      .catch((error) => console.error("Error fetching proposal:", error));
+  }, [id]);
 
-  const fetchProposal = async () => {
-    try {
-      const token = localStorage.getItem("token") || "";
-      const response = await fetch(
-        `https://proposal-backend-1dom.onrender.com/api/proposals/${id}`,
-        {
-          method: "GET",
-          headers: {
-            Authorization: token,
-            "Content-Type": "application/json",
-          },
-        }
-      );
-
-      if (!response.ok) {
-        throw new Error("Failed to fetch proposal details");
-      }
-
-      const data = await response.json();
-      setProposal({
-        ...data,
-        expiryDate: new Date(data.expiryDate).toISOString().split("T")[0],
-      });
-    } catch (error) {
-      handleError(error.message);
-    }
-  };
-
+  // Handle input changes
   const handleChange = (e) => {
-    setProposal({ ...proposal, [e.target.name]: e.target.value });
+    const { name, value } = e.target;
+    setProposal((prev) => ({ ...prev, [name]: value }));
   };
 
-  const handleScopeChange = (e, key) => {
-    setProposal({
-      ...proposal,
-      scopeOfWork: { ...proposal.scopeOfWork, [key]: e.target.value },
-    });
+  // Handle nested object updates (e.g., scopeOfWork)
+  const handleNestedChange = (e, category, field) => {
+    setProposal((prev) => ({
+      ...prev,
+      [category]: { ...prev[category], [field]: e.target.value },
+    }));
   };
 
-  const handleArrayChange = (e, key, index) => {
-    const newArray = [...proposal.scopeOfWork[key]];
-    newArray[index] = e.target.value;
-    setProposal({
-      ...proposal,
-      scopeOfWork: { ...proposal.scopeOfWork, [key]: newArray },
-    });
-  };
-
-  const addArrayField = (key) => {
-    setProposal({
-      ...proposal,
-      scopeOfWork: {
-        ...proposal.scopeOfWork,
-        [key]: [...proposal.scopeOfWork[key], ""],
-      },
-    });
-  };
-
-  const removeArrayField = (key, index) => {
-    const newArray = proposal.scopeOfWork[key].filter((_, i) => i !== index);
-    setProposal({
-      ...proposal,
-      scopeOfWork: { ...proposal.scopeOfWork, [key]: newArray },
-    });
+  // Handle array updates (e.g., services in scopeOfWork)
+  const handleArrayChange = (e, category, index, field) => {
+    const updatedArray = [...proposal[category][field]];
+    updatedArray[index] = e.target.value;
+    setProposal((prev) => ({
+      ...prev,
+      [category]: { ...prev[category], [field]: updatedArray },
+    }));
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-
     try {
-      const token = localStorage.getItem("token") || "";
       const response = await fetch(
         `https://proposal-backend-1dom.onrender.com/api/proposals/edit/${id}`,
         {
           method: "PUT",
-          headers: {
-            Authorization: token,
-            "Content-Type": "application/json",
-          },
+          headers: { "Content-Type": "application/json" },
           body: JSON.stringify(proposal),
         }
       );
 
       if (!response.ok) {
-        throw new Error("Failed to update proposal");
+        throw new Error(`HTTP error! Status: ${response.status}`);
       }
 
-      handleSuccess("Proposal updated successfully");
+      await response.json();
+
+      handleSuccess("Proposal Created Successfully!");
       setTimeout(() => navigate("/dashboard"), 1000);
     } catch (error) {
       handleError(error.message);
@@ -282,104 +246,141 @@ function EditProposal() {
   };
 
   return (
-    <div className="flex items-center justify-center bg-gray-100 p-4">
-      <div className="bg-white shadow-lg rounded-lg p-6 w-full relative">
-        <button
-          onClick={() => navigate("/dashboard")}
-          className="btn btn-close position-absolute top-0 end-0 m-3"
-          aria-label="Close"
-        ></button>
-        <h2 className="text-2xl font-semibold text-center mb-4">
-          Edit Proposal
-        </h2>
-        <div className="overflow-y-auto p-4 border border-gray-300 rounded-lg max-h-[80vh]">
-          <form onSubmit={handleSubmit} className="space-y-4">
-            <div className="row align-items-start">
-              <div className="col">
-                <h3 className="text-lg font-semibold">Client Detail</h3>
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                  {["companyName", "clientName", "expiryDate", "clientId"].map(
-                    (name) => (
-                      <div key={name}>
-                        <label className="block text-gray-700 font-medium">
-                          {name.replace(/([A-Z])/g, " $1").trim()}
-                        </label>
-                        <input
-                          type={name === "expiryDate" ? "date" : "text"}
-                          name={name}
-                          value={proposal[name] || ""}
-                          onChange={handleChange}
-                          className="w-full p-2 border rounded-md focus:ring focus:ring-blue-300"
-                          required
-                        />
-                      </div>
-                    )
-                  )}
-                </div>
-                <label className="block text-gray-700 font-medium mt-4">
-                  Proposal Description
-                </label>
-                <textarea
-                  name="proposalDescription"
-                  value={proposal.proposalDescription || ""}
-                  onChange={handleChange}
-                  className="w-full p-2 border rounded-md focus:ring focus:ring-blue-300"
-                  required
-                />
-              </div>
-              <div className="col">
-                <h3 className="text-lg font-semibold">Scope of Work</h3>
-                {["title", "objective"].map((key) => (
-                  <div key={key}>
-                    <label className="block text-gray-700 font-medium">
-                      {key}
-                    </label>
-                    <input
-                      type="text"
-                      value={proposal.scopeOfWork[key] || ""}
-                      onChange={(e) => handleScopeChange(e, key)}
-                      className="w-full p-2 border rounded-md focus:ring focus:ring-blue-300 mb-4"
-                      required
-                    />
-                  </div>
-                ))}
-                {["services", "description"].map((key) => (
-                  <div key={key} className="w-[20vw]">
-                    <h4 className="font-medium mt-4">{key}</h4>
-                    {proposal.scopeOfWork[key]?.map((item, index) => (
-                      <div key={index} className="flex items-center gap-2">
-                        <input
-                          type="text"
-                          value={item}
-                          onChange={(e) => handleArrayChange(e, key, index)}
-                          className="w-full p-2 border rounded-md"
-                        />
-                        <button
-                          type="button"
-                          onClick={() => removeArrayField(key, index)}
-                        >
-                          X
-                        </button>
-                      </div>
-                    ))}
-                    <button type="button" onClick={() => addArrayField(key)}>
-                      + Add
-                    </button>
-                  </div>
-                ))}
-              </div>
+    <div className="container mt-5">
+      <h2 className="mb-4 text-center">Edit Proposal</h2>
+      <div className="overflow-y-auto p-4 border border-gray-300 rounded-lg max-h-[80vh]">
+        <form onSubmit={handleSubmit}>
+          <div className="row">
+            <div className="col-md-6 mb-3">
+              <label className="form-label">Company Name:</label>
+              <input
+                type="text"
+                className="form-control"
+                name="companyName"
+                value={proposal.companyName}
+                onChange={handleChange}
+              />
             </div>
-            <button
-              type="submit"
-              className="w-25 px-4 py-2 bg-green-500 text-white rounded"
-            >
-              Update Proposal
-            </button>
-          </form>
-          <ToastContainer />
-        </div>
+
+            <div className="col-md-6 mb-3">
+              <label className="form-label">Client Name:</label>
+              <input
+                type="text"
+                className="form-control"
+                name="clientName"
+                value={proposal.clientName}
+                onChange={handleChange}
+              />
+            </div>
+          </div>
+
+          <div className="mb-3">
+            <label className="form-label">Expiry Date:</label>
+            <input
+              type="date"
+              className="form-control"
+              name="expiryDate"
+              value={proposal.expiryDate}
+              onChange={handleChange}
+            />
+          </div>
+
+          <div className="mb-3">
+            <label className="form-label">Proposal Description:</label>
+            <textarea
+              className="form-control"
+              name="proposalDescription"
+              value={proposal.proposalDescription}
+              onChange={handleChange}
+              rows="3"
+            />
+          </div>
+
+          <h4 className="mt-4">Scope of Work</h4>
+          <div className="mb-3">
+            <label className="form-label">Title:</label>
+            <input
+              type="text"
+              className="form-control"
+              value={proposal.scopeOfWork.title}
+              onChange={(e) => handleNestedChange(e, "scopeOfWork", "title")}
+            />
+          </div>
+
+          <div className="mb-3">
+            <label className="form-label">Objective:</label>
+            <input
+              type="text"
+              className="form-control"
+              value={proposal.scopeOfWork.objective}
+              onChange={(e) =>
+                handleNestedChange(e, "scopeOfWork", "objective")
+              }
+            />
+          </div>
+
+          <div className="mb-3">
+            <label className="form-label">Services:</label>
+            {proposal.scopeOfWork.services.map((service, index) => (
+              <input
+                key={index}
+                type="text"
+                className="form-control mb-2"
+                value={service}
+                onChange={(e) =>
+                  handleArrayChange(e, "scopeOfWork", index, "services")
+                }
+              />
+            ))}
+          </div>
+
+          <h4 className="mt-4">Timeline</h4>
+          <div className="row">
+            <div className="col-md-6 mb-3">
+              <label className="form-label">Start Week:</label>
+              <input
+                type="text"
+                className="form-control"
+                value={proposal.timelineWeeks.startWeek}
+                onChange={(e) =>
+                  handleNestedChange(e, "timelineWeeks", "startWeek")
+                }
+              />
+            </div>
+
+            <div className="col-md-6 mb-3">
+              <label className="form-label">End Week:</label>
+              <input
+                type="text"
+                className="form-control"
+                value={proposal.timelineWeeks.endWeek}
+                onChange={(e) =>
+                  handleNestedChange(e, "timelineWeeks", "endWeek")
+                }
+              />
+            </div>
+          </div>
+
+          <h4 className="mt-4">Proposed Investment</h4>
+          <div className="mb-3">
+            <label className="form-label">Proposed Cost:</label>
+            <input
+              type="text"
+              className="form-control"
+              name="proposedCost"
+              value={proposal.proposedCost}
+              onChange={handleChange}
+            />
+          </div>
+
+          <button type="submit" className="btn btn-primary w-100">
+            Update Proposal
+          </button>
+        </form>
+        <ToastContainer />
       </div>
     </div>
   );
-}
+};
+
 export default EditProposal;

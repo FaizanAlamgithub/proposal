@@ -44,6 +44,52 @@ const generatePassword = () => Math.random().toString(36).slice(-8);
 //   }
 // };
 
+const Proposal = require("../models/Proposal");
+
+// Generate a random password
+const generatePassword = () => Math.random().toString(36).slice(-8);
+
+// Create a new proposal (POST)
+// exports.createProposal = async (req, res) => {
+//   try {
+//     const { companyName, clientName, expiryDate, proposalDescription, clientId, scopeOfWork } =
+//       req.body;
+
+//     if (
+//       !companyName ||
+//       !clientName ||
+//       !expiryDate ||
+//       !proposalDescription ||
+//       !clientId
+//     ) {
+//       return res.status(400).json({ error: "All fields are required." });
+//     }
+
+//     // Generate auto password
+//     const proposalPassword = generatePassword();
+
+//     const newProposal = new Proposal({
+//       companyName,
+//       clientName,
+//       expiryDate: new Date(expiryDate),
+//       description,
+//       clientId,
+//       proposalPassword,
+//       isAccepted: false, // Default to false
+//       createdDate: new Date(), // Store the current date
+//       brands: brands || []
+//     });
+
+//     await newProposal.save();
+//     res.status(201).json({
+//       message: "Proposal created successfully",
+//       proposal: newProposal,
+//     });
+//   } catch (error) {
+//     res.status(500).json({ error: error.message });
+//   }
+// };
+
 exports.createProposal = async (req, res) => {
   try {
     const {
@@ -57,6 +103,7 @@ exports.createProposal = async (req, res) => {
       timelineWeeks,
       proposedInvestment,
       proposedCost,
+      payments,
     } = req.body;
 
     if (
@@ -69,7 +116,8 @@ exports.createProposal = async (req, res) => {
       !timelineDeliverables ||
       !timelineWeeks ||
       !proposedInvestment ||
-      !proposedCost
+      !proposedCost ||
+      !payments
     ) {
       return res.status(400).json({ error: "All fields are required." });
     }
@@ -92,6 +140,7 @@ exports.createProposal = async (req, res) => {
       timelineWeeks,
       proposedInvestment,
       proposedCost,
+      payments,
     });
 
     await newProposal.save();
@@ -188,24 +237,76 @@ exports.clientLogin = async (req, res) => {
 };
 
 // Update a proposal (PUT) - Now uses "/proposals/edit/:id"
+// exports.updateProposal = async (req, res) => {
+//   try {
+//     const { id } = req.params;
+//     const { companyName, clientName, expiryDate, description, clientId } =
+//       req.body;
+
+//     const updatedProposal = await Proposal.findByIdAndUpdate(
+//       id,
+//       { companyName, clientName, expiryDate, description, clientId },
+//       { new: true, runValidators: true }
+//     );
+
+//     if (!updatedProposal) {
+//       return res.status(404).json({ error: "Proposal not found" });
+//     }
+
+//     res.json({
+//       message: "Proposal updated successfully",
+//       proposal: updatedProposal,
+//     });
+//   } catch (error) {
+//     res.status(500).json({ error: "Server error", details: error.message });
+//   }
+// };
+
 exports.updateProposal = async (req, res) => {
   try {
     const { id } = req.params;
-    const { companyName, clientName, expiryDate, description, clientId } =
-      req.body;
+    const {
+      companyName,
+      clientName,
+      expiryDate,
+      proposalDescription,
+      clientId,
+      scopeOfWork, // Keep scopeOfWork
+      timelineDeliverables,
+      timelineWeeks,
+      proposedInvestment,
+      proposedCost,
+      payments,
+    } = req.body;
 
-    const updatedProposal = await Proposal.findByIdAndUpdate(
-      id,
-      { companyName, clientName, expiryDate, description, clientId },
-      { new: true, runValidators: true }
-    );
+    // Create an update object with only provided fields
+    const updateFields = {};
+    if (companyName) updateFields.companyName = companyName;
+    if (clientName) updateFields.clientName = clientName;
+    if (expiryDate) updateFields.expiryDate = new Date(expiryDate);
+    if (proposalDescription)
+      updateFields.proposalDescription = proposalDescription;
+    if (clientId) updateFields.clientId = clientId;
+    if (scopeOfWork) updateFields.scopeOfWork = scopeOfWork;
+    if (timelineDeliverables)
+      updateFields.timelineDeliverables = timelineDeliverables;
+    if (timelineWeeks) updateFields.timelineWeeks = timelineWeeks;
+    if (proposedInvestment)
+      updateFields.proposedInvestment = proposedInvestment;
+    if (proposedCost) updateFields.proposedCost = proposedCost;
+    if (payments) updateFields.payments = payments;
+
+    const updatedProposal = await Proposal.findByIdAndUpdate(id, updateFields, {
+      new: true,
+      runValidators: true,
+    });
 
     if (!updatedProposal) {
-      return res.status(404).json({ error: "Proposal not found" });
+      return res.status(404).json({ error: "Proposal not found." });
     }
 
     res.json({
-      message: "Proposal updated successfully",
+      message: "Proposal updated successfully.",
       proposal: updatedProposal,
     });
   } catch (error) {

@@ -237,7 +237,7 @@ import { handleError, handleSuccess } from "../utils";
 import { ToastContainer, toast } from "react-toastify";
 import { Copy } from "lucide-react";
 
-function Dashboard({ downloadPDF }) {
+function Dashboard() {
   const [loggedInAdmin, setLoggedInAdmin] = useState("");
   const [proposals, setProposals] = useState([]);
 
@@ -260,7 +260,8 @@ function Dashboard({ downloadPDF }) {
   const fetchProposals = async () => {
     try {
       const token = localStorage.getItem("token") || "";
-      const url = "https://proposal-backend-1dom.onrender.com/api/proposals/?admin=true";
+      const url =
+        "https://proposal-backend-1dom.onrender.com/api/proposals/?admin=true";
 
       const response = await fetch(url, {
         method: "GET",
@@ -313,7 +314,10 @@ function Dashboard({ downloadPDF }) {
       toast.error(error.message);
     }
   };
-
+  const downloadPDF = (id) => {
+    console.log("Download PDF called with ID:", id);
+    window.location.href = `/proposal/${id}`;
+  };
   // const handleCopy = (text) => {
   //   navigator.clipboard
   //     .writeText(text)
@@ -375,75 +379,7 @@ function Dashboard({ downloadPDF }) {
                     : "N/A"}
                 </td>
                 <td>{item._id}</td>
-                {/* <td>
-                  <p
-                    onClick={() => handleCopy(item.proposalPassword)}
-                    style={{ cursor: "pointer", color: "blue" }}
-                  >
-                    {item.proposalPassword}
-                  </p>
-                </td> */}
-                {/* <td
-                  style={{ display: "flex", alignItems: "center", gap: "8px" }}
-                >
-                  <p style={{ cursor: "pointer", color: "blue", margin: 0 }}>
-                    {item.proposalPassword}
-                  </p>
-                  <Copy
-                    size={18}
-                    style={{ cursor: "pointer", color: "gray" }}
-                    onClick={() => handleCopy(item.proposalPassword)}
-                  />
-                </td> */}
-                {/* <td
-                  style={{ display: "flex", alignItems: "center", gap: "8px" }}
-                >
-                  <p style={{ cursor: "pointer", color: "blue", margin: 0 }}>
-                    {item.proposalPassword}
-                  </p>
-                  <Copy
-                    size={18}
-                    style={{ cursor: "pointer", color: "gray" }}
-                    onClick={() => handleCopy(item.proposalPassword, item._id)}
-                  />
-                  {copiedId === item._id && (
-                    <span style={{ fontSize: "14px", color: "green" }}>
-                      Copied
-                    </span>
-                  )}
-                </td> */}
-                {/* <td
-                  style={{
-                    display: "flex",
-                    alignItems: "center",
-                    gap: "8px",
-                    position: "relative",
-                  }}
-                >
-                  <p style={{ cursor: "pointer", color: "blue", margin: 0 }}>
-                    {item.proposalPassword}
-                  </p>
-                  <Copy
-                    size={18}
-                    style={{ cursor: "pointer", color: "gray" }}
-                    onClick={() => handleCopy(item.proposalPassword, item._id)}
-                  />
 
-                  {copiedId === item._id && (
-                    <span
-                      style={{
-                        position: "absolute",
-                        left: "100%", // Position right of the password
-                        marginLeft: "10px",
-                        fontSize: "14px",
-                        color: "green",
-                        fontWeight: "bold",
-                      }}
-                    >
-                      Copied!
-                    </span>
-                  )}
-                </td> */}
                 <td
                   style={{
                     display: "flex",

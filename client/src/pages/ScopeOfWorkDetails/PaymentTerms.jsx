@@ -1,35 +1,42 @@
 import React, { useState, useEffect } from "react";
 
 function PaymentTerms({ proposal }) {
-  const tableData = [
-    {
-      service: "Branding & Logo Design (One-Time)",
-      description:
-        "Development of brand identity, primary logo, color palette, and typography.",
-      cost: "INR 1000/-",
-    },
-    {
-      service: "Website Content (One-Time)",
-      description: "Strategizing, writing, and organizing website content.",
-      cost: "INR 1000/-",
-    },
-    {
-      service: "Single Page Website Design & Development (One-Time)",
-      description:
-        "UI/UX design, website structure, and front-end development.",
-      cost: "INR 1000/-",
-    },
-    {
-      service: "SEO Optimization (Monthly)",
-      description: "Improving search engine rankings and online visibility.",
-      cost: "INR 500/- per month",
-    },
-    {
-      service: "Social Media Management (Monthly)",
-      description: "Content creation, scheduling, and engagement handling.",
-      cost: "INR 800/- per month",
-    },
-  ];
+  // const tableData = [
+  //   {
+  //     terms: "Branding & Logo Design (One-Time)",
+  //     amount: "INR 1000/-",
+  //   },
+  //   {
+  //     terms: "Branding & Logo Design (One-Time)",
+  //     amount: "INR 1000/-",
+  //   },
+  //   {
+  //     terms: "Branding & Logo Design (One-Time)",
+  //     amount: "INR 1000/-",
+  //   },
+  //   {
+  //     terms: "Branding & Logo Design (One-Time)",
+  //     amount: "INR 1000/-",
+  //   },
+  //   {
+  //     terms: "Branding & Logo Design (One-Time)",
+  //     amount: "INR 1000/-",
+  //   },
+  //   {
+  //     terms: "Branding & Logo Design (One-Time)",
+  //     amount: "INR 1000/-",
+  //   },
+  // ];
+
+  const payments = proposal?.payments || [];
+
+  // Extracting the correct weeks and preparing table data
+  const tableData = payments.map((t) => {
+    return {
+      terms: t.terms,
+      amount: t.amount || "No Cost available",
+    };
+  });
 
   const [rowsPerPage, setRowsPerPage] = useState(2); // Default to 2 rows per page
 
@@ -84,36 +91,24 @@ function PaymentTerms({ proposal }) {
                 <p>Payment</p>
                 <p>Terms</p>
               </div>
-              {/* <div className="section-10-text2">
-              <p>For Branding & Logo Design (One-Time Service)</p>
-              <ul className="section-10-objective-content">
-                <li>50% upfront payment before project initiation.</li>
-                <li>50% upon completion and approval of branding assets.</li>
-              </ul>
-            </div> */}
-              <div className="section-9-table-container">
+
+              <div className="section-10-table-container">
                 <table className="w-full border-collapse">
                   <thead className="bg-white">
                     <tr>
-                      <th>Service</th>
-                      <th>Description</th>
-                      <th>Cost</th>
+                      <th>Terms</th>
+                      <th>Amount</th>
                     </tr>
                   </thead>
+                  <tbody>
+                    {pageData.map((row, rowIndex) => (
+                      <tr key={rowIndex}>
+                        <td>{row.terms}</td>
+                        <td>INR {row.amount}/-</td>
+                      </tr>
+                    ))}
+                  </tbody>
                 </table>
-                <div className="table-data">
-                  <table className="w-full border-collapse">
-                    <tbody>
-                      {pageData.map((row, rowIndex) => (
-                        <tr key={rowIndex}>
-                          <td>{row.service}</td>
-                          <td>{row.description}</td>
-                          <td>{row.cost}</td>
-                        </tr>
-                      ))}
-                    </tbody>
-                  </table>
-                </div>
               </div>
             </div>
           </div>

@@ -1,5 +1,4 @@
-import React from "react";
-import { useEffect } from "react";
+import React, { useEffect } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 
 function RefreshHandler({ setIsAuthenticated }) {
@@ -7,17 +6,20 @@ function RefreshHandler({ setIsAuthenticated }) {
   const navigate = useNavigate();
 
   useEffect(() => {
-    if (localStorage.getItem("token")) {
+    const token = localStorage.getItem("token");
+
+    if (token) {
       setIsAuthenticated(true);
-      if (
-        location.pathname === "/" ||
-        location.pathname === "/admin-login" ||
-        location.pathname === "/admin-signup"
-      ) {
-        navigate("/dashboard", {replace: false});
+
+      // Redirect only if the user is on login/signup pages
+      if (["/", "/admin-login", "/admin-signup"].includes(location.pathname)) {
+        navigate("/dashboard", { replace: true });
       }
+    } else {
+      setIsAuthenticated(false);
     }
-  }, [location, navigate, setIsAuthenticated]);
+  }, [location.pathname]);
+
   return null;
 }
 

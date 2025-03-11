@@ -42,6 +42,12 @@ const ProposalSchema = new mongoose.Schema(
     },
     proposedInvestment: [ProposedSchema],
     proposedCost: { type: Number },
+    payments: [
+      {
+        terms: { type: String },
+        amount: { type: String },
+      },
+    ],
   },
   { timestamps: true }
 );

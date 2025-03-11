@@ -810,8 +810,7 @@ body {
   position: relative;
 }
 /* .section-10-inner-text {
-  display: flex;
-  justify-content: center;
+  position: relative;
 } */
 
 .section-10-text1 {
@@ -923,6 +922,43 @@ body {
   font-weight: 500;
   border-radius: 3.5rem;
 }
+
+/* -------------- Section - 10 --------------------- */
+
+.section-10-table-container {
+  position: relative;
+  top: 15rem;
+  margin: 0 8rem;
+}
+.section-10-table-container table {
+  width: 100%;
+}
+
+.section-10-table-container th {
+  font-weight: 400;
+  font-family: "Bricolage Grotesque", serif;
+  font-size: 1rem;
+  line-height: 30px;
+  text-align: left;
+  color: #c4b4ff;
+}
+.section-10-table-container td {
+  padding: 1rem 0;
+  color: #686868;
+}
+.section-10-table-container thead {
+  border-bottom: 1px dashed #cccbcb;
+}
+
+/* Set last column (Deliverables) width to 30% */
+/* .section-10-table-container td:nth-child(1),
+.section-10-table-container th:nth-child(1) {
+  width: 15%;
+}
+.section-10-table-container td:nth-child(2),
+.section-10-table-container th:nth-child(2) {
+  width: 25%;
+} */
 
 /* @media screen and (max-width: 1366px) {
   .proposal-text p {

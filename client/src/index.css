@@ -1000,7 +1000,7 @@ body {
 } */
 
 @media screen and (min-width: 1440px) {
-  .hero-content {
+  /* .hero-content {
     min-height: calc(100vh - 14rem);
   }
   .proposal-text p {
@@ -1038,7 +1038,7 @@ body {
   }
   .logo img {
     width: 16%;
-  }
+  } */
 
   /* --------------- Section - 2 --------------- */
 
@@ -1179,7 +1179,7 @@ body {
 
 @media screen and (min-width: 1920px) {
   /* --------- Section - 1 -------------- */
-  .hero-content {
+  /* .hero-content {
     min-height: calc(100vh - 15rem);
   }
   .proposal-text p {
@@ -1220,7 +1220,7 @@ body {
   }
   .hero-text-bottom {
     padding-bottom: 2.5rem;
-  }
+  } */
 
   /* --------------- Section - 2 --------------- */
 
@@ -1452,7 +1452,7 @@ body {
 /* Responsive styles for mobile devices only */
 
 @media screen and (max-width: 768px) {
-  .hero-content {
+  /* .hero-content {
     display: block;
     min-height: auto;
     padding: 4rem 1.5rem;
@@ -1481,11 +1481,11 @@ body {
   }
   .logo img {
     width: 25%;
-  }
+  } */
 }
 
 @media screen and (max-width: 480px) {
-  .box {
+  /* .box {
     padding: 0 1rem;
   }
   .hero-content {
@@ -1540,13 +1540,13 @@ body {
   .prev p,
   .next p {
     font-size: 0.8rem;
-  }
+  } */
 
   /* ------------- Section - 2 ------------------ */
 
-  .horizontal-slide {
+  /* .horizontal-slide {
     height: 100vh;
-  }
+  } */
 
   .header {
     font-size: 0.5rem;
@@ -1697,5 +1697,65 @@ body {
   }
   .section-7-objective-content {
     font-size: 0.9rem;
+  }
+}
+
+/* Mobile Styles */
+@media (max-width: 768px) {
+  .section-1{
+    padding: 0 1rem;
+  }
+  .hero-content {
+    min-height: calc(100vh - 18rem);
+  }
+
+  .logo {
+    justify-content: end;
+  }
+  .logo img {
+    width: 30%;
+  }
+
+  .proposal-text {
+    font-size: 4rem;
+    padding-bottom: 0;
+    margin-top: 2rem;
+  }
+.midlle-text-container{
+  margin-bottom: 0;
+}
+  .hero-text-bottom {
+    flex-direction: column;
+    /* align-items: center; */
+    gap: 1rem;
+  }
+
+  .date-container {
+    display: flex;
+    gap: 5rem;
+  }
+
+  .propasal-hero {
+    font-size: 1rem;
+    width: 95%;
+  }
+  .propasal-hero > p{
+    line-height: 1.2rem;
+  }
+
+  .hero-text-div {
+    width: 30%;
+  }
+  .hero-text-address {
+    width: 100%;
+    text-align: start;
+  }
+
+  .section-1-bottom-text {
+    flex-direction: column;
+  }
+  .section-1-bottom-text-content {
+    padding: 0;
+    font-size: 0.8rem;
   }
 }

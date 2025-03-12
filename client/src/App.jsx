@@ -51,6 +51,7 @@ import { useState } from "react";
 import { Routes, Route, BrowserRouter, Navigate } from "react-router-dom";
 import ClientLogin from "./components/ClientLogin";
 import AllPages from "./components/client/AllPages";
+import "react-toastify/dist/ReactToastify.css";
 
 function App() {
   const [proposal, setProposal] = useState(null);

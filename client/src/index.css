@@ -1484,7 +1484,7 @@ body {
   }
 }
 
-@media screen and (max-width: 480px) {
+@media screen and (min-width: 480px) {
   .box {
     padding: 0 1rem;
   }
@@ -1544,9 +1544,9 @@ body {
 
   /* ------------- Section - 2 ------------------ */
 
-  .horizontal-slide {
+  /* .horizontal-slide {
     height: 100vh;
-  }
+  } */
 
   .header {
     font-size: 0.5rem;

@@ -178,7 +178,7 @@ body {
   align-items: center;
   justify-content: space-evenly;
   background-color: #404040;
-  padding: 1rem 0;
+  padding: 1rem;
   position: fixed;
   bottom: 0;
   gap: 2rem;
@@ -1508,5 +1508,8 @@ body {
   .section-1-bottom-text-content {
     padding: 0;
     font-size: 0.8rem;
+  }
+  .slider-text p {
+    display: none;
   }
 }

@@ -247,6 +247,11 @@ const EditProposal = () => {
 
   return (
     <div className="container mt-5">
+      <button
+          onClick={() => navigate("/dashboard")}
+          className="btn btn-close position-absolute top-0 end-0 m-3"
+          aria-label="Close"
+        ></button>
       <h2 className="mb-4 text-center">Edit Proposal</h2>
       <div className="overflow-y-auto p-4 border border-gray-300 rounded-lg max-h-[80vh]">
         <form onSubmit={handleSubmit}>

@@ -60,10 +60,10 @@ function App() {
       <Routes>
         {/* Login Route */}
         <Route
-          path="/client-login"
+          path="/access-proposal"
           element={<ClientLogin setProposal={setProposal} />}
         />
-        <Route path="/" element={<Navigate to="/client-login" />} />
+        <Route path="/" element={<Navigate to="/access-proposal" />} />
 
         {/* Proposal Route with ID */}
         <Route
@@ -72,7 +72,7 @@ function App() {
             proposal ? (
               <AllPages proposal={proposal} />
             ) : (
-              <Navigate to="/client-login" />
+              <Navigate to="/access-proposal" />
             )
           }
         />

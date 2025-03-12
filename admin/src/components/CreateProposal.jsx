@@ -829,6 +829,66 @@ const CreateProposal = () => {
               </div>
             </div>
             <div className="col bg-white p-4 border border-gray-300 rounded-lg m-3">
+              <h3 className="text-lg font-semibold">Scope of Work</h3>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                {[
+                  { label: "Title", key: "title" },
+                  { label: "Objective", key: "objective" },
+                ].map(({ label, key }) => (
+                  <div key={key}>
+                    <label className="block text-gray-700 font-medium">
+                      {label}
+                    </label>
+                    <textarea
+                      type="text"
+                      value={proposal.scopeOfWork?.[key] || ""}
+                      onChange={(e) => handleScopeChange(e, key)}
+                      className="w-full h-[20vh]  p-2 border rounded-md focus:ring focus:ring-blue-300"
+                      required
+                    />
+                  </div>
+                ))}
+              </div>
+
+              <div className="flex gap-8">
+                {[
+                  { title: "Services", key: "services" },
+                  { title: "Description", key: "description" },
+                ].map(({ title, key }) => (
+                  <div key={key}>
+                    <h4 className="font-medium mt-4">{title}</h4>
+                    <div className="space-y-2">
+                      {proposal.scopeOfWork?.[key]?.map((item, index) => (
+                        <div key={index} className="flex items-center gap-2">
+                          <textarea
+                            type="text"
+                            placeholder={title.slice(0, -1)}
+                            value={item}
+                            onChange={(e) => handleArrayChange(e, key, index)}
+                            className="w-[40vw] h-[20vh] p-2 border rounded-md focus:ring focus:ring-blue-300"
+                          />
+                          <button
+                            type="button"
+                            onClick={() => removeArrayField(key, index)}
+                            className="bg-red-200 px-2 py-1 rounded"
+                          >
+                            <i className="bi bi-trash text-danger"></i>
+                          </button>
+                        </div>
+                      ))}
+                    </div>
+                    <button
+                      type="button"
+                      onClick={() => addArrayField(key)}
+                      className="mt-2 px-4 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600"
+                    >
+                      + Add {title.slice(0, -1)}
+                    </button>
+                  </div>
+                ))}
+              </div>
+            </div>
+            <div className="col bg-white p-4 border border-gray-300 rounded-lg m-3">
               {/* Timeline & Deliverables */}
               <h3 className="text-lg font-semibold">Timeline & Deliverables</h3>
               {/* Timeline Weeks Input */}
@@ -1060,67 +1120,6 @@ const CreateProposal = () => {
               >
                 Add Payments Terms
               </button>
-            </div>
-
-            <div className="col bg-white p-4 border border-gray-300 rounded-lg m-3">
-              <h3 className="text-lg font-semibold">Scope of Work</h3>
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                {[
-                  { label: "Title", key: "title" },
-                  { label: "Objective", key: "objective" },
-                ].map(({ label, key }) => (
-                  <div key={key}>
-                    <label className="block text-gray-700 font-medium">
-                      {label}
-                    </label>
-                    <textarea
-                      type="text"
-                      value={proposal.scopeOfWork?.[key] || ""}
-                      onChange={(e) => handleScopeChange(e, key)}
-                      className="w-full h-[20vh]  p-2 border rounded-md focus:ring focus:ring-blue-300"
-                      required
-                    />
-                  </div>
-                ))}
-              </div>
-
-              <div className="flex gap-8">
-                {[
-                  { title: "Services", key: "services" },
-                  { title: "Description", key: "description" },
-                ].map(({ title, key }) => (
-                  <div key={key}>
-                    <h4 className="font-medium mt-4">{title}</h4>
-                    <div className="space-y-2">
-                      {proposal.scopeOfWork?.[key]?.map((item, index) => (
-                        <div key={index} className="flex items-center gap-2">
-                          <textarea
-                            type="text"
-                            placeholder={title.slice(0, -1)}
-                            value={item}
-                            onChange={(e) => handleArrayChange(e, key, index)}
-                            className="w-[40vw] h-[20vh] p-2 border rounded-md focus:ring focus:ring-blue-300"
-                          />
-                          <button
-                            type="button"
-                            onClick={() => removeArrayField(key, index)}
-                            className="bg-red-200 px-2 py-1 rounded"
-                          >
-                            <i className="bi bi-trash text-danger"></i>
-                          </button>
-                        </div>
-                      ))}
-                    </div>
-                    <button
-                      type="button"
-                      onClick={() => addArrayField(key)}
-                      className="mt-2 px-4 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600"
-                    >
-                      + Add {title.slice(0, -1)}
-                    </button>
-                  </div>
-                ))}
-              </div>
             </div>
 
             <button

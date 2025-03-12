@@ -104,12 +104,12 @@ const ClientLogin = ({ setProposal }) => {
   return (
     <div className="flex justify-center items-center h-screen bg-gray-100">
       <div className="bg-white p-6 rounded-lg shadow-lg">
-        <h2 className="text-2xl font-bold mb-4">Client Login</h2>
+        <h2 className="text-2xl font-bold mb-4">Access Proposal</h2>
         {error && <p className="text-red-500">{error}</p>}
         <form onSubmit={handleLogin}>
           <input
             type="password"
-            placeholder="Enter Proposal Password"
+            placeholder="Enter Proposal Code"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
             className="border p-2 w-full mb-3"
@@ -118,7 +118,7 @@ const ClientLogin = ({ setProposal }) => {
             type="submit"
             className="bg-blue-500 text-white px-4 py-2 rounded"
           >
-            Login
+            Next
           </button>
         </form>
       </div>

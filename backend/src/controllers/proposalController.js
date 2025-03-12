@@ -1,7 +1,9 @@
 const Proposal = require("../models/Proposal");
 
 // Generate a random password
-const generatePassword = () => Math.random().toString(36).slice(-8);
+// const generatePassword = () => Math.random().toString(36).slice(-8);
+
+const generatePassword = () => Math.floor(1000 + Math.random() * 9000);
 
 // Create a new proposal (POST)
 // exports.createProposal = async (req, res) => {

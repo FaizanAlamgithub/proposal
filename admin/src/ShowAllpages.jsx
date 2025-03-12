@@ -302,7 +302,7 @@ function ShowAllpages() {
         disabled={downloading}
         className="download-btn absolute z-10"
       >
-        {downloading ? "📥 Downloading..." : "📄 Download PDF"}
+        {downloading ? "Downloading..." : "Download PDF"}
       </button>
       <ToastContainer position="top-right" autoClose={3000} />
       <div className="horizontal-slide" ref={pagesRef}>

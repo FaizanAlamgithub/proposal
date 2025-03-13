@@ -1924,7 +1924,7 @@ body {
 
   .section-9-table-container td:nth-child(2),
   .section-9-table-container th:nth-child(2) {
-    width: 45%;
+    width: 40%;
   }
 
   .section-9-table-container td:nth-child(3),
@@ -1965,7 +1965,7 @@ body {
   }
   .section-10-table-container td:nth-child(1),
   .section-10-table-container th:nth-child(1) {
-    width: 40%;
+    width: 35%;
   }
 
   .section-10-table-container td:nth-child(2),

@@ -24,17 +24,11 @@ function ScopeOfWork({ proposal }) {
             </div>
             <div className="section-6-text2">
               <p>
-                {/* Branding, Web Design & Digital Marketing – Transforming Visions
-                into Success */}
                 {proposal ? proposal.scopeOfWork.title : "Loading..."}
               </p>
               <div className="objective-container">
                 <p>Objective</p>
                 <p className="objective-content">
-                  {/* To establish a strong and cohesive brand identity with a
-                  strategic foundation, visually compelling assets, and a
-                  well-defined messaging framework that enhances brand
-                  recognition and market positioning. */}
                   {proposal ? proposal.scopeOfWork.objective : "Loading..."}
                 </p>
               </div>

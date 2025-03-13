@@ -639,7 +639,6 @@ body {
 }
 .table-data {
   height: 40vh;
-  overflow-y: auto;
 }
 .section-8-table-container table {
   width: 100%;
@@ -1648,11 +1647,13 @@ body {
     padding-bottom: 0;
     margin-top: 1rem;
     line-height: 3rem;
+    font-weight: 500;
   }
   .client-name {
     font-size: 1.5rem;
     padding: 0 0.5rem;
     line-height: 3rem;
+    font-weight: 500;
   }
   .section-3-text1 {
     top: 5%;
@@ -1767,5 +1768,113 @@ body {
   .objective-content {
     font-size: 0.7rem;
     line-height: 0.8rem;
+  }
+
+  /* -------------- Section - 7 ----------------- */
+  .section-7 {
+    padding: 0 1rem;
+    height: 100vh;
+  }
+  .section-7-content {
+    min-height: 76vh;
+  }
+  .section-7-inner-text {
+    display: block;
+    min-height: 76vh;
+  }
+  .section-7-text1 p {
+    font-size: 3rem;
+    padding: 0;
+    margin: 1rem 0;
+    line-height: 2rem;
+  }
+
+  .section-7-text1 {
+    position: absolute;
+    top: 5%;
+    left: 5%;
+  }
+  .section-7-below-text {
+    margin-left: 0;
+    width: 60%;
+  }
+  .section-7-below-text p {
+    font-size: 0.8rem;
+    line-height: 1rem;
+  }
+  .section-7-text2 {
+    bottom: 5%;
+    right: 5%;
+    font-size: 0.7rem;
+  }
+  .section-7-text2 {
+    font-size: 1rem;
+    width: 70%;
+    position: absolute;
+    right: 0;
+    bottom: 15%;
+  }
+  .section-7-text2 > p {
+    padding: 0.5rem 0;
+    line-height: 1.2rem;
+  }
+  .section-7-objective-content {
+    font-size: 0.7rem;
+    margin: 0;
+  }
+  .section-7-branding-text {
+    margin: 0;
+    width: 100%;
+  }
+  /* -------------- Section - 8 ----------------- */
+  .section-8 {
+    padding: 0 1rem;
+    height: 100vh;
+  }
+  .section-8-content {
+    min-height: 76vh;
+  }
+  .section-8-inner-text {
+    display: block;
+    min-height: 76vh;
+  }
+  .section-8-text1 p {
+    font-size: 3rem;
+    padding: 0;
+    margin: 1rem 0;
+    line-height: 2rem;
+  }
+
+  .section-8-text1 {
+    position: absolute;
+    top: 5%;
+    left: 5%;
+  }
+  .section-8-weeks {
+    top: 30%;
+    font-size: 1.5rem;
+  }
+  .section-8-table-container {
+    margin: 0;
+  }
+  .table-data td {
+    padding-top: 1rem;
+    font-size: 0.7rem;
+    line-height: 0.8rem;
+  }
+
+  .section-8-table-container td:nth-child(1),
+  .section-8-table-container th:nth-child(1) {
+    width: 20%;
+  }
+
+  .section-8-table-container td:nth-child(2),
+  .section-8-table-container th:nth-child(2) {
+    width: 30%;
+  }
+
+  .section-8-table-container td:nth-child(3),
+  .section-8-table-container th:nth-child(3) {
+    width: 50%;
   }
 }

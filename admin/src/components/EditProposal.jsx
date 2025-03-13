@@ -181,11 +181,21 @@ const EditProposal = () => {
       description: [""],
     },
     timelineDeliverables: [
-      { week: { week1: "", week2: "" }, task: "", deliverables: "" },
+      {
+        week: { week1: "", week2: "" }, // ✅ Fixed structure
+        task: "",
+        deliverables: "",
+      },
     ],
     timelineWeeks: { startWeek: "", endWeek: "" },
     proposedInvestment: [{ services: "", description: "", cost: "" }],
     proposedCost: "",
+    payments: [
+      {
+        terms: "",
+        amount: "",
+      },
+    ],
   });
 
   // Fetch existing proposal data
@@ -197,9 +207,16 @@ const EditProposal = () => {
   }, [id]);
 
   // Handle input changes
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    setProposal((prev) => ({ ...prev, [name]: value }));
+  const handleChange = (e, field, subField) => {
+    const { value } = e.target;
+
+    setProposal((prev) => ({
+      ...prev,
+      [field]: {
+        ...prev[field], // Preserve other fields
+        [subField]: value, // Update specific field
+      },
+    }));
   };
 
   // Handle nested object updates (e.g., scopeOfWork)
@@ -207,6 +224,16 @@ const EditProposal = () => {
     setProposal((prev) => ({
       ...prev,
       [category]: { ...prev[category], [field]: e.target.value },
+    }));
+  };
+  const handleWeekChange = (value, weekKey) => {
+    setProposal((prev) => ({
+      ...prev,
+      timelineDeliverables: prev.timelineDeliverables.map((item, index) =>
+        index === 0 // ✅ Updating the first timelineDeliverables object
+          ? { ...item, week: { ...item.week, [weekKey]: value } }
+          : item
+      ),
     }));
   };
 
@@ -246,143 +273,365 @@ const EditProposal = () => {
   };
 
   return (
-    <div className="container mt-5">
-      <button
+    <div className="flex items-center justify-center bg-gray-100">
+      <div className="bg-[#ECEDEF] rounded-lg w-full relative">
+        {" "}
+        <button
           onClick={() => navigate("/dashboard")}
           className="btn btn-close position-absolute top-0 end-0 m-3"
           aria-label="Close"
         ></button>
-      <h2 className="mb-4 text-center">Edit Proposal</h2>
-      <div className="overflow-y-auto p-4 border border-gray-300 rounded-lg max-h-[80vh]">
-        <form onSubmit={handleSubmit}>
-          <div className="row">
-            <div className="col-md-6 mb-3">
-              <label className="form-label">Company Name:</label>
-              <input
-                type="text"
-                className="form-control"
-                name="companyName"
-                value={proposal.companyName}
-                onChange={handleChange}
-              />
+        <h2 className="text-2xl font-semibold text-center mb-2">
+          Edit Proposal
+        </h2>
+        <div className="">
+          <form
+            onSubmit={handleSubmit}
+            className="px-5 max-h-[95vh] overflow-y-auto"
+          >
+            <div className="col bg-white p-4 border border-gray-300 rounded-lg m-3">
+              <h3 className="text-lg font-semibold">Client detail</h3>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                {[
+                  { label: "Company Name", name: "companyName" },
+                  { label: "Client Name", name: "clientName" },
+                ].map(({ label, name }) => (
+                  <div key={name}>
+                    <label className="block text-gray-700 font-medium">
+                      {label}
+                    </label>
+                    <input
+                      type="text"
+                      name={name}
+                      value={proposal[name] || ""}
+                      onChange={handleChange}
+                      className="w-full p-2 border rounded-md focus:ring focus:ring-blue-300"
+                      required
+                    />
+                  </div>
+                ))}
+              </div>
+
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                {[
+                  { label: "Expiry Date", name: "expiryDate", type: "date" },
+                  { label: "Client ID", name: "clientId", type: "text" },
+                ].map(({ label, name, type }) => (
+                  <div key={name}>
+                    <label className="block text-gray-700 font-medium mt-4">
+                      {label}
+                    </label>
+                    <input
+                      type={type}
+                      name={name}
+                      value={
+                        type === "date"
+                          ? proposal[name]
+                            ? new Date(proposal[name])
+                                .toISOString()
+                                .split("T")[0] // Convert to "yyyy-MM-dd"
+                            : ""
+                          : proposal[name] || ""
+                      }
+                      onChange={handleChange}
+                      className="w-full p-2 border rounded-md focus:ring focus:ring-blue-300"
+                      required
+                    />
+                  </div>
+                ))}
+              </div>
+
+              <div>
+                <label className="block text-gray-700 font-medium mt-4">
+                  Proposal Description
+                </label>
+                <textarea
+                  name="proposalDescription"
+                  value={proposal.proposalDescription || ""}
+                  onChange={handleChange}
+                  className="w-full h-[25vh] p-2 border rounded-md focus:ring focus:ring-blue-300"
+                  required
+                />
+              </div>
+            </div>
+            <div className="col bg-white p-4 border border-gray-300 rounded-lg m-3">
+              <h3 className="text-lg font-semibold">Scope of Work</h3>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                {[
+                  { label: "Title", key: "title" },
+                  { label: "Objective", key: "objective" },
+                ].map(({ label, key }) => (
+                  <div key={key}>
+                    <label className="block text-gray-700 font-medium">
+                      {label}
+                    </label>
+                    <textarea
+                      type="text"
+                      value={proposal.scopeOfWork?.[key] || ""}
+                      onChange={(e) => handleNestedChange(e, key)}
+                      className="w-full h-[20vh]  p-2 border rounded-md focus:ring focus:ring-blue-300"
+                      required
+                    />
+                  </div>
+                ))}
+              </div>
+
+              <div className="flex gap-8">
+                {[
+                  { title: "Services", key: "services" },
+                  { title: "Description", key: "description" },
+                ].map(({ title, key }) => (
+                  <div key={key}>
+                    <h4 className="font-medium mt-4">{title}</h4>
+                    <div className="space-y-2">
+                      {proposal.scopeOfWork?.[key]?.map((item, index) => (
+                        <div key={index} className="flex items-center gap-2">
+                          <textarea
+                            type="text"
+                            placeholder={title.slice(0, -1)}
+                            value={item}
+                            onChange={(e) => handleArrayChange(e, key, index)}
+                            className="w-[40vw] h-[20vh] p-2 border rounded-md focus:ring focus:ring-blue-300"
+                          />
+                          <button
+                            type="button"
+                            onClick={() => removeArrayField(key, index)}
+                            className="bg-red-200 px-2 py-1 rounded"
+                          >
+                            <i className="bi bi-trash text-danger"></i>
+                          </button>
+                        </div>
+                      ))}
+                    </div>
+                    <button
+                      type="button"
+                      onClick={() => addArrayField(key)}
+                      className="mt-2 px-4 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600"
+                    >
+                      + Add {title.slice(0, -1)}
+                    </button>
+                  </div>
+                ))}
+              </div>
+            </div>
+            <div className="col bg-white p-4 border border-gray-300 rounded-lg m-3">
+              {/* Timeline & Deliverables */}
+              <h3 className="text-lg font-semibold">Timeline & Deliverables</h3>
+              {/* Timeline Weeks Input */}
+              <div className="mt-2 flex gap-4">
+                <label className="font-medium">Weeks</label>
+                <input
+                  type="number"
+                  placeholder="Start"
+                  value={proposal.timelineWeeks.startWeek}
+                  onChange={(e) =>
+                    setProposal({
+                      ...proposal,
+                      timelineWeeks: {
+                        ...proposal.timelineWeeks,
+                        startWeek: e.target.value,
+                      },
+                    })
+                  }
+                  className="p-2 border rounded-md w-20"
+                />
+                <input
+                  type="number"
+                  placeholder="End"
+                  value={proposal.timelineWeeks.endWeek}
+                  onChange={(e) =>
+                    setProposal({
+                      ...proposal,
+                      timelineWeeks: {
+                        ...proposal.timelineWeeks,
+                        endWeek: e.target.value,
+                      },
+                    })
+                  }
+                  className="p-2 border rounded-md w-20"
+                />
+              </div>
+              {proposal.timelineDeliverables.map((timeline, timelineIndex) => (
+                <div
+                  key={timelineIndex}
+                  className="border p-4 rounded-md space-y-3"
+                >
+                  <div className="grid grid-cols-2 gap-4">
+                    <div>
+                      <label className="block font-medium">Task</label>
+                      <textarea
+                        type="text"
+                        value={timeline.task}
+                        onChange={(e) => handleChange(e, timelineIndex, "task")}
+                        className="w-full p-2 border rounded-md h-[25vh]"
+                        required
+                      />
+                    </div>
+                    <div>
+                      <label className="block font-medium">Deliverables</label>
+                      <textarea
+                        type="text"
+                        value={timeline.deliverables}
+                        onChange={(e) =>
+                          handleChange(e, timelineIndex, "deliverables")
+                        }
+                        className="w-full p-2 border rounded-md h-[25vh]"
+                        required
+                      />
+                    </div>
+                  </div>
+
+                  {/* Weeks */}
+
+                  <div className="mt-2 flex items-center gap-4">
+                    <label className="font-medium">Weeks</label>
+                    <input
+                      type="number"
+                      placeholder="Week 1"
+                      value={
+                        proposal.timelineDeliverables[0]?.week?.week1 || ""
+                      } // ✅ Shows saved value
+                      onChange={(e) =>
+                        handleWeekChange(e.target.value, "week1")
+                      }
+                      className="p-2 border rounded-md w-20"
+                    />
+                    <input
+                      type="number"
+                      placeholder="Week 2"
+                      value={
+                        proposal.timelineDeliverables[0]?.week?.week2 || ""
+                      } // ✅ Shows saved value
+                      onChange={(e) =>
+                        handleWeekChange(e.target.value, "week2")
+                      }
+                      className="p-2 border rounded-md w-20"
+                    />
+                  </div>
+
+                  <button
+                    type="button"
+                    onClick={() => removeTimeline(timelineIndex)}
+                    className="mt-2 p-1 bg-red-500 text-white rounded"
+                  >
+                    Remove Timeline & Deliverables
+                  </button>
+                </div>
+              ))}
+            </div>
+            <div className="col bg-white p-4 border border-gray-300 rounded-lg m-3">
+              {/* Proposed Investment */}
+              <h3 className="text-lg font-semibold">Proposed Investment</h3>
+              {/* Timeline Weeks Input */}
+              <div className="mt-2 flex gap-4 items-center">
+                <label className="font-medium">Cost</label>
+                <input
+                  type="number"
+                  placeholder="Enter cost"
+                  value={proposal.proposedCost || ""}
+                  onChange={(e) =>
+                    setProposal({
+                      ...proposal,
+                      proposedCost: e.target.value,
+                    })
+                  }
+                  className="p-2 border rounded-md w-30"
+                />
+              </div>
+              {proposal.proposedInvestment.map((proposed, Index) => (
+                <div key={Index} className="border p-4 rounded-md space-y-3">
+                  <div className="grid grid-cols-2 gap-4">
+                    <div>
+                      <label className="block font-medium">Services</label>
+                      <textarea
+                        type="text"
+                        value={proposed.services}
+                        onChange={(e) => handleChange(e, Index, "services")}
+                        className="w-full p-2 border rounded-md h-[25vh]"
+                        required
+                      />
+                    </div>
+                    <div>
+                      <label className="block font-medium">Description</label>
+                      <textarea
+                        type="text"
+                        value={proposed.description}
+                        onChange={(e) => handleChange(e, Index, "description")}
+                        className="w-full p-2 border rounded-md h-[25vh]"
+                        required
+                      />
+                    </div>
+                    <div>
+                      <label className="block font-medium">Cost </label>
+                      <textarea
+                        type="text"
+                        value={proposed.cost}
+                        onChange={(e) => handleChange(e, Index, "cost")}
+                        className="w-full p-2 border rounded-md h-[25vh]"
+                        required
+                      />
+                    </div>
+                  </div>
+                  <button
+                    type="button"
+                    onClick={() => removeProposed(Index)}
+                    className="mt-2 p-1 bg-red-500 text-white rounded"
+                  >
+                    Remove Proposed Investment
+                  </button>
+                </div>
+              ))}
+            </div>
+            <div className="col bg-white p-4 border border-gray-300 rounded-lg m-3">
+              <h3 className="text-lg font-semibold">Payments Terms</h3>
+              {proposal.payments.map((proposed, Index) => (
+                <div key={Index} className="border p-4 rounded-md space-y-3">
+                  <div className="grid grid-cols-2 gap-4">
+                    <div>
+                      <label className="block font-medium">Terms</label>
+                      <textarea
+                        type="text"
+                        value={proposed.terms}
+                        onChange={(e) =>
+                          handlePaymentsChange(e, Index, "terms")
+                        }
+                        className="w-full p-2 border rounded-md h-[25vh]"
+                        required
+                      />
+                    </div>
+                    <div>
+                      <label className="block font-medium">Amount</label>
+                      <textarea
+                        type="text"
+                        value={proposed.amount}
+                        onChange={(e) =>
+                          handlePaymentsChange(e, Index, "amount")
+                        }
+                        className="w-full p-2 border rounded-md h-[25vh]"
+                        required
+                      />
+                    </div>
+                  </div>
+                  <button
+                    type="button"
+                    onClick={() => removePayments(Index)}
+                    className="mt-2 p-1 bg-red-500 text-white rounded"
+                  >
+                    Remove Payments Terms
+                  </button>
+                </div>
+              ))}
             </div>
 
-            <div className="col-md-6 mb-3">
-              <label className="form-label">Client Name:</label>
-              <input
-                type="text"
-                className="form-control"
-                name="clientName"
-                value={proposal.clientName}
-                onChange={handleChange}
-              />
-            </div>
-          </div>
-
-          <div className="mb-3">
-            <label className="form-label">Expiry Date:</label>
-            <input
-              type="date"
-              className="form-control"
-              name="expiryDate"
-              value={proposal.expiryDate}
-              onChange={handleChange}
-            />
-          </div>
-
-          <div className="mb-3">
-            <label className="form-label">Proposal Description:</label>
-            <textarea
-              className="form-control"
-              name="proposalDescription"
-              value={proposal.proposalDescription}
-              onChange={handleChange}
-              rows="3"
-            />
-          </div>
-
-          <h4 className="mt-4">Scope of Work</h4>
-          <div className="mb-3">
-            <label className="form-label">Title:</label>
-            <input
-              type="text"
-              className="form-control"
-              value={proposal.scopeOfWork.title}
-              onChange={(e) => handleNestedChange(e, "scopeOfWork", "title")}
-            />
-          </div>
-
-          <div className="mb-3">
-            <label className="form-label">Objective:</label>
-            <input
-              type="text"
-              className="form-control"
-              value={proposal.scopeOfWork.objective}
-              onChange={(e) =>
-                handleNestedChange(e, "scopeOfWork", "objective")
-              }
-            />
-          </div>
-
-          <div className="mb-3">
-            <label className="form-label">Services:</label>
-            {proposal.scopeOfWork.services.map((service, index) => (
-              <input
-                key={index}
-                type="text"
-                className="form-control mb-2"
-                value={service}
-                onChange={(e) =>
-                  handleArrayChange(e, "scopeOfWork", index, "services")
-                }
-              />
-            ))}
-          </div>
-
-          <h4 className="mt-4">Timeline</h4>
-          <div className="row">
-            <div className="col-md-6 mb-3">
-              <label className="form-label">Start Week:</label>
-              <input
-                type="text"
-                className="form-control"
-                value={proposal.timelineWeeks.startWeek}
-                onChange={(e) =>
-                  handleNestedChange(e, "timelineWeeks", "startWeek")
-                }
-              />
-            </div>
-
-            <div className="col-md-6 mb-3">
-              <label className="form-label">End Week:</label>
-              <input
-                type="text"
-                className="form-control"
-                value={proposal.timelineWeeks.endWeek}
-                onChange={(e) =>
-                  handleNestedChange(e, "timelineWeeks", "endWeek")
-                }
-              />
-            </div>
-          </div>
-
-          <h4 className="mt-4">Proposed Investment</h4>
-          <div className="mb-3">
-            <label className="form-label">Proposed Cost:</label>
-            <input
-              type="text"
-              className="form-control"
-              name="proposedCost"
-              value={proposal.proposedCost}
-              onChange={handleChange}
-            />
-          </div>
-
-          <button type="submit" className="btn btn-primary w-100">
-            Update Proposal
-          </button>
-        </form>
-        <ToastContainer />
+            <button
+              type="submit"
+              className="w-25 m-4 px-4 py-2 bg-green-500 text-white rounded-md hover:bg-green-600"
+            >
+              Update Proposal
+            </button>
+          </form>
+          <ToastContainer />
+        </div>
       </div>
     </div>
   );

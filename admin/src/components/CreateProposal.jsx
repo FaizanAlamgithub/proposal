@@ -570,31 +570,6 @@ const CreateProposal = () => {
     });
   };
 
-  // const handleTimelineChange = (e, field, weekIndex = null, key = null) => {
-  //   if (field === "week") {
-  //     // Create a deep copy of the week array
-  //     const newWeeks = proposal.timelineDeliverables.week.map((week, idx) =>
-  //       idx === weekIndex ? { ...week, [key]: e.target.value } : week
-  //     );
-
-  //     setProposal((prevProposal) => ({
-  //       ...prevProposal,
-  //       timelineDeliverables: {
-  //         ...prevProposal.timelineDeliverables,
-  //         week: newWeeks,
-  //       },
-  //     }));
-  //   } else {
-  //     setProposal((prevProposal) => ({
-  //       ...prevProposal,
-  //       timelineDeliverables: {
-  //         ...prevProposal.timelineDeliverables,
-  //         [field]: e.target.value,
-  //       },
-  //     }));
-  //   }
-  // };
-
   // Handle changes in Timeline & Deliverables
   const handleTimelineChange = (e, timelineIndex, field, weekKey = null) => {
     setProposal((prev) => {

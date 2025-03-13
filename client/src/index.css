@@ -1583,7 +1583,53 @@ body {
     padding: 0;
     font-size: 0.6rem;
   }
+  .slider {
+    padding: 0.5rem;
+  }
   .slider-text p {
     display: none;
+  }
+
+  /* -------------- Section - 2 ----------------- */
+  .section-2 {
+    padding: 0 1rem;
+  }
+  .header-text-1,
+  .header-text-2 {
+    font-size: 0.5rem;
+  }
+  .section-2-content {
+    min-height: calc(100vh - 10rem);
+  }
+
+  .bottom-text {
+    font-size: 0.4rem;
+  }
+
+  .bottom-text img {
+    width: 20%;
+  }
+  .section-2-text1 p {
+    font-size: 3rem;
+    padding-bottom: 0;
+    margin-top: 1rem;
+    line-height: 3rem;
+  }
+  .section-2-text1 {
+    top: 5%;
+    left: 5%;
+  }
+  .section-2-text2 {
+    bottom: 5%;
+    right: 5%;
+    font-size: 1rem;
+    line-height: 1rem;
+  }
+  .midlle-text-container {
+    margin-bottom: 0;
+  }
+
+  .section-1-bottom-text {
+    flex-direction: column;
   }
 }

@@ -1522,7 +1522,7 @@ body {
     padding: 0 1rem;
   }
   .hero-content {
-    min-height: calc(100vh - 18rem);
+    min-height: calc(100vh - 16rem);
   }
 
   .logo {
@@ -1583,6 +1583,7 @@ body {
   .section-1-bottom-text-content {
     padding: 0;
     font-size: 0.6rem;
+    line-height: 1rem;
   }
   .slider {
     padding: 0.5rem;

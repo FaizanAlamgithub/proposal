@@ -10,6 +10,7 @@ import WorkDetails from "../../client/src/pages/ScopeOfWorkDetails/WorkDetails";
 import TimelineDelivery from "../../client/src/pages/ScopeOfWorkDetails/TimelineDelivery";
 import ProposedInvestment from "../../client/src/pages/ScopeOfWorkDetails/ProposedInvestment";
 import PaymentTerms from "../../client/src/pages/ScopeOfWorkDetails/PaymentTerms";
+import ThankYou from "../../client/src/pages/ThankYou";
 import { ToastContainer, toast } from "react-toastify";
 
 import jsPDF from "jspdf";
@@ -316,6 +317,7 @@ function ShowAllpages() {
         <TimelineDelivery proposal={proposal} />
         <ProposedInvestment proposal={proposal} />
         <PaymentTerms proposal={proposal} />
+        <ThankYou proposal={proposal} />
         {/* <NextSteps proposal={proposal} /> */}
       </div>
       {/* <Dashboard downloadPDF={downloadPDF} /> */}

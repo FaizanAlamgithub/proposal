@@ -128,13 +128,13 @@ function ProposedInvestment({ proposal }) {
             </div>
           </div>
 
-          <div className="bottom-text">
+          {/* <div className="bottom-text">
             <p>Jordie’s Creative Agency Pvt Ltd</p>
             <a href="https://www.jordiescreativeagency.com">
               www.jordiescreativeagency.com
             </a>
             <img src="../images/logo.svg" alt="" />
-          </div>
+          </div> */}
         </div>
       ))}
     </>

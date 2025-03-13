@@ -315,7 +315,7 @@ function AllPages({ proposal }) {
       {/* <button onClick={downloadPDF} className="download-btn">
         Download PDF
       </button> */}
-      <div className="horizontal-slide" ref={pagesRef}>
+      <div className="horizontal-slide px-3" ref={pagesRef}>
         <Proposal proposal={proposal} />
         <TableOfContent proposal={proposal} />
         <HelloClient proposal={proposal} />

@@ -305,7 +305,7 @@ function ShowAllpages() {
         {downloading ? "Downloading..." : "Download PDF"}
       </button>
       <ToastContainer position="top-right" autoClose={3000} />
-      <div className="horizontal-slide" ref={pagesRef}>
+      <div className="horizontal-slide px-3" ref={pagesRef}>
         <Proposal proposal={proposal} />
         <TableOfContent proposal={proposal} />
         <HelloClient proposal={proposal} />

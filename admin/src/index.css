@@ -1457,7 +1457,7 @@ body {
     padding: 0 1rem;
   }
   .hero-content {
-    min-height: calc(100vh - 18rem);
+    min-height: calc(100vh - 19rem);
   }
 
   .logo {
@@ -1468,9 +1468,12 @@ body {
   }
 
   .proposal-text {
-    font-size: 4rem;
+    font-size: 3rem;
     padding-bottom: 0;
     margin-top: 2rem;
+  }
+  .client-name{
+    font-size: 1.2rem;
   }
   .midlle-text-container {
     margin-bottom: 0;

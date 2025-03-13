@@ -108,7 +108,7 @@ function ProposedInvestment({ proposal }) {
                     </tr>
                   </thead>
                 </table>
-                <div className="table-data">
+                <div className="table-data table-data-container">
                   <table className="w-full border-collapse">
                     <tbody>
                       {pageData.map((row, rowIndex) => (
@@ -121,20 +121,19 @@ function ProposedInvestment({ proposal }) {
                     </tbody>
                   </table>
                 </div>
-                <p className="all-prices-text">
-                  *All Prices are in <span>INR</span>
-                </p>
               </div>
+              <p className="all-prices-text">
+                *All Prices are in <span>INR</span>
+              </p>
             </div>
           </div>
-
-          {/* <div className="bottom-text">
+          <div className="bottom-text">
             <p>Jordie’s Creative Agency Pvt Ltd</p>
             <a href="https://www.jordiescreativeagency.com">
               www.jordiescreativeagency.com
             </a>
             <img src="../images/logo.svg" alt="" />
-          </div> */}
+          </div>
         </div>
       ))}
     </>

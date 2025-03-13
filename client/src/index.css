@@ -900,7 +900,7 @@ body {
   width: 40%;
   font-family: "Work Sans", serif;
   position: absolute;
-  top: 15%;
+  /* top: 15%; */
   right: 5%;
   font-weight: 600;
   color: #7f5cff;
@@ -1876,5 +1876,154 @@ body {
   .section-8-table-container td:nth-child(3),
   .section-8-table-container th:nth-child(3) {
     width: 50%;
+  }
+  /* -------------- Section - 9 ----------------- */
+  .section-9 {
+    padding: 0 1rem;
+    height: 100vh;
+  }
+  .section-9-content {
+    min-height: 76vh;
+  }
+  .section-9-inner-text {
+    display: block;
+    min-height: 76vh;
+  }
+  .section-9-text1 p {
+    font-size: 3rem;
+    padding: 0;
+    margin: 1rem 0;
+    line-height: 2rem;
+  }
+
+  .section-9-text1 {
+    position: absolute;
+    top: 5%;
+    left: 5%;
+  }
+  .section-9-inr {
+    top: 30%;
+    font-size: 1.5rem;
+  }
+  .section-9-table-container {
+    margin: 0;
+  }
+  .table-data-container {
+    height: 37vh;
+  }
+  .all-prices-text {
+    font-size: 0.7rem;
+    position: absolute;
+    bottom: 0;
+    right: 0;
+  }
+  .section-9-table-container td:nth-child(1),
+  .section-9-table-container th:nth-child(1) {
+    width: 30%;
+  }
+
+  .section-9-table-container td:nth-child(2),
+  .section-9-table-container th:nth-child(2) {
+    width: 45%;
+  }
+
+  .section-9-table-container td:nth-child(3),
+  .section-9-table-container th:nth-child(3) {
+    width: 20%;
+  }
+  /* -------------- Section - 10 ----------------- */
+  .section-10 {
+    padding: 0 1rem;
+    height: 100vh;
+  }
+  .section-10-content {
+    min-height: 76vh;
+  }
+  .section-10-inner-text {
+    display: block;
+    min-height: 76vh;
+  }
+  .section-10-text1 p {
+    font-size: 3rem;
+    padding: 0;
+    margin: 1rem 0;
+    line-height: 2rem;
+  }
+
+  .section-10-text1 {
+    position: absolute;
+    top: 5%;
+    left: 5%;
+  }
+  .section-10-table-container td {
+    padding-top: 1rem;
+    font-size: 0.7rem;
+    line-height: 0.8rem;
+  }
+  .section-10-table-container {
+    margin: 0;
+  }
+  .section-10-table-container td:nth-child(1),
+  .section-10-table-container th:nth-child(1) {
+    width: 40%;
+  }
+
+  .section-10-table-container td:nth-child(2),
+  .section-10-table-container th:nth-child(2) {
+    width: 20%;
+  }
+  /* -------------- Section - 11 ----------------- */
+  .section-11 {
+    padding: 0 1rem;
+    height: 100vh;
+  }
+  .section-11-content {
+    min-height: 76vh;
+    position: relative;
+  }
+  .section-11-inner-text {
+    display: block;
+    min-height: 76vh;
+    position: relative;
+  }
+  .section-11-text1 p {
+    font-size: 3rem;
+    padding: 0;
+    margin: 1rem 0;
+    line-height: 2rem;
+  }
+
+  .section-11-text1 {
+    position: absolute;
+    top: 5%;
+    left: 5%;
+    width: 70%;
+  }
+
+  .section-11-below-text {
+    width: 100%;
+  }
+  .section-11-below-text p {
+    font-size: 0.7rem;
+    line-height: 1rem;
+  }
+  .section-11-below-text-btn {
+    font-size: 0.7rem;
+    padding: 0.5rem 1rem;
+    margin-top: 1rem;
+  }
+  .section-11-text2 {
+    position: absolute;
+    bottom: 0;
+    width: 70%;
+  }
+  .section-11-text2 {
+    font-size: 0.8rem;
+    line-height: 0.8rem;
+  }
+  .section-11-objective-content {
+    font-size: 0.67rem;
+    line-height: 1rem;
+    padding: 0.7rem 0;
   }
 }

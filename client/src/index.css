@@ -1586,7 +1586,7 @@ body {
     line-height: 1rem;
   }
   .slider {
-    padding: 0.5rem;
+    padding: 0.5rem 1rem;
   }
   .slider-text p {
     display: none;

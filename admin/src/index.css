@@ -1516,3 +1516,75 @@ body {
     display: none;
   }
 }
+
+@media (max-width: 486px) {
+  .section-1 {
+    padding: 0 1rem;
+  }
+  .hero-content {
+    min-height: calc(100vh - 18rem);
+  }
+
+  .logo {
+    justify-content: end;
+  }
+  .logo img {
+    width: 30%;
+  }
+
+  .proposal-text {
+    font-size: 3rem;
+    padding-bottom: 0;
+    margin-top: 2rem;
+  }
+  .client-name {
+    font-size: 1rem;
+  }
+  .midlle-text-container {
+    margin-bottom: 0;
+  }
+  .hero-text-bottom {
+    flex-direction: column;
+    /* align-items: center; */
+    gap: 1rem;
+  }
+
+  .date-container {
+    display: flex;
+    gap: 5rem;
+  }
+
+  .propasal-hero {
+    font-size: 0.8rem;
+    width: 95%;
+  }
+  .jordie-text {
+    font-size: 0.8rem;
+  }
+  .propasal-hero > p {
+    line-height: 1.2rem;
+  }
+
+  .hero-text-div {
+    width: 25%;
+  }
+  .hero-text-address {
+    width: 100%;
+    text-align: start;
+  }
+
+  .section-1-bottom-text {
+    flex-direction: column;
+  }
+  .date {
+    font-size: 0.9rem;
+  }
+  .address,
+  .section-1-bottom-text-content {
+    padding: 0;
+    font-size: 0.7rem;
+  }
+  .slider-text p {
+    display: none;
+  }
+}

@@ -144,6 +144,7 @@ import TimelineDelivery from "../../pages/ScopeOfWorkDetails/TimelineDelivery";
 import ProposedInvestment from "../../pages/ScopeOfWorkDetails/ProposedInvestment";
 import PaymentTerms from "../../pages/ScopeOfWorkDetails/PaymentTerms";
 import NextSteps from "../../pages/ScopeOfWorkDetails/NextSteps";
+import ThankYou from "../../pages/ThankYou";
 
 // import jsPDF from "jspdf";
 // import html2canvas from "html2canvas";
@@ -327,6 +328,7 @@ function AllPages({ proposal }) {
         <ProposedInvestment proposal={proposal} />
         <PaymentTerms proposal={proposal} />
         <NextSteps proposal={proposal} />
+        <ThankYou proposal={proposal} />
       </div>
       {/* <div className="slider">
         <div className="prev slider-text">

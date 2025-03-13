@@ -2026,4 +2026,56 @@ body {
     line-height: 1rem;
     padding: 0.7rem 0;
   }
+
+  /* --------------- Section - 12 ------------------- */
+  .section-12 {
+    padding: 0 1rem;
+    height: 100vh;
+  }
+  .section-12-content {
+    width: 100%;
+    /* height: 100vh; */
+  }
+  .thankyou-logo {
+    display: flex;
+    align-items: center;
+    justify-content: end;
+    padding-top: 2rem;
+  }
+  .thankyou-logo img {
+    width: 40%;
+  }
+  .explore {
+    width: 80%;
+  }
+  .scanner {
+    font-size: 0.6rem;
+    font-weight: 400;
+  }
+  .explore img {
+    margin: 0.5rem 0;
+    width: 50%;
+  }
+  .phone-no,
+  .jca-link {
+    font-size: 0.8rem;
+    font-weight: 600;
+    line-height: 1rem;
+  }
+  .jca-address {
+    font-weight: 300;
+    font-size: 0.5rem;
+    margin-top: 1rem;
+  }
+  .thankyou {
+    width: 80%;
+    position: absolute;
+    top: 20%;
+  }
+  .thankyou p {
+    font-size: 6rem;
+    font-weight: 700;
+    line-height: 5rem;
+    text-align: end;
+  }
 }

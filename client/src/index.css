@@ -14,13 +14,14 @@ body {
   display: flex;
   flex-wrap: nowrap;
   overflow-x: scroll;
+  overflow-y: hidden;
   scroll-snap-type: x mandatory;
   width: 100vw;
 }
 
 .section-1 {
   padding: 0 3rem;
-  min-width: 100%;
+  min-width: 100vw;
   height: 100%;
   position: relative;
   scroll-snap-align: start;
@@ -176,7 +177,7 @@ body {
   width: 100%;
   display: flex;
   align-items: center;
-  justify-content: space-around;
+  justify-content: space-evenly;
   background-color: #404040;
   padding: 1rem;
   position: fixed;
@@ -213,7 +214,7 @@ body {
 
 .section-2 {
   padding: 0 3rem;
-  min-width: 100%;
+  min-width: 100vw;
   height: 100%;
   position: relative;
   background-color: #130e26;
@@ -1629,7 +1630,6 @@ body {
   .midlle-text-container {
     margin-bottom: 0;
   }
-
   .section-1-bottom-text {
     flex-direction: column;
   }

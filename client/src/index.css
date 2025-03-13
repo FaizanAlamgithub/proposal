@@ -1634,4 +1634,138 @@ body {
   .section-1-bottom-text {
     flex-direction: column;
   }
+
+  /* -------------- Section - 3 ----------------- */
+  .section-3 {
+    padding: 0 1rem;
+    height: 100vh;
+  }
+  .section-3-content {
+    min-height: 76vh;
+  }
+  .section-3-text1 p {
+    font-size: 1.5rem;
+    padding-bottom: 0;
+    margin-top: 1rem;
+    line-height: 3rem;
+  }
+  .client-name {
+    font-size: 1.5rem;
+    padding: 0 0.5rem;
+    line-height: 3rem;
+  }
+  .section-3-text1 {
+    top: 5%;
+    left: 5%;
+  }
+  .section-3-text2 {
+    bottom: 5%;
+    right: 5%;
+    font-size: 0.7rem;
+  }
+  .section-3-text2 p {
+    line-height: 1rem;
+  }
+
+  /* -------------- Section - 4 ----------------- */
+  .section-4 {
+    padding: 0 1rem;
+    height: 100vh;
+  }
+  .section-4-content {
+    min-height: 76vh;
+  }
+  .section-4-text1 p {
+    font-size: 3rem;
+    padding-bottom: 0;
+    margin-top: 1rem;
+    line-height: 3rem;
+  }
+  .section-4-text1 {
+    top: 5%;
+    left: 5%;
+  }
+  .section-4-text2 {
+    bottom: 5%;
+    right: 5%;
+    font-size: 0.7rem;
+  }
+  .section-4-text2 p {
+    line-height: 1rem;
+  }
+  /* -------------- Section - 5 ----------------- */
+  .section-5 {
+    padding: 0 1rem;
+    height: 100vh;
+  }
+  .section-5-content {
+    min-height: 76vh;
+  }
+  .section-5-text1 p {
+    font-size: 3rem;
+    padding-bottom: 0;
+    margin-top: 1rem;
+    line-height: 2rem;
+  }
+
+  .section-5-text1 {
+    top: 5%;
+    left: 5%;
+  }
+  .section-5-text2 {
+    bottom: 5%;
+    right: 5%;
+    font-size: 0.7rem;
+  }
+  .section-5-text2 span {
+    font-size: 1rem;
+    line-height: 1.2rem;
+  }
+
+  .section-5-text2 p {
+    line-height: 1rem;
+    padding: 0.5rem 0;
+  }
+  /* -------------- Section - 6 ----------------- */
+  .section-6 {
+    padding: 0 1rem;
+    height: 100vh;
+  }
+  .section-6-content {
+    min-height: 76vh;
+  }
+  .section-6-text1 p {
+    font-size: 3rem;
+    padding-bottom: 0;
+    margin-top: 1rem;
+    line-height: 2rem;
+  }
+
+  .section-6-text1 {
+    top: 5%;
+    left: 5%;
+  }
+  .section-6-text2 {
+    bottom: 5%;
+    right: 5%;
+    font-size: 0.7rem;
+  }
+  .section-6-text2 {
+    font-size: 1rem;
+    width: 60%;
+  }
+  .section-5-text2 ul li {
+    padding: 0.7rem 0;
+  }
+  .section-6-text2 > p {
+    padding: 0.5rem 0;
+    line-height: 1.2rem;
+  }
+  .objective-container {
+    padding: 1rem 0;
+  }
+  .objective-content {
+    font-size: 0.7rem;
+    line-height: 0.8rem;
+  }
 }

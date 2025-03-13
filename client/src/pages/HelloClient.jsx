@@ -20,7 +20,7 @@ function HelloClient({ proposal }) {
           <div className="section-3-inner-text">
             <div className="section-3-text1">
               <p>
-                Hello{" "}
+                Hello
                 <span className="client-name">
                   {proposal ? proposal.clientName : "Loading..."},
                 </span>

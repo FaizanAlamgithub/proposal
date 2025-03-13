@@ -26,21 +26,24 @@ function WhyWorkWithUs({ proposal }) {
               <ul>
                 <li>
                   <span>A Strategic Extension of Your Team:</span>
-                  <br />
-                  We collaborate, innovate, and problem-solve as if we were an
-                  in-house team.
+                  <p>
+                    We collaborate, innovate, and problem-solve as if we were an
+                    in-house team.
+                  </p>
                 </li>
                 <li>
                   <span>Results Driven Creativity:</span>
-                  <br />
-                  Every design, campaign, and strategy is built to drive
-                  measurable growth.
+                  <p>
+                    Every design, campaign, and strategy is built to drive
+                    measurable growth.
+                  </p>
                 </li>
                 <li>
                   <span>Industry Expertise:</span>
-                  <br />
-                  We have worked with businesses across various industries,
-                  delivering impactful tailored solutions.
+                  <p>
+                    We have worked with businesses across various industries,
+                    delivering impactful tailored solutions.
+                  </p>
                 </li>
               </ul>
             </div>

@@ -1349,7 +1349,7 @@ body {
   }
 } */
 
-@media (max-width: 486px) {
+@media (width: 486px) {
   .section-1 {
     padding: 0 1rem;
   }
@@ -1658,7 +1658,9 @@ body {
   }
   .section-7-branding-text {
     margin: 0;
-    width: 100%;
+    width: 50%;
+    top: 50%;
+    left: 0;
   }
   /* -------------- Section - 8 ----------------- */
   .section-8 {
@@ -1847,8 +1849,7 @@ body {
     margin-top: 1rem;
   }
   .section-11-text2 {
-    position: absolute;
-    bottom: 0;
+    top: 55%;
     width: 70%;
   }
   .section-11-text2 {

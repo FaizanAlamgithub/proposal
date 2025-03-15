@@ -50,6 +50,7 @@ body {
   font-family: "Bricolage Grotesque", serif;
   color: #4a4a4a;
   /* padding-bottom: 2rem; */
+  margin-bottom: 1rem;
 }
 
 .propasal-hero {
@@ -80,10 +81,10 @@ body {
   font-family: "Bricolage Grotesque", serif;
 }
 
-.client-name {
+.proposal .client-name {
   padding: 1rem 0;
   font-weight: 500;
-  font-size: 1.375rem;
+  font-size: 1.2rem;
   color: #4a4a4a;
   font-family: "Work Sans", serif;
 }
@@ -223,7 +224,7 @@ body {
 
 .section-2-content {
   width: 100%;
-  min-height: calc(100vh - 10rem);
+  min-height: calc(100vh - 7.5rem);
   /* background-color: #7f5cff; */
   position: relative;
 }
@@ -233,17 +234,20 @@ body {
   align-items: center;
   justify-content: space-between;
   border-bottom: 1px solid #404040;
-  padding: 1rem 0;
+  padding: 0.5rem 0;
   font-family: "Work Sans", serif;
   color: #616161;
   font-weight: 400;
-  size: 16px;
 }
 
 .header-text-1 {
   display: flex;
   align-items: center;
   justify-content: center;
+  font-size: 0.7rem;
+}
+.header-text-2 {
+  font-size: 0.7rem;
 }
 
 .header-text-1 .company-name {
@@ -255,8 +259,15 @@ body {
   align-items: center;
   justify-content: space-between;
   color: #616161;
-  padding: 1rem 0;
+  padding: 0.5rem 0;
   border-top: 1px solid #404040;
+}
+.bottom-text p,
+.bottom-text a {
+  font-size: 0.7rem;
+}
+.bottom-text img {
+  width: 8%;
 }
 
 .section-2-inner-text {
@@ -314,7 +325,7 @@ body {
 }
 .section-3-content {
   width: 100%;
-  min-height: calc(100vh - 10rem);
+  min-height: calc(100vh - 7.5rem);
   /* background-color: #7f5cff; */
   position: relative;
 }
@@ -332,7 +343,7 @@ body {
   top: 5%;
   left: 0;
 }
-.client-name {
+.section-3-text1 .client-name {
   font-size: 1.7rem;
   margin-left: 0.8rem;
 }
@@ -365,7 +376,7 @@ body {
 }
 .section-4-content {
   width: 100%;
-  min-height: calc(100vh - 10rem);
+  min-height: calc(100vh - 7.5rem);
   /* background-color: #7f5cff; */
   position: relative;
 }
@@ -413,7 +424,7 @@ body {
 }
 .section-5-content {
   width: 100%;
-  min-height: calc(100vh - 10rem);
+  min-height: calc(100vh - 7.5rem);
   /* background-color: #7f5cff; */
   position: relative;
 }
@@ -471,7 +482,7 @@ body {
 }
 .section-6-content {
   width: 100%;
-  min-height: calc(100vh - 10rem);
+  min-height: calc(100vh - 7.5rem);
   /* background-color: #7f5cff; */
   position: relative;
 }
@@ -535,7 +546,7 @@ body {
 }
 .section-7-content {
   width: 100%;
-  min-height: calc(100vh - 10rem);
+  min-height: calc(100vh - 7.5rem);
   position: relative;
 }
 .section-7-inner-text {
@@ -604,7 +615,7 @@ body {
 }
 .section-8-content {
   width: 100%;
-  min-height: calc(100vh - 10rem);
+  min-height: calc(100vh - 7.5rem);
   /* background-color: #7f5cff; */
   /* position: relative; */
 }
@@ -612,7 +623,7 @@ body {
   /* display: flex;
   justify-content: center; */
   width: 100%;
-  min-height: calc(100vh - 10rem);
+  min-height: calc(100vh - 7.5rem);
   position: relative;
 }
 .section-8-weeks {
@@ -660,11 +671,13 @@ body {
   line-height: 30px;
   text-align: left;
   color: #c4b4ff;
+  padding: 1rem 0;
 }
 .section-8-table-container td {
   /* padding: 1rem 2rem; */
   color: #686868;
   font-size: 0.8rem;
+  padding: 1rem 0;
 }
 .section-8-table-container thead {
   border-bottom: 1px dashed #cccbcb;
@@ -717,7 +730,7 @@ body {
 }
 .section-9-content {
   width: 100%;
-  min-height: calc(100vh - 10rem);
+  min-height: calc(100vh - 7.5rem);
   /* background-color: #7f5cff; */
   position: relative;
 }
@@ -725,7 +738,7 @@ body {
   /* display: flex;
   justify-content: center; */
   width: 100%;
-  min-height: calc(100vh - 10rem);
+  min-height: calc(100vh - 7.5rem);
   position: relative;
 }
 .section-9-inr {
@@ -772,6 +785,7 @@ body {
   line-height: 30px;
   text-align: left;
   color: #c4b4ff;
+  padding: 1rem 0;
 }
 .section-9-table-container td {
   padding: 1rem 0;
@@ -817,7 +831,7 @@ body {
 }
 .section-10-content {
   width: 100%;
-  min-height: calc(100vh - 10rem);
+  min-height: calc(100vh - 7.5rem);
   /* background-color: #7f5cff; */
   position: relative;
 }
@@ -880,7 +894,7 @@ body {
 }
 .section-11-content {
   width: 100%;
-  min-height: calc(100vh - 10rem);
+  min-height: calc(100vh - 7.5rem);
   /* background-color: #7f5cff; */
   position: relative;
 }
@@ -962,6 +976,7 @@ body {
   line-height: 30px;
   text-align: left;
   color: #c4b4ff;
+  padding: 1rem 0;
 }
 .section-10-table-container td {
   padding: 1rem 0;
@@ -1031,7 +1046,7 @@ body {
 }
 .section-12-content {
   width: 100%;
-  min-height: calc(100vh - 7rem);
+  min-height: calc(100vh - 7.5rem);
   /* background-color: #7f5cff; */
   position: relative;
 }
@@ -1090,8 +1105,27 @@ body {
 }
 
 @media screen and (width: 1440px) {
+  /* -------------- Header & Footer ------------------ */
+  .header {
+    padding: 0.5rem;
+  }
+  .header-text-1 {
+    font-size: 0.7rem;
+  }
+  .header-text-2 {
+    font-size: 0.7rem;
+  }
+  .bottom-text {
+    padding: 0.5rem;
+    font-size: 0.7rem;
+  }
+  .bottom-text img {
+    width: 10%;
+  }
+  /* ----------------- Section - 1 ------------------- */
   .proposal-text {
     font-size: 10rem;
+    margin-bottom: 1rem;
   }
   .propasal-hero p {
     width: 55vw;
@@ -1112,6 +1146,9 @@ body {
     gap: 8rem;
   }
   /* ------------ Section - 2 ------------------- */
+  .section-2-content {
+    height: 86vh;
+  }
   .section-2-text1 {
     top: 10%;
     left: 10%;
@@ -1125,13 +1162,16 @@ body {
     font-size: 2rem;
   }
   /* ----------------- Section - 3 --------------------- */
+  .section-3-content {
+    height: 86vh;
+  }
   .section-3-text1 {
     font-size: 2.5rem;
     font-weight: 500;
   }
   .section-3-text1 .client-name {
     font-size: 2.5rem;
-    margin-left: 1rem;
+    /* margin-left: 1rem; */
   }
   .section-3-text2 {
     bottom: 20%;
@@ -1139,6 +1179,9 @@ body {
     width: 60%;
   }
   /* -------------------- Section - 4 -------------------- */
+  .section-4-content {
+    height: 86vh;
+  }
   .section-4-text1 {
     top: 8%;
     left: 10%;
@@ -1151,6 +1194,9 @@ body {
     font-weight: 600;
   }
   /* ------------ Section - 5 -------------------- */
+  .section-5-content {
+    height: 86vh;
+  }
   .section-5-text1 {
     top: 10%;
     left: 10%;
@@ -1165,8 +1211,15 @@ body {
   }
   .section-5-text2 span {
     font-weight: 600;
+    font-size: 1.5rem;
+  }
+  .section-5-text2 p {
+    font-size: 0.9rem;
   }
   /* ------------ Section - 6 ------------------ */
+  .section-6-content {
+    height: 86vh;
+  }
   .section-6-text1 {
     top: 10%;
     left: 10%;
@@ -1189,12 +1242,15 @@ body {
     font-size: 1.2rem;
   }
   /* ------------- Section - 7 --------------- */
+  .section-7-content {
+    height: 86vh;
+  }
   .section-7-text1 {
     top: 8%;
     font-size: 6rem;
   }
   .section-7-text1 > p {
-    line-height: 2rem;
+    line-height: 5rem;
   }
   .section-7-below-text {
     margin-top: 5rem;
@@ -1203,7 +1259,13 @@ body {
     top: 12%;
     align-items: end;
   }
+  .section-7-objective-content {
+    font-size: 1rem;
+  }
   /* --------------- Section - 8 ------------------ */
+  .section-8-content {
+    height: 86vh;
+  }
   .section-8-text1 {
     top: 8%;
     font-size: 6rem;
@@ -1217,7 +1279,14 @@ body {
   .section-8-table-container {
     padding-top: 5rem;
   }
+  .section-8-table-container td,
+  .section-8-table-container th {
+    font-size: 1rem;
+  }
   /* ---------------- Section - 9 ----------------------- */
+  .section-9-content {
+    height: 86vh;
+  }
   .section-9-text1 {
     top: 8%;
     font-size: 6rem;
@@ -1231,7 +1300,14 @@ body {
   .section-9-table-container {
     padding-top: 5rem;
   }
+  .section-9-table-container td,
+  .section-9-table-container th {
+    font-size: 1rem;
+  }
   /* --------------- Section - 10 -------------------- */
+  .section-10-content {
+    height: 86vh;
+  }
   .section-10-text1 {
     top: 8%;
     font-size: 6rem;
@@ -1242,8 +1318,15 @@ body {
   .section-10-table-container {
     padding-top: 5rem;
   }
+  .section-10-table-container td,
+  .section-10-table-container th {
+    font-size: 1rem;
+  }
 
   /* ---------------- Section - 11 ------------------- */
+  .section-11-content {
+    height: 86vh;
+  }
   .section-11-text1 {
     top: 8%;
     font-size: 6rem;
@@ -1279,10 +1362,340 @@ body {
     margin-bottom: 3rem;
   }
 }
+@media screen and (width: 1920px) {
+  /* -------------- Header & Footer ------------------ */
+  .header {
+    padding: 0.8rem;
+  }
+  .header-text-1 {
+    font-size: 1rem;
+  }
+  .header-text-2 {
+    font-size: 1rem;
+  }
+  .bottom-text {
+    padding: 0.8rem;
+    font-size: 1rem;
+  }
+  .bottom-text img {
+    width: 6%;
+  }
+  /* ----------------- Section - 1 ------------------- */
+  .proposal-text {
+    font-size: 12rem;
+    margin-bottom: 2rem;
+  }
+  .propasal-hero p {
+    width: 55vw;
+    font-size: 1.9rem;
+    line-height: 2.5rem;
+  }
+  .proposal {
+    margin-top: 8rem;
+  }
+  .proposal p {
+    font-size: 1.2rem;
+  }
+  .proposal .client-name {
+    font-size: 2rem;
+    margin-top: 0.5rem;
+  }
+  .date-container {
+    gap: 10rem;
+  }
+  .hero-text-div {
+    width: 7rem;
+  }
+  .issue-date,
+  .preparedBy {
+    font-size: 1rem;
+  }
+  .date,
+  .jordie-text,
+  .address {
+    font-size: 1.2rem;
+  }
+  .hero-text-address {
+    width: 30%;
+  }
+  .hero-text-bottom {
+    gap: 10rem;
+  }
+  /* ------------ Section - 2 ------------------- */
+  .section-2-content {
+    min-height: 86.5vh;
+  }
+  .section-2-text1 {
+    top: 10%;
+    left: 10%;
+    font-size: 8.5rem;
+  }
+  .section-2-text1 p {
+    line-height: 8.5rem;
+  }
+  .section-2-text2 {
+    bottom: 20%;
+    right: 15%;
+    font-size: 2.5rem;
+  }
+  /* ----------------- Section - 3 --------------------- */
+  .section-3-content {
+    min-height: 86.5vh;
+  }
+  .section-3-text1 {
+    font-size: 3rem;
+    font-weight: 500;
+  }
+  .section-3-text1 .client-name {
+    font-size: 3rem;
+    /* margin-left: 1rem; */
+  }
+  .section-3-text2 {
+    bottom: 25%;
+    font-size: 1.4rem;
+    width: 60%;
+  }
+  .section-3-text2 p {
+    line-height: 2.5rem;
+  }
+  /* -------------------- Section - 4 -------------------- */
+  .section-4-content {
+    min-height: 86.5vh;
+  }
+  .section-4-text1 {
+    top: 8%;
+    left: 10%;
+    font-size: 8.5rem;
+  }
+  .section-4-text2 {
+    bottom: 20%;
+    right: 6%;
+    font-size: 1.4rem;
+  }
+  .section-4-text2 p {
+    line-height: 2.5rem;
+  }
+  .section-4-text2 span {
+    font-weight: 600;
+  }
+  /* ------------ Section - 5 -------------------- */
+  .section-5-content {
+    min-height: 86.5vh;
+  }
+  .section-5-text1 {
+    top: 10%;
+    left: 10%;
+    font-size: 8.5rem;
+  }
+  .section-5-text1 p {
+    line-height: 8.5rem;
+  }
+  .section-5-text2 {
+    bottom: 20%;
+    width: 55%;
+  }
+  .section-5-text2 span {
+    font-weight: 600;
+    font-size: 1.8rem;
+  }
+  .section-5-text2 p {
+    font-size: 1.2rem;
+  }
+  /* ------------ Section - 6 ------------------ */
+  .section-6-content {
+    min-height: 86.5vh;
+  }
+  .section-6-text1 {
+    top: 10%;
+    left: 10%;
+    font-size: 8.5rem;
+  }
+  .section-6-text1 p {
+    line-height: 8.5rem;
+  }
+  .section-6-text2 {
+    bottom: 25%;
+    width: 45%;
+  }
+  .section-6-text2 p {
+    font-size: 2.5rem;
+    line-height: 2.5rem;
+    width: 80%;
+  }
+  .objective-container p {
+    font-size: 1.2rem;
+  }
+  .objective-content {
+    font-size: 1.5rem;
+  }
+  /* ------------- Section - 7 --------------- */
+  .section-7-content {
+    min-height: 86.5vh;
+  }
+  .section-7-text1 {
+    top: 8%;
+    font-size: 8.5rem;
+    width: 50%;
+  }
+  .section-7-text1 > p {
+    line-height: 8.5rem;
+  }
+  .section-7-below-text {
+    margin-top: 5rem;
+    width: 50%;
+  }
+  .section-7-below-text p {
+    font-size: 1.7rem;
+    line-height: 2rem;
+  }
+  .section-7-branding-text {
+    top: 12%;
+    align-items: end;
+  }
+  .section-7-text2 {
+    font-size: 2.5rem;
+  }
+  .section-7-objective-content {
+    font-size: 1.5rem;
+    line-height: 1.8rem;
+  }
+  /* --------------- Section - 8 ------------------ */
+  .section-8-content {
+    min-height: 86.5vh;
+  }
+  .section-8-inner-text {
+    min-height: 86.5vh;
+  }
+  .section-8-text1 {
+    top: 8%;
+    font-size: 8.5rem;
+  }
+  .section-8-text1 p {
+    line-height: 8.5rem;
+  }
+  .section-8-weeks {
+    font-size: 3.5rem;
+  }
+  .section-8-table-container {
+    padding-top: 10rem;
+  }
+  .section-8-table-container td,
+  .section-8-table-container th {
+    font-size: 1.2rem;
+    padding: 1rem 0;
+  }
+  /* ---------------- Section - 9 ----------------------- */
+  .section-9-content {
+    min-height: 86.5vh;
+  }
+  .section-9-inner-text {
+    min-height: 86.5vh;
+  }
+  .section-9-text1 {
+    top: 8%;
+    font-size: 8.5rem;
+  }
+  .section-9-text1 > p {
+    line-height: 8.5rem;
+  }
+  .section-9-inr {
+    font-size: 3.5rem;
+  }
+  .section-9-table-container {
+    padding-top: 10rem;
+  }
+  .section-9-table-container td,
+  .section-9-table-container th {
+    font-size: 1.2rem;
+    padding: 1rem 0;
+  }
+  /* --------------- Section - 10 -------------------- */
+  .section-10-content {
+    min-height: 86.5vh;
+  }
+  .section-10-inner-text {
+    min-height: 86.5vh;
+  }
+  .section-10-text1 {
+    top: 8%;
+    font-size: 8.5rem;
+  }
+  .section-10-text1 > p {
+    line-height: 8.5rem;
+  }
+  .section-10-table-container {
+    padding-top: 10rem;
+  }
+  .section-10-table-container td,
+  .section-10-table-container th {
+    font-size: 1.2rem;
+    padding: 1rem 0;
+  }
 
-/* Responsive styles for mobile devices only */
-
-/* Responsive styles for mobile devices only */
+  /* ---------------- Section - 11 ------------------- */
+  .section-11-content {
+    min-height: 86.5vh;
+  }
+  .section-11-text1 {
+    top: 8%;
+    font-size: 8.5rem;
+  }
+  .section-11-text1 > p {
+    line-height: 8.5rem;
+  }
+  .section-11-below-text {
+    margin-top: 3rem;
+  }
+  .section-11-below-text p {
+    font-size: 1.5rem;
+    line-height: 1.8rem;
+  }
+  .section-11-below-text button {
+    margin-top: 3rem;
+    padding: 1.5rem 3rem;
+    font-size: 1.5rem;
+  }
+  .section-11-text2 {
+    top: 15%;
+    font-size: 1.8rem;
+  }
+  .section-11-objective-content {
+    font-size: 1.3rem;
+    line-height: 1.8rem;
+  }
+  /* ------------- Section - 12 ----------------- */
+  .thankyou {
+    margin-bottom: 3rem;
+  }
+  .thankyou-logo img {
+    width: 20%;
+    margin: 2rem;
+  }
+  .thankyou p {
+    font-size: 22rem;
+    line-height: 18rem;
+  }
+  .explore {
+    margin-bottom: 3rem;
+  }
+  .scanner {
+    font-size: 1.2rem;
+  }
+  .explore img {
+    width: 50%;
+  }
+  .phone-no,
+  .jca-link {
+    font-size: 2rem;
+    line-height: 2rem;
+    padding: 1rem 0;
+  }
+  .jca-address {
+    font-size: 1.4rem;
+    width: 70%;
+    margin-top: 2rem;
+  }
+}
 
 /* Mobile Styles */
 /* @media (max-width: 768px) {
@@ -1362,7 +1775,13 @@ body {
   }
   .bottom-text {
     padding: 0.5rem;
+  }
+  .bottom-text p,
+  .bottom-text a {
     font-size: 0.4rem;
+  }
+  .bottom-text img {
+    width: 5%;
   }
   /* -------------- Section - 1 ---------------- */
   .section-1 {
@@ -1387,7 +1806,7 @@ body {
   .proposal .client-name {
     font-size: 1rem;
     padding: 0;
-    margin: 0;
+    margin-top: 1rem;
   }
   .midlle-text-container {
     margin-bottom: 0;
@@ -1500,10 +1919,11 @@ body {
     line-height: 3rem;
     font-weight: 500;
   }
-  .client-name {
+  .section-3-text1 .client-name {
     font-size: 1.5rem;
     line-height: 3rem;
     font-weight: 500;
+    margin-left: 0.5rem;
   }
   .section-3-text1 {
     top: 5%;

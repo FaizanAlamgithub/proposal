@@ -228,6 +228,38 @@ const EditProposal = () => {
     });
   };
 
+  const handleTimelineChange = (e, timelineIndex, field) => {
+    const { value } = e.target; // Get the input value
+
+    setProposal((prev) => ({
+      ...prev,
+      timelineDeliverables: prev.timelineDeliverables.map((item, index) =>
+        index === timelineIndex ? { ...item, [field]: value } : item
+      ),
+    }));
+  };
+
+  const handleInvestmentChange = (e, investmentIndex, field) => {
+    const { value } = e.target; // Get the input value
+
+    setProposal((prev) => ({
+      ...prev,
+      proposedInvestment: prev.proposedInvestment.map((item, index) =>
+        index === investmentIndex ? { ...item, [field]: value } : item
+      ),
+    }));
+  };
+  const handlePaymentChange = (e, paymentIndex, field) => {
+    const { value } = e.target; // Get the input value
+
+    setProposal((prev) => ({
+      ...prev,
+      payments: prev.payments.map((payment, index) =>
+        index === paymentIndex ? { ...payment, [field]: value } : payment
+      ),
+    }));
+  };
+
   // Handle nested object updates (e.g., scopeOfWork)
   const handleNestedChange = (e, category, field) => {
     setProposal((prev) => ({
@@ -235,11 +267,22 @@ const EditProposal = () => {
       [category]: { ...prev[category], [field]: e.target.value },
     }));
   };
-  const handleWeekChange = (value, weekKey) => {
+  // const handleWeekChange = (value, weekKey) => {
+  //   setProposal((prev) => ({
+  //     ...prev,
+  //     timelineDeliverables: prev.timelineDeliverables.map((item, index) =>
+  //       index === 0 // ✅ Updating the first timelineDeliverables object
+  //         ? { ...item, week: { ...item.week, [weekKey]: value } }
+  //         : item
+  //     ),
+  //   }));
+  // };
+
+  const handleWeekChange = (value, timelineIndex, weekKey) => {
     setProposal((prev) => ({
       ...prev,
       timelineDeliverables: prev.timelineDeliverables.map((item, index) =>
-        index === 0 // ✅ Updating the first timelineDeliverables object
+        index === timelineIndex // ✅ Updating the correct timelineDeliverables object
           ? { ...item, week: { ...item.week, [weekKey]: value } }
           : item
       ),
@@ -569,21 +612,26 @@ const EditProposal = () => {
                   className="border p-4 rounded-md space-y-3"
                 >
                   <div className="grid grid-cols-2 gap-4">
+                    {/* Editable Task Field */}
                     <div>
                       <label className="block font-medium">Task</label>
                       <textarea
                         value={timeline.task || ""}
-                        onChange={(e) => handleChange(e, timelineIndex, "task")}
+                        onChange={(e) =>
+                          handleTimelineChange(e, timelineIndex, "task")
+                        }
                         className="w-full p-2 border rounded-md h-[25vh]"
                         required
                       />
                     </div>
+
+                    {/* Editable Deliverables Field */}
                     <div>
                       <label className="block font-medium">Deliverables</label>
                       <textarea
                         value={timeline.deliverables || ""}
                         onChange={(e) =>
-                          handleChange(e, timelineIndex, "deliverables")
+                          handleTimelineChange(e, timelineIndex, "deliverables")
                         }
                         className="w-full p-2 border rounded-md h-[25vh]"
                         required
@@ -644,15 +692,17 @@ const EditProposal = () => {
                   className="p-2 border rounded-md w-30"
                 />
               </div>
-              {proposal.proposedInvestment.map((proposed, Index) => (
+              {proposal.proposedInvestment.map((investment, Index) => (
                 <div key={Index} className="border p-4 rounded-md space-y-3">
                   <div className="grid grid-cols-2 gap-4">
                     <div>
                       <label className="block font-medium">Services</label>
                       <textarea
                         type="text"
-                        value={proposed.services}
-                        onChange={(e) => handleChange(e, Index, "services")}
+                        value={investment.services}
+                        onChange={(e) =>
+                          handleInvestmentChange(e, Index, "services")
+                        }
                         className="w-full p-2 border rounded-md h-[25vh]"
                         required
                       />
@@ -661,8 +711,10 @@ const EditProposal = () => {
                       <label className="block font-medium">Description</label>
                       <textarea
                         type="text"
-                        value={proposed.description}
-                        onChange={(e) => handleChange(e, Index, "description")}
+                        value={investment.description}
+                        onChange={(e) =>
+                          handleInvestmentChange(e, Index, "description")
+                        }
                         className="w-full p-2 border rounded-md h-[25vh]"
                         required
                       />
@@ -671,8 +723,10 @@ const EditProposal = () => {
                       <label className="block font-medium">Cost </label>
                       <textarea
                         type="text"
-                        value={proposed.cost}
-                        onChange={(e) => handleChange(e, Index, "cost")}
+                        value={investment.cost || ""}
+                        onChange={(e) =>
+                          handleInvestmentChange(e, Index, "cost")
+                        }
                         className="w-full p-2 border rounded-md h-[25vh]"
                         required
                       />
@@ -690,17 +744,15 @@ const EditProposal = () => {
             </div>
             <div className="col bg-white p-4 border border-gray-300 rounded-lg m-3">
               <h3 className="text-lg font-semibold">Payments Terms</h3>
-              {proposal.payments.map((proposed, Index) => (
+              {proposal.payments.map((payment, Index) => (
                 <div key={Index} className="border p-4 rounded-md space-y-3">
                   <div className="grid grid-cols-2 gap-4">
                     <div>
                       <label className="block font-medium">Terms</label>
                       <textarea
                         type="text"
-                        value={proposed.terms}
-                        onChange={(e) =>
-                          handlePaymentsChange(e, Index, "terms")
-                        }
+                        value={payment.terms || ""}
+                        onChange={(e) => handlePaymentChange(e, Index, "terms")}
                         className="w-full p-2 border rounded-md h-[25vh]"
                         required
                       />
@@ -709,9 +761,9 @@ const EditProposal = () => {
                       <label className="block font-medium">Amount</label>
                       <textarea
                         type="text"
-                        value={proposed.amount}
+                        value={payment.amount || ""}
                         onChange={(e) =>
-                          handlePaymentsChange(e, Index, "amount")
+                          handlePaymentChange(e, Index, "amount")
                         }
                         className="w-full p-2 border rounded-md h-[25vh]"
                         required

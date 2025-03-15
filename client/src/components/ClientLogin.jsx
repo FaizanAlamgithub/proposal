@@ -219,7 +219,7 @@ const ClientLogin = ({ setProposal }) => {
           />
           <button
             type="submit"
-            className="bg-[#363636] text-white px-4 py-3 rounded-lg w-full mt-5"
+            className="bg-black text-white px-4 py-3 rounded-lg w-full mt-5"
           >
             Next
           </button>

@@ -1349,7 +1349,22 @@ body {
   }
 } */
 
-@media (width: 486px) {
+@media (max-width: 486px) {
+  /* ------------- Header & Footer ------------------- */
+  .header {
+    padding: 0.5rem;
+  }
+  .header-text-1 p {
+    font-size: 0.4rem;
+  }
+  .header-text-2 p {
+    font-size: 0.4rem;
+  }
+  .bottom-text {
+    padding: 0.5rem;
+    font-size: 0.4rem;
+  }
+  /* -------------- Section - 1 ---------------- */
   .section-1 {
     padding: 0 1rem;
   }
@@ -1369,8 +1384,10 @@ body {
     padding-bottom: 0;
     margin-top: 1rem;
   }
-  .client-name {
+  .proposal .client-name {
     font-size: 1rem;
+    padding: 0;
+    margin: 0;
   }
   .midlle-text-container {
     margin-bottom: 0;
@@ -1444,21 +1461,22 @@ body {
   .bottom-text img {
     width: 20%;
   }
+  .section-2-text1 {
+    top: 5%;
+    left: 5%;
+    width: 60%;
+  }
   .section-2-text1 p {
     font-size: 3rem;
     padding-bottom: 0;
     margin-top: 1rem;
     line-height: 3rem;
   }
-  .section-2-text1 {
-    top: 5%;
-    left: 5%;
-  }
   .section-2-text2 {
-    bottom: 5%;
+    bottom: 15%;
     right: 5%;
     font-size: 1rem;
-    line-height: 1rem;
+    line-height: 1.7rem;
   }
   .midlle-text-container {
     margin-bottom: 0;
@@ -1484,7 +1502,6 @@ body {
   }
   .client-name {
     font-size: 1.5rem;
-    padding: 0 0.5rem;
     line-height: 3rem;
     font-weight: 500;
   }
@@ -1520,9 +1537,10 @@ body {
     left: 5%;
   }
   .section-4-text2 {
-    bottom: 5%;
+    bottom: 15%;
     right: 5%;
     font-size: 0.7rem;
+    width: 70%;
   }
   .section-4-text2 p {
     line-height: 1rem;
@@ -1550,6 +1568,7 @@ body {
     bottom: 5%;
     right: 5%;
     font-size: 0.7rem;
+    width: 60%;
   }
   .section-5-text2 span {
     font-size: 0.8rem;
@@ -1584,10 +1603,8 @@ body {
     bottom: 5%;
     right: 5%;
     font-size: 0.7rem;
-  }
-  .section-6-text2 {
+    width: 70%;
     font-size: 1rem;
-    width: 60%;
   }
   .section-5-text2 ul li {
     padding: 0.7rem 0;
@@ -1624,29 +1641,25 @@ body {
   }
 
   .section-7-text1 {
-    position: absolute;
     top: 5%;
     left: 5%;
   }
   .section-7-below-text {
     margin-left: 0;
     width: 60%;
+    margin-top: 1.5rem;
   }
   .section-7-below-text p {
     font-size: 0.8rem;
     line-height: 1rem;
   }
   .section-7-text2 {
-    bottom: 5%;
     right: 5%;
     font-size: 0.7rem;
   }
   .section-7-text2 {
     font-size: 1rem;
     width: 70%;
-    position: absolute;
-    right: 0;
-    bottom: 15%;
   }
   .section-7-text2 > p {
     padding: 0.5rem 0;
@@ -1658,9 +1671,9 @@ body {
   }
   .section-7-branding-text {
     margin: 0;
-    width: 50%;
+    width: 100%;
     top: 50%;
-    left: 0;
+    left: 30%;
   }
   /* -------------- Section - 8 ----------------- */
   .section-8 {
@@ -1840,7 +1853,7 @@ body {
     width: 100%;
   }
   .section-11-below-text p {
-    font-size: 0.7rem;
+    font-size: 0.6rem;
     line-height: 1rem;
   }
   .section-11-below-text-btn {

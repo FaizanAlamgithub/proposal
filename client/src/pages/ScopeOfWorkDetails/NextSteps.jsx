@@ -79,7 +79,7 @@ function NextSteps({ proposal }) {
               <p>
                 Send us your acceptance by simply clicking the
                 <span>"Accept Proposal"</span> button below. Once accepted, we
-                will proceed with the contract and initial invoice.
+                will proceed with the contract and initial invoice.<br/>
                 <button className="section-11-below-text-btn bg-[#7f5cff] text-white">
                   Accept Proposal
                 </button>

@@ -1870,7 +1870,8 @@ body {
     font-size: 0.5rem;
   }
   .section-2-content {
-    min-height: 80vh;
+    /* min-height: 80vh; */
+    min-height: calc(100vh - 6rem);
   }
 
   .bottom-text {

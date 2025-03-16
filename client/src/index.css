@@ -671,16 +671,14 @@ body {
   line-height: 30px;
   text-align: left;
   color: #c4b4ff;
-  padding: 1rem 0;
+  border-bottom: 1px dashed #cccbcb;
+  padding: 0.5rem 0;
 }
 .section-8-table-container td {
   /* padding: 1rem 2rem; */
   color: #686868;
   font-size: 0.8rem;
   padding: 1rem 0;
-}
-.section-8-table-container thead {
-  border-bottom: 1px dashed #cccbcb;
 }
 
 /* Set last column (Deliverables) width to 30% */
@@ -785,16 +783,17 @@ body {
   line-height: 30px;
   text-align: left;
   color: #c4b4ff;
-  padding: 1rem 0;
+  border-bottom: 1px dashed #cccbcb;
+  padding: 0.5rem 0;
 }
 .section-9-table-container td {
   padding: 1rem 0;
   color: #686868;
   font-size: 0.8rem;
 }
-.section-9-table-container thead {
+/* .section-9-table-container thead {
   border-bottom: 1px dashed #cccbcb;
-}
+} */
 
 .all-prices-text {
   position: absolute;
@@ -976,15 +975,16 @@ body {
   line-height: 30px;
   text-align: left;
   color: #c4b4ff;
-  padding: 1rem 0;
+  border-bottom: 1px dashed #cccbcb;
+  padding: 0.5rem 0;
 }
 .section-10-table-container td {
   padding: 1rem 0;
   color: #686868;
 }
-.section-10-table-container thead {
+/* .section-10-table-container thead {
   border-bottom: 1px dashed #cccbcb;
-}
+} */
 
 /* Set last column (Deliverables) width to 30% */
 /* .section-10-table-container td:nth-child(1),

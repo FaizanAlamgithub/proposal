@@ -1,5 +1,5 @@
 import React, { useEffect, useState, useRef } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import Proposal from "../../client/src/pages/Proposal";
 import TableOfContent from "../../client/src/pages/TableOfContent";
 import HelloClient from "../../client/src/pages/HelloClient";
@@ -23,6 +23,7 @@ function ShowAllpages() {
   const [error, setError] = useState(null);
   const pagesRef = useRef(null);
   const [downloading, setDownloading] = useState(false);
+  const navigate = useNavigate();
 
   const Script = () => {
     useEffect(() => {
@@ -270,16 +271,107 @@ function ShowAllpages() {
   //   }
   // };
 
+  // const downloadPDF = async () => {
+  //   const input = pagesRef.current;
+  //   if (!input) return;
+
+  //   setDownloading(true); // Show loading state
+  //   // toast.info("📥 Downloading PDF, please wait...");
+
+  //   const pageHeight = 1080 * 0.264583; // ≈ 286 mm
+  //   let quality = 1.0; // Highest quality
+  //   let scale = 3.0; // Higher scale for ultra clarity
+  //   let pdf;
+  //   let fileSizeKB = 0;
+
+  //   try {
+  //     const firstSection = input.children[0];
+  //     if (!firstSection) return;
+
+  //     // Measure width dynamically
+  //     const tempCanvas = await html2canvas(firstSection, {
+  //       scale,
+  //       useCORS: true,
+  //     });
+  //     const pageWidth = (tempCanvas.width * pageHeight) / tempCanvas.height;
+
+  //     pdf = new jsPDF("l", "mm", [pageWidth, pageHeight]);
+
+  //     const options = {
+  //       scale,
+  //       useCORS: true,
+  //       backgroundColor: "#FFFFFF",
+  //       logging: false,
+  //       windowWidth: input.scrollWidth,
+  //       windowHeight: input.scrollHeight,
+  //     };
+
+  //     for (let i = 0; i < input.children.length; i++) {
+  //       const canvas = await html2canvas(input.children[i], options);
+  //       const imgData = canvas.toDataURL("image/png", quality);
+
+  //       if (i > 0) pdf.addPage([pageWidth, pageHeight]);
+  //       pdf.addImage(
+  //         imgData,
+  //         "PNG",
+  //         0,
+  //         0,
+  //         pageWidth,
+  //         pageHeight,
+  //         undefined,
+  //         "FAST"
+  //       );
+  //     }
+
+  //     // Check initial file size
+  //     let pdfBlob = pdf.output("blob");
+  //     fileSizeKB = (pdfBlob.size / 1024).toFixed(2);
+
+  //     // Optimize file size if needed
+  //     while (fileSizeKB > 1000 && scale > 1.0) {
+  //       scale -= 0.5;
+
+  //       pdf = new jsPDF("l", "mm", [pageWidth, pageHeight]);
+  //       for (let i = 0; i < input.children.length; i++) {
+  //         const canvas = await html2canvas(input.children[i], { scale });
+  //         const imgData = canvas.toDataURL("image/png", quality);
+  //         if (i > 0) pdf.addPage([pageWidth, pageHeight]);
+  //         pdf.addImage(
+  //           imgData,
+  //           "PNG",
+  //           0,
+  //           0,
+  //           pageWidth,
+  //           pageHeight,
+  //           undefined,
+  //           "FAST"
+  //         );
+  //       }
+
+  //       pdfBlob = pdf.output("blob");
+  //       fileSizeKB = (pdfBlob.size / 1024).toFixed(2);
+  //     }
+
+  //     // Save PDF
+  //     pdf.save("proposal_high_quality.pdf");
+
+  //     toast.success("✅ PDF Downloaded Successfully!");
+  //   } catch (error) {
+  //     console.error("Error generating high-quality PDF:", error);
+  //     toast.error("❌ Failed to generate PDF. Please try again.");
+  //   } finally {
+  //     setDownloading(false); // Hide loading state
+  //   }
+  // };
+
   const downloadPDF = async () => {
     const input = pagesRef.current;
     if (!input) return;
 
     setDownloading(true); // Show loading state
-    // toast.info("📥 Downloading PDF, please wait...");
 
-    const pageHeight = 1080 * 0.264583; // ≈ 286 mm
     let quality = 1.0; // Highest quality
-    let scale = 3.0; // Higher scale for ultra clarity
+    let scale = 3.0; // Higher scale for better clarity
     let pdf;
     let fileSizeKB = 0;
 
@@ -287,12 +379,14 @@ function ShowAllpages() {
       const firstSection = input.children[0];
       if (!firstSection) return;
 
-      // Measure width dynamically
+      // Measure dimensions dynamically
       const tempCanvas = await html2canvas(firstSection, {
         scale,
         useCORS: true,
       });
-      const pageWidth = (tempCanvas.width * pageHeight) / tempCanvas.height;
+
+      const pageWidth = tempCanvas.width * 0.264583; // Convert px to mm
+      const pageHeight = tempCanvas.height * 0.264583; // Convert px to mm
 
       pdf = new jsPDF("l", "mm", [pageWidth, pageHeight]);
 
@@ -412,6 +506,11 @@ function ShowAllpages() {
           "Download PDF"
         )}
       </button>
+      <button
+        onClick={() => navigate("/dashboard")}
+        className="btn btn-close position-absolute top-0 end-0 m-3 absolute z-10"
+        aria-label="Close"
+      ></button>
 
       <ToastContainer position="top-right" autoClose={3000} />
       <div className="horizontal-slide" ref={pagesRef}>

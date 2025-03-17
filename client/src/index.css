@@ -640,7 +640,7 @@ body {
   font-weight: 600;
   font-family: "Bricolage Grotesque", serif;
   color: #4a4a4a;
-  margin: 0 auto;
+  /* margin: 0 auto; */
   /* padding-left: 8rem;
   padding-right: 8rem; */
   /* margin-top: 1rem; */
@@ -655,7 +655,8 @@ body {
   position: relative;
   padding-top: 2rem;
   top: 15rem;
-  margin: 0 8rem;
+  margin-left: 8rem;
+  margin-right: 8rem;
 }
 .table-data {
   height: 40vh;

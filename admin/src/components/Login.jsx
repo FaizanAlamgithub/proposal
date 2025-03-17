@@ -95,10 +95,10 @@ const Login = () => {
     //   <ToastContainer />
     // </div>
 
-    <div className="flex justify-center items-center h-screen bg-gray-100">
+    <div className="flex justify-center items-center h-screen  bg-gray-100">
       <ToastContainer />
 
-      <div className="bg-white p-8 rounded-lg shadow-lg w-[30vw] h-[60vh] text-center">
+      <div className="bg-white p-8 rounded-lg shadow-lg w-[400px] h-[380px] text-center">
         {/* Title Container with Bottom Border */}
         <div className="border-b border-gray-300 text-center py-3">
           <h2 className="text-2xl font-medium text-[#606060]">Login</h2>
@@ -134,7 +134,6 @@ const Login = () => {
           Already have an account? <Link to="/admin-signup">Signup</Link>
         </span>
       </div>
-      <ToastContainer />
     </div>
   );
 };

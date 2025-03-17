@@ -614,9 +614,32 @@ function TimelineDelivery({ proposal }) {
   const [rowsPerPage, setRowsPerPage] = useState(2); // Default to 2 rows per page
 
   useEffect(() => {
+    // const adjustRowsPerPage = () => {
+    //   const screenHeight = window.innerHeight;
+
+    //   if (screenHeight > 1000) {
+    //     setRowsPerPage(4);
+    //   } else if (screenHeight > 720) {
+    //     setRowsPerPage(3);
+    //   } else {
+    //     setRowsPerPage(2);
+    //   }
+    // };
+
     const adjustRowsPerPage = () => {
+      const screenWidth = window.innerWidth;
       const screenHeight = window.innerHeight;
-      setRowsPerPage(screenHeight > 1000 ? 4 : screenHeight > 800 ? 3 : 2);
+
+      if (screenWidth === 1920 && screenHeight === 1080) {
+        setRowsPerPage(4);
+      } else if (
+        (screenWidth === 1280 && screenHeight === 720) ||
+        (screenWidth === 1366 && screenHeight === 768)
+      ) {
+        setRowsPerPage(3);
+      } else if (screenWidth < 1200 && screenHeight < 700) {
+        setRowsPerPage(2);
+      }
     };
 
     adjustRowsPerPage();

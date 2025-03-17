@@ -238,13 +238,31 @@ function ScopeOfWork({ proposal }) {
   const [rowsPerPage, setRowsPerPage] = useState(2); // Default to 2
 
   useEffect(() => {
-    const adjustRowsPerPage = () => {
-      const screenWidth = window.innerWidth; // Use width for better control
+    // const adjustRowsPerPage = () => {
+    //   const screenWidth = window.innerWidth; // Use width for better control
 
-      if (screenWidth >= 1440) {
-        setRowsPerPage(4); // Large screens (1440px and above)
-      } else {
-        setRowsPerPage(2); // Default for small laptops and below
+    //   if (screenWidth >= 1440) {
+    //     setRowsPerPage(4); // Large screens (1440px and above)
+    //   } else {
+    //     setRowsPerPage(2); // Default for small laptops and below
+    //   }
+    // };
+
+    const adjustRowsPerPage = () => {
+      const screenWidth = window.innerWidth;
+      const screenHeight = window.innerHeight;
+
+      if (screenWidth === 1920 && screenHeight === 1080) {
+        setRowsPerPage(4);
+      } else if (
+        (screenWidth === 1280 && screenHeight === 720) ||
+        (screenWidth === 1366 && screenHeight === 768)
+      ) {
+        setRowsPerPage(3);
+      } else if (screenWidth === 486) {
+        setRowsPerPage(2);
+      } else if (screenWidth < 1200 && screenHeight < 700) {
+        setRowsPerPage(2);
       }
     };
 

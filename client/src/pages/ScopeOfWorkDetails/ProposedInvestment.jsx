@@ -70,6 +70,8 @@ function ProposedInvestment({ proposal }) {
         (screenWidth === 1366 && screenHeight === 768)
       ) {
         setRowsPerPage(3);
+      } else if (screenWidth === 353 && screenHeight === 745) {
+        setRowsPerPage(3);
       } else if (screenWidth < 1200 && screenHeight < 700) {
         setRowsPerPage(2);
       }

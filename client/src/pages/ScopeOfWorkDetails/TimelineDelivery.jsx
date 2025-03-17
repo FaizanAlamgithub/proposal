@@ -634,15 +634,15 @@ function TimelineDelivery({ proposal }) {
         setRowsPerPage(4);
       } else if (
         (screenWidth === 1280 && screenHeight === 720) ||
-        (screenWidth === 1366 && screenHeight === 768) ||
-        (screenWidth <= 353 && screenHeight <= 745)
+        (screenWidth === 1366 && screenHeight === 768)
       ) {
+        setRowsPerPage(3);
+      } else if (screenWidth === 353 && screenHeight === 745) {
         setRowsPerPage(3);
       } else if (screenWidth < 1200 && screenHeight < 700) {
         setRowsPerPage(2);
       }
     };
-
     adjustRowsPerPage();
     window.addEventListener("resize", adjustRowsPerPage);
     return () => window.removeEventListener("resize", adjustRowsPerPage);
@@ -681,7 +681,7 @@ function TimelineDelivery({ proposal }) {
                 <p>Deliverables</p>
               </div>
               <p className="section-8-weeks">
-                {proposal.timelineWeeks.startWeek || 1} -{" "}
+                {proposal.timelineWeeks.startWeek || 1} -
                 {proposal.timelineWeeks.endWeek || 7} weeks
               </p>
 

@@ -215,11 +215,11 @@ const ClientLogin = ({ setProposal }) => {
             placeholder="Enter Proposal Code"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
-            className="bg-gray-100 border-none rounded-lg p-3 w-full mb-3 focus:outline-none mt-5"
+            className="bg-gray-100 border-none rounded p-2.5 w-full mb-4 focus:outline-none focus:ring-1 focus:ring-gray-500 mt-5"
           />
           <button
             type="submit"
-            className="bg-black text-white px-4 py-3 rounded-lg w-full mt-5"
+            className="bg-black text-white px-4 py-2.5 rounded w-full mt-4"
           >
             Next
           </button>

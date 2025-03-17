@@ -634,7 +634,8 @@ function TimelineDelivery({ proposal }) {
         setRowsPerPage(4);
       } else if (
         (screenWidth === 1280 && screenHeight === 720) ||
-        (screenWidth === 1366 && screenHeight === 768)
+        (screenWidth === 1366 && screenHeight === 768) ||
+        (screenWidth === 353 && screenHeight === 745)
       ) {
         setRowsPerPage(3);
       } else if (screenWidth < 1200 && screenHeight < 700) {

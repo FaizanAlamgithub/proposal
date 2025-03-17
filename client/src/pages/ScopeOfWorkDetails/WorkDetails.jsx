@@ -248,21 +248,38 @@ function ScopeOfWork({ proposal }) {
     //   }
     // };
 
+    // const adjustRowsPerPage = () => {
+    //   const screenWidth = window.innerWidth;
+    //   const screenHeight = window.innerHeight;
+
+    //   if (screenWidth === 1920 && screenHeight === 1080) {
+    //     setRowsPerPage(4);
+    //   } else if (screenWidth === 1280 && screenHeight === 720) {
+    //     setRowsPerPage(2);
+    //   } else if (screenWidth === 486) {
+    //     setRowsPerPage(2);
+    //   } else if (screenWidth < 1200 && screenHeight < 700) {
+    //     setRowsPerPage(3);
+    //   }
+    // };
+
     const adjustRowsPerPage = () => {
       const screenWidth = window.innerWidth;
       const screenHeight = window.innerHeight;
 
-      if (screenWidth === 1920 && screenHeight === 1080) {
+      if (screenHeight > 1000) {
         setRowsPerPage(4);
       } else if (
         (screenWidth === 1280 && screenHeight === 720) ||
         (screenWidth === 1366 && screenHeight === 768)
       ) {
         setRowsPerPage(3);
-      } else if (screenWidth === 486) {
+      } else if (screenWidth === 353 && screenHeight === 745) {
         setRowsPerPage(2);
       } else if (screenWidth < 1200 && screenHeight < 700) {
         setRowsPerPage(2);
+      } else {
+        setRowsPerPage(2); // Default fallback
       }
     };
 

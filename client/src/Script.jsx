@@ -61,14 +61,25 @@ const Script = () => {
       if (currentIndex < sections.length - 1) scrollToIndex(currentIndex + 1);
     };
 
+    // Handle keyboard arrow key navigation
+    const handleKeyDown = (event) => {
+      if (event.key === "ArrowLeft") {
+        handlePrevClick();
+      } else if (event.key === "ArrowRight") {
+        handleNextClick();
+      }
+    };
+
     container.addEventListener("scroll", handleScroll);
     prevBtn.addEventListener("click", handlePrevClick);
     nextBtn.addEventListener("click", handleNextClick);
+    document.addEventListener("keydown", handleKeyDown); // Keyboard navigation
 
     return () => {
       container.removeEventListener("scroll", handleScroll);
       prevBtn.removeEventListener("click", handlePrevClick);
       nextBtn.removeEventListener("click", handleNextClick);
+      document.removeEventListener("keydown", handleKeyDown); // Cleanup
     };
   }, []);
 

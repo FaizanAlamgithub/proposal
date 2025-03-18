@@ -235,16 +235,16 @@
 import React, { useState, useEffect } from "react";
 
 function ScopeOfWork({ proposal }) {
-  const [rowsPerPage, setRowsPerPage] = useState(); // Default to 2
+  const [rowsPerPage, setRowsPerPage] = useState(2); // Default to 2
 
   useEffect(() => {
     const adjustRowsPerPage = () => {
       const screenWidth = window.innerWidth; // Use width for better control
 
       if (screenWidth >= 1440) {
-        setRowsPerPage(4); // Large screens (1440px and above)
+        setRowsPerPage(2); // Large screens (1440px and above)
       } else {
-        setRowsPerPage(3); // Default for small laptops and below
+        setRowsPerPage(2); // Default for small laptops and below
       }
     };
 

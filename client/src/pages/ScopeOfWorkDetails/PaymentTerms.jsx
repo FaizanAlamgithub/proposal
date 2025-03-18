@@ -38,7 +38,7 @@ function PaymentTerms({ proposal }) {
     };
   });
 
-  const [rowsPerPage, setRowsPerPage] = useState(4); // Default to 2 rows per page
+  const [rowsPerPage, setRowsPerPage] = useState(3); // Default to 2 rows per page
 
   useEffect(() => {
     // Adjust rows per page based on screen height
@@ -46,11 +46,11 @@ function PaymentTerms({ proposal }) {
       const screenHeight = window.innerHeight;
 
       if (screenHeight > 1000) {
-        setRowsPerPage(4);
+        setRowsPerPage(3);
       } else if (screenHeight > 800) {
-        setRowsPerPage(4);
+        setRowsPerPage(3);
       } else {
-        setRowsPerPage(4);
+        setRowsPerPage(3);
       }
     };
 

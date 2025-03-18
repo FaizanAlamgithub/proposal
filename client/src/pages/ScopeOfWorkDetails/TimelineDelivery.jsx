@@ -611,39 +611,39 @@ function TimelineDelivery({ proposal }) {
     };
   });
 
-  const [rowsPerPage, setRowsPerPage] = useState(3); // Default to 2 rows per page
+  const [rowsPerPage, setRowsPerPage] = useState(2); // Default to 2 rows per page
 
   useEffect(() => {
-    //   const adjustRowsPerPage = () => {
-    //     const screenHeight = window.innerHeight;
-
-    //     if (screenHeight > 1000) {
-    //       setRowsPerPage(4);
-    //     } else {
-    //       setRowsPerPage(3);
-    //     }
-    //   };
-
     const adjustRowsPerPage = () => {
-      const screenWidth = window.innerWidth;
       const screenHeight = window.innerHeight;
 
       if (screenHeight > 1000) {
-        setRowsPerPage(4);
-      } else if (
-        (screenWidth === 1280 && screenHeight === 720) ||
-        (screenWidth === 1366 && screenHeight === 768)
-      ) {
-        setRowsPerPage(3);
-      } else if (
-        screenWidth === 486 ||
-        (screenWidth < 1200 && screenHeight < 700)
-      ) {
-        setRowsPerPage(3);
+        setRowsPerPage(2);
       } else {
-        setRowsPerPage(3); // Default fallback
+        setRowsPerPage(2);
       }
     };
+
+    // const adjustRowsPerPage = () => {
+    //   const screenWidth = window.innerWidth;
+    //   const screenHeight = window.innerHeight;
+
+    //   if (screenHeight > 1000) {
+    //     setRowsPerPage(4);
+    //   } else if (
+    //     (screenWidth === 1280 && screenHeight === 720) ||
+    //     (screenWidth === 1366 && screenHeight === 768)
+    //   ) {
+    //     setRowsPerPage(3);
+    //   } else if (
+    //     screenWidth === 486 ||
+    //     (screenWidth < 1200 && screenHeight < 700)
+    //   ) {
+    //     setRowsPerPage(3);
+    //   } else {
+    //     setRowsPerPage(3); // Default fallback
+    //   }
+    // };
 
     adjustRowsPerPage();
     window.addEventListener("resize", adjustRowsPerPage);

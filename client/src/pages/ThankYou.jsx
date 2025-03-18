@@ -20,9 +20,6 @@ function ThankYou({ proposal }) {
             <img src="../images/logo2.svg" alt="" />
           </div>
           <div className="thankyou-container">
-            <div className="thankyou">
-              <p>Thank You</p>
-            </div>
             <div className="explore">
               <p className="scanner">Scan to Explore More</p>
               <img src="../images/thankyou.svg" alt="" />
@@ -37,6 +34,9 @@ function ThankYou({ proposal }) {
                 #198, CMH Road, 2nd Floor, Indiranagar, Bangalore, Karnataka,
                 India 560038
               </p>
+            </div>
+            <div className="thankyou">
+              <p>Thank You</p>
             </div>
           </div>
         </div>

@@ -42,38 +42,38 @@ function PaymentTerms({ proposal }) {
 
   useEffect(() => {
     // Adjust rows per page based on screen height
-    // const adjustRowsPerPage = () => {
-    //   const screenHeight = window.innerHeight;
-
-    //   if (screenHeight > 1000) {
-    //     setRowsPerPage(4);
-    //   } else if (screenHeight > 800) {
-    //     setRowsPerPage(3);
-    //   } else {
-    //     setRowsPerPage(2);
-    //   }
-    // };
-
     const adjustRowsPerPage = () => {
-      const screenWidth = window.innerWidth;
       const screenHeight = window.innerHeight;
 
       if (screenHeight > 1000) {
-        setRowsPerPage(5);
-      } else if (
-        (screenWidth === 1280 && screenHeight === 720) ||
-        (screenWidth === 1366 && screenHeight === 768)
-      ) {
         setRowsPerPage(4);
-      } else if (
-        screenWidth === 486 ||
-        (screenWidth < 1200 && screenHeight < 700)
-      ) {
+      } else if (screenHeight > 800) {
         setRowsPerPage(4);
       } else {
-        setRowsPerPage(4); // Default fallback
+        setRowsPerPage(4);
       }
     };
+
+    // const adjustRowsPerPage = () => {
+    //   const screenWidth = window.innerWidth;
+    //   const screenHeight = window.innerHeight;
+
+    //   if (screenHeight > 1000) {
+    //     setRowsPerPage(5);
+    //   } else if (
+    //     (screenWidth === 1280 && screenHeight === 720) ||
+    //     (screenWidth === 1366 && screenHeight === 768)
+    //   ) {
+    //     setRowsPerPage(4);
+    //   } else if (
+    //     screenWidth === 486 ||
+    //     (screenWidth < 1200 && screenHeight < 700)
+    //   ) {
+    //     setRowsPerPage(4);
+    //   } else {
+    //     setRowsPerPage(4); // Default fallback
+    //   }
+    // };
 
     adjustRowsPerPage(); // Run on mount
     window.addEventListener("resize", adjustRowsPerPage); // Adjust on window resize

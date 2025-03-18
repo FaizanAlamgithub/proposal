@@ -235,18 +235,18 @@
 import React, { useState, useEffect } from "react";
 
 function ScopeOfWork({ proposal }) {
-  const [rowsPerPage, setRowsPerPage] = useState(2); // Default to 2
+  const [rowsPerPage, setRowsPerPage] = useState(); // Default to 2
 
   useEffect(() => {
-    // const adjustRowsPerPage = () => {
-    //   const screenWidth = window.innerWidth; // Use width for better control
+    const adjustRowsPerPage = () => {
+      const screenWidth = window.innerWidth; // Use width for better control
 
-    //   if (screenWidth >= 1440) {
-    //     setRowsPerPage(4); // Large screens (1440px and above)
-    //   } else {
-    //     setRowsPerPage(2); // Default for small laptops and below
-    //   }
-    // };
+      if (screenWidth >= 1440) {
+        setRowsPerPage(4); // Large screens (1440px and above)
+      } else {
+        setRowsPerPage(3); // Default for small laptops and below
+      }
+    };
 
     // const adjustRowsPerPage = () => {
     //   const screenWidth = window.innerWidth;
@@ -263,25 +263,22 @@ function ScopeOfWork({ proposal }) {
     //   }
     // };
 
-    const adjustRowsPerPage = () => {
-      const screenWidth = window.innerWidth;
-      const screenHeight = window.innerHeight;
+    // const adjustRowsPerPage = () => {
+    //   const screenWidth = window.innerWidth;
+    //   const screenHeight = window.innerHeight;
 
-      if (screenHeight > 1000) {
-        setRowsPerPage(4);
-      } else if (
-        (screenWidth === 1280 && screenHeight === 720) ||
-        (screenWidth === 1366 && screenHeight === 768)
-      ) {
-        setRowsPerPage(3);
-      } else if (screenWidth === 353 && screenHeight === 745) {
-        setRowsPerPage(2);
-      } else if (screenWidth < 1200 && screenHeight < 700) {
-        setRowsPerPage(2);
-      } else {
-        setRowsPerPage(2); // Default fallback
-      }
-    };
+    //   if (screenHeight > 1000) {
+    //     setRowsPerPage(4);
+    //   } else if (screenWidth === 1366 && screenHeight === 768) {
+    //     setRowsPerPage(3);
+    //   } else if (screenWidth === 353 && screenHeight === 745) {
+    //     setRowsPerPage(3);
+    //   } else if (screenWidth < 1200 && screenHeight < 700) {
+    //     setRowsPerPage(3);
+    //   } else {
+    //     setRowsPerPage(3); // Default fallback
+    //   }
+    // };
 
     adjustRowsPerPage();
     window.addEventListener("resize", adjustRowsPerPage);

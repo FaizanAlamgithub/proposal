@@ -69,7 +69,7 @@ function PaymentTerms({ proposal }) {
         screenWidth === 486 ||
         (screenWidth < 1200 && screenHeight < 700)
       ) {
-        setRowsPerPage(3);
+        setRowsPerPage(4);
       } else {
         setRowsPerPage(4); // Default fallback
       }

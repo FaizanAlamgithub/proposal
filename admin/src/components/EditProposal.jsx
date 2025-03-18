@@ -303,6 +303,47 @@ const EditProposal = () => {
     }));
   };
 
+  // Remove a Timeline & Deliverables section
+  const removeTimeline = (timelineIndex) => {
+    setProposal((prev) => {
+      const updatedTimeline = prev.timelineDeliverables.filter(
+        (_, index) => index !== timelineIndex
+      );
+      return { ...prev, timelineDeliverables: updatedTimeline };
+    });
+  };
+
+  // Remove a Payments Terms section
+  const removePayments = (Index) => {
+    setProposal((prev) => {
+      const updatedPayments = prev.payments.filter(
+        (_, index) => index !== Index
+      );
+      return { ...prev, payments: updatedPayments };
+    });
+  };
+
+  // Remove a Proposed Investment section
+  const removeProposed = (Index) => {
+    setProposal((prev) => {
+      const updatedProposed = prev.proposedInvestment.filter(
+        (_, index) => index !== Index
+      );
+      return { ...prev, proposedInvestment: updatedProposed };
+    });
+  };
+
+  // Remove Scope of work services and description
+  const removeScopeOfWorkItem = (key, index) => {
+    setProposal((prev) => {
+      const updatedItems = prev.scopeOfWork[key].filter((_, i) => i !== index);
+      return {
+        ...prev,
+        scopeOfWork: { ...prev.scopeOfWork, [key]: updatedItems },
+      };
+    });
+  };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
@@ -343,7 +384,7 @@ const EditProposal = () => {
         <div className="">
           <form
             onSubmit={handleSubmit}
-            className="px-5 max-h-[95vh] overflow-y-auto"
+            className="px-3 max-h-[95vh] overflow-y-auto"
           >
             <div className="col bg-white p-4 border border-gray-300 rounded-lg m-3">
               <h3 className="text-lg font-semibold">Client detail</h3>
@@ -545,9 +586,7 @@ const EditProposal = () => {
                           />
                           <button
                             type="button"
-                            onClick={() =>
-                              removeArrayField("scopeOfWork", key, index)
-                            }
+                            onClick={() => removeScopeOfWorkItem(key, index)}
                             className="bg-red-200 px-2 py-1 rounded"
                           >
                             <i className="bi bi-trash text-danger"></i>
@@ -555,13 +594,13 @@ const EditProposal = () => {
                         </div>
                       ))}
                     </div>
-                    <button
+                    {/* <button
                       type="button"
                       onClick={() => addArrayField("scopeOfWork", key)}
                       className="mt-2 px-4 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600"
                     >
                       + Add {title}
-                    </button>
+                    </button> */}
                   </div>
                 ))}
               </div>
@@ -638,7 +677,6 @@ const EditProposal = () => {
                       />
                     </div>
                   </div>
-
                   {/* Weeks Input */}
                   <div className="mt-2 flex items-center gap-4">
                     <label className="font-medium">Weeks</label>
@@ -661,14 +699,18 @@ const EditProposal = () => {
                       className="p-2 border rounded-md w-20"
                     />
                   </div>
-
-                  <button
-                    type="button"
-                    onClick={() => removeTimeline(timelineIndex)}
-                    className="mt-2 p-1 bg-red-500 text-white rounded"
-                  >
-                    Remove Timeline & Deliverables
-                  </button>
+                  <div className="flex items-center">
+                    <h2 className="px-2 w-[250px]">
+                      Remove Timeline & Deliverables
+                    </h2>
+                    <button
+                      type="button"
+                      onClick={() => removeTimeline(timelineIndex)}
+                      className="bg-red-200 px-2 py-1 rounded"
+                    >
+                      <i className="bi bi-trash text-danger"></i>
+                    </button>
+                  </div>
                 </div>
               ))}
             </div>
@@ -732,13 +774,18 @@ const EditProposal = () => {
                       />
                     </div>
                   </div>
-                  <button
-                    type="button"
-                    onClick={() => removeProposed(Index)}
-                    className="mt-2 p-1 bg-red-500 text-white rounded"
-                  >
-                    Remove Proposed Investment
-                  </button>
+                  <div className="flex items-center">
+                    <h2 className="px-2 w-[250px]">
+                      Remove Proposed Investment
+                    </h2>
+                    <button
+                      type="button"
+                      onClick={() => removeProposed(Index)}
+                      className="bg-red-200 px-2 py-1 rounded"
+                    >
+                      <i className="bi bi-trash text-danger"></i>
+                    </button>
+                  </div>
                 </div>
               ))}
             </div>
@@ -770,20 +817,23 @@ const EditProposal = () => {
                       />
                     </div>
                   </div>
-                  <button
-                    type="button"
-                    onClick={() => removePayments(Index)}
-                    className="mt-2 p-1 bg-red-500 text-white rounded"
-                  >
-                    Remove Payments Terms
-                  </button>
+                  <div className="flex items-center">
+                    <h2 className="px-2 w-[250px]">Remove Payments Terms</h2>
+                    <button
+                      type="button"
+                      onClick={() => removePayments(Index)}
+                      className="bg-red-200 px-2 py-1 rounded"
+                    >
+                      <i className="bi bi-trash text-danger"></i>
+                    </button>
+                  </div>
                 </div>
               ))}
             </div>
 
             <button
               type="submit"
-              className="w-25 m-4 px-4 py-2 bg-green-500 text-white rounded-md hover:bg-green-600"
+              className="w-25 m-4 px-4 py-2 bg-black text-white rounded hover:bg-green-600"
             >
               Update Proposal
             </button>

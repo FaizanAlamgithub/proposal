@@ -744,7 +744,7 @@ const CreateProposal = () => {
         <div className="">
           <form
             onSubmit={handleSubmit}
-            className="px-5 max-h-[95vh] overflow-y-auto"
+            className="px-3 max-h-[95vh] overflow-y-auto"
           >
             <div className="col bg-white p-4 border border-gray-300 rounded-lg m-3">
               <h3 className="text-lg font-semibold">Client detail</h3>
@@ -855,7 +855,7 @@ const CreateProposal = () => {
                     <button
                       type="button"
                       onClick={() => addArrayField(key)}
-                      className="mt-2 px-4 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600"
+                      className="mt-2 px-4 py-2 bg-gray-400 text-white rounded hover:bg-black"
                     >
                       + Add {title.slice(0, -1)}
                     </button>
@@ -970,7 +970,7 @@ const CreateProposal = () => {
               <button
                 type="button"
                 onClick={addTimeline}
-                className="mt-4 p-2 bg-blue-500 text-white rounded-md"
+                className="mt-4 p-2 bg-gray-400 text-white rounded hover:bg-black"
               >
                 Add Timeline & Deliverables
               </button>
@@ -1044,7 +1044,7 @@ const CreateProposal = () => {
               <button
                 type="button"
                 onClick={addProposed}
-                className="mt-4 p-2 bg-blue-500 text-white rounded-md"
+                className="mt-4 p-2 bg-gray-400 text-white rounded hover:bg-black"
               >
                 Add Proposed Investment
               </button>
@@ -1091,7 +1091,7 @@ const CreateProposal = () => {
               <button
                 type="button"
                 onClick={addPayments}
-                className="mt-4 p-2 bg-blue-500 text-white rounded-md"
+                className="mt-4 p-2 bg-gray-400 text-white rounded hover:bg-black"
               >
                 Add Payments Terms
               </button>
@@ -1099,7 +1099,7 @@ const CreateProposal = () => {
 
             <button
               type="submit"
-              className="w-25 m-4 px-4 py-2 bg-green-500 text-white rounded-md hover:bg-green-600"
+              className="w-25 m-4 px-4 py-2 bg-black text-white rounded hover:bg-green-600"
             >
               Create Proposal
             </button>

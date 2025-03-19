@@ -216,7 +216,7 @@ body {
 .section-2 {
   padding: 0 3rem;
   min-width: 100vw;
-  height: 100%;
+  height: 100vh;
   position: relative;
   background-color: #130e26;
   scroll-snap-align: start;
@@ -248,6 +248,9 @@ body {
 }
 .header-text-2 {
   font-size: 0.7rem;
+}
+.header-text-2 img {
+  width: 60%;
 }
 
 .header-text-1 .company-name {
@@ -318,7 +321,7 @@ body {
 .section-3 {
   padding: 0 3rem;
   min-width: 100%;
-  height: 100%;
+  height: 100vh;
   position: relative;
   background-color: #fff;
   scroll-snap-align: start;
@@ -369,7 +372,7 @@ body {
 .section-4 {
   padding: 0 3rem;
   min-width: 100%;
-  height: 100%;
+  height: 100vh;
   position: relative;
   background-color: #fff;
   scroll-snap-align: start;
@@ -417,7 +420,7 @@ body {
 .section-5 {
   padding: 0 3rem;
   min-width: 100%;
-  height: 100%;
+  height: 100vh;
   position: relative;
   background-color: #fff;
   scroll-snap-align: start;
@@ -475,7 +478,7 @@ body {
 .section-6 {
   padding: 0 3rem;
   min-width: 100%;
-  height: 100%;
+  height: 100vh;
   position: relative;
   background-color: #fff;
   scroll-snap-align: start;
@@ -539,7 +542,7 @@ body {
 .section-7 {
   padding: 0 3rem;
   min-width: 100%;
-  height: 100%;
+  height: 100vh;
   position: relative;
   background-color: #fff;
   scroll-snap-align: start;
@@ -608,7 +611,7 @@ body {
 .section-8 {
   padding: 0 3rem;
   min-width: 100%;
-  height: 100%;
+  height: 100vh;
   /* position: relative; */
   background-color: #fff;
   scroll-snap-align: start;
@@ -722,7 +725,7 @@ body {
 .section-9 {
   padding: 0 3rem;
   min-width: 100%;
-  height: 100%;
+  height: 100vh;
   /* position: relative; */
   background-color: #fff;
   scroll-snap-align: start;
@@ -824,7 +827,7 @@ body {
 .section-10 {
   padding: 0 3rem;
   min-width: 100%;
-  height: 100%;
+  height: 100vh;
   position: relative;
   background-color: #fff;
   scroll-snap-align: start;
@@ -887,7 +890,7 @@ body {
 .section-11 {
   padding: 0 3rem;
   min-width: 100%;
-  height: 100%;
+  height: 100vh;
   position: relative;
   background-color: #fff;
   scroll-snap-align: start;

@@ -672,7 +672,8 @@ function TimelineDelivery({ proposal }) {
               </p>
             </div>
             <div className="header-text-2">
-              <p>Powered by Humans, Fuelled by Creativity</p>
+              {/* <p>Powered by Humans, Fuelled by Creativity</p> */}
+              <img src="../images/logo.svg" alt="" />
             </div>
           </div>
 
@@ -713,13 +714,13 @@ function TimelineDelivery({ proposal }) {
               </div>
             </div>
           </div>
-          <div className="bottom-text">
+          {/* <div className="bottom-text">
             <p>Jordie’s Creative Agency Pvt Ltd</p>
             <a href="https://www.jordiescreativeagency.com">
               www.jordiescreativeagency.com
             </a>
             <img src="../images/logo.svg" alt="Company Logo" />
-          </div>
+          </div> */}
         </div>
       ))}
     </>

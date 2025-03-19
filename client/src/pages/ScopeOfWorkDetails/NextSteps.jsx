@@ -67,7 +67,8 @@ function NextSteps({ proposal }) {
           <p className="company-name">{proposal.companyName || "Loading..."}</p>
         </div>
         <div className="header-text-2">
-          <p>Powered by Humans, Fuelled by Creativity</p>
+          {/* <p>Powered by Humans, Fuelled by Creativity</p> */}
+          <img src="../images/logo.svg" alt="" />
         </div>
       </div>
       <div className="section-11-content">
@@ -79,7 +80,8 @@ function NextSteps({ proposal }) {
               <p>
                 Send us your acceptance by simply clicking the
                 <span>"Accept Proposal"</span> button below. Once accepted, we
-                will proceed with the contract and initial invoice.<br/>
+                will proceed with the contract and initial invoice.
+                <br />
                 <button className="section-11-below-text-btn bg-[#7f5cff] text-white">
                   Accept Proposal
                 </button>
@@ -104,13 +106,13 @@ function NextSteps({ proposal }) {
           </div>
         </div>
       </div>
-      <div className="bottom-text">
+      {/* <div className="bottom-text">
         <p>Jordie’s Creative Agency Pvt Ltd</p>
         <a href="https://www.jordiescreativeagency.com">
           www.jordiescreativeagency.com
         </a>
         <img src="../images/logo.svg" alt="Company Logo" />
-      </div>
+      </div> */}
     </div>
   );
 }

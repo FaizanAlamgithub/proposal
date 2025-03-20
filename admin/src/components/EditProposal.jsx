@@ -208,7 +208,7 @@ const EditProposal = () => {
 
   // Fetch existing proposal data
   useEffect(() => {
-    fetch(`http://localhost:5000/api/proposals/${id}`)
+    fetch(`https://proposal-backend-1dom.onrender.com/api/proposals/${id}`)
       .then((response) => response.json())
       .then((data) => setProposal(data))
       .catch((error) => console.error("Error fetching proposal:", error));
@@ -356,7 +356,7 @@ const EditProposal = () => {
     e.preventDefault();
     try {
       const response = await fetch(
-        `http://localhost:5000/api/proposals/edit/${id}`,
+        `https://proposal-backend-1dom.onrender.com/api/proposals/edit/${id}`,
         {
           method: "PUT",
           headers: { "Content-Type": "application/json" },

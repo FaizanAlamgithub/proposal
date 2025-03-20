@@ -154,12 +154,90 @@
 
 // export default ClientLogin;
 
+// import { useState } from "react";
+// import { useNavigate } from "react-router-dom";
+// import { ToastContainer, toast } from "react-toastify";
+
+// const ClientLogin = ({ setProposal }) => {
+//   const [password, setPassword] = useState("");
+//   const navigate = useNavigate();
+
+//   const handleLogin = async (e) => {
+//     e.preventDefault();
+
+//     try {
+//       const response = await fetch(
+//         "https://proposal-backend-1dom.onrender.com/api/proposals/login",
+//         {
+//           method: "POST",
+//           headers: {
+//             "Content-Type": "application/json",
+//           },
+//           body: JSON.stringify({ proposalPassword: password }),
+//         }
+//       );
+
+//       const data = await response.json();
+
+//       if (!response.ok) {
+//         throw new Error(data.error || "Login failed. Try again.");
+//       }
+
+//       if (!data.proposal || !data.proposal._id) {
+//         throw new Error("Invalid proposal data received.");
+//       }
+
+//       setProposal(data.proposal);
+//       navigate(`/proposal/${data.proposal._id}`);
+//     } catch (err) {
+//       toast.error(err.message, {
+//         position: "top-right",
+//         autoClose: 3000,
+//       });
+//     }
+//   };
+
+//   return (
+//     <div className="flex justify-center items-center h-screen bg-gray-100">
+//       <ToastContainer />
+
+//       <div className="bg-white p-8 rounded-lg shadow-lg text-center w-[350px] h-[300px]">
+//         {/* Title Container with Bottom Border */}
+//         <div className="border-b border-gray-300 pb-5">
+//           <h2 className="text-2xl font-medium text-[#606060]">
+//             Access Proposal
+//           </h2>
+//         </div>
+
+//         <form onSubmit={handleLogin} className="pt-4">
+//           <input
+//             type="password"
+//             placeholder="Enter Proposal Code"
+//             value={password}
+//             onChange={(e) => setPassword(e.target.value)}
+//             className="bg-gray-100 border-none rounded p-2.5 w-full focus:outline-none focus:ring-1 focus:bg-white focus:ring-gray-500 mb-4 mt-5"
+//           />
+//           <button
+//             type="submit"
+//             className="bg-black text-white px-4 py-2.5 rounded w-full mt-4"
+//           >
+//             Next
+//           </button>
+//         </form>
+//       </div>
+//     </div>
+//   );
+// };
+
+// export default ClientLogin;
+
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { ToastContainer, toast } from "react-toastify";
+import ExpiredProposalModal from "../modal/ExpiredProposalModal"; // Import modal
 
 const ClientLogin = ({ setProposal }) => {
   const [password, setPassword] = useState("");
+  const [expiredModal, setExpiredModal] = useState(false); // Modal state
   const navigate = useNavigate();
 
   const handleLogin = async (e) => {
@@ -179,30 +257,26 @@ const ClientLogin = ({ setProposal }) => {
 
       const data = await response.json();
 
-      if (!response.ok) {
-        throw new Error(data.error || "Login failed. Try again.");
-      }
-
-      if (!data.proposal || !data.proposal._id) {
-        throw new Error("Invalid proposal data received.");
+      if (!response.ok || !data.proposal || !data.proposal._id) {
+        setExpiredModal(true);
+        return;
       }
 
       setProposal(data.proposal);
       navigate(`/proposal/${data.proposal._id}`);
     } catch (err) {
-      toast.error(err.message, {
-        position: "top-right",
-        autoClose: 3000,
-      });
+      setExpiredModal(true); // Show modal instead of toast
     }
   };
 
   return (
     <div className="flex justify-center items-center h-screen bg-gray-100">
-      <ToastContainer />
+      <ExpiredProposalModal
+        show={expiredModal}
+        handleClose={() => setExpiredModal(false)}
+      />
 
       <div className="bg-white p-8 rounded-lg shadow-lg text-center w-[350px] h-[300px]">
-        {/* Title Container with Bottom Border */}
         <div className="border-b border-gray-300 pb-5">
           <h2 className="text-2xl font-medium text-[#606060]">
             Access Proposal

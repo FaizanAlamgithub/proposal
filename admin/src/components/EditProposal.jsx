@@ -356,7 +356,7 @@ const EditProposal = () => {
     e.preventDefault();
     try {
       const response = await fetch(
-        `https://proposal-backend-1dom.onrender.com/api/proposals/edit/${id}`,
+        `http://localhost:5000/api/proposals/edit/${id}`,
         {
           method: "PUT",
           headers: { "Content-Type": "application/json" },

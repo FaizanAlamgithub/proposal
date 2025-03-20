@@ -694,7 +694,8 @@ function TimelineDelivery({ proposal }) {
               </p>
             </div>
             <div className="header-text-2">
-              <p>Powered by Humans, Fuelled by Creativity</p>
+              {/* <p>Powered by Humans, Fuelled by Creativity</p> */}
+              <img src="../images/logo.svg" alt="" />
             </div>
           </div>
 

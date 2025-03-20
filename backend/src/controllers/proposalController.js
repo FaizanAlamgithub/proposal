@@ -53,7 +53,7 @@ exports.createProposal = async (req, res) => {
       clientName,
       expiryDate,
       proposalDescription,
-      clientId,
+      // clientId,
       scopeOfWork, // Keep scopeOfWork
       timelineDeliverables,
       timelineWeeks,
@@ -67,7 +67,7 @@ exports.createProposal = async (req, res) => {
       !clientName ||
       !expiryDate ||
       !proposalDescription ||
-      !clientId ||
+      // !clientId ||
       !scopeOfWork ||
       !timelineDeliverables ||
       !timelineWeeks ||
@@ -87,7 +87,7 @@ exports.createProposal = async (req, res) => {
       clientName,
       expiryDate: new Date(expiryDate),
       proposalDescription,
-      clientId,
+      // clientId,
       proposalPassword,
       isAccepted: false,
       createdDate: new Date(),

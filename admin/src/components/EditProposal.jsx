@@ -173,7 +173,7 @@ const EditProposal = () => {
     clientName: "",
     expiryDate: "",
     proposalDescription: "",
-    // clientId: "",
+    clientId: "",
     scopeOfWork: {
       title: "",
       objective: "",

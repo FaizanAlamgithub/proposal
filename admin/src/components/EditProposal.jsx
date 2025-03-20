@@ -173,7 +173,7 @@ const EditProposal = () => {
     clientName: "",
     expiryDate: "",
     proposalDescription: "",
-    clientId: "",
+    // clientId: "",
     scopeOfWork: {
       title: "",
       objective: "",
@@ -446,9 +446,34 @@ const EditProposal = () => {
                 ))}
               </div> */}
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                {[
+                {/* {[
                   { label: "Expiry Date", name: "expiryDate", type: "date" },
                   { label: "Client ID", name: "clientId", type: "text" },
+                ].map(({ label, name, type }) => (
+                  <div key={name}>
+                    <label className="block text-gray-700 font-medium mt-4">
+                      {label}
+                    </label>
+                    <input
+                      type={type}
+                      name={name}
+                      value={
+                        type === "date"
+                          ? proposal[name]
+                            ? new Date(proposal[name])
+                                .toISOString()
+                                .split("T")[0] // Convert to "yyyy-MM-dd"
+                            : ""
+                          : proposal[name] || ""
+                      }
+                      onChange={(e) => handleChange(e, name)} // Ensure the correct field is updated
+                      className="w-full p-2 border border-warning-subtle rounded focus:outline-none focus:bg-white focus:ring-0 bg-[#FFFFEE]"
+                      required
+                    />
+                  </div>
+                ))} */}
+                {[
+                  { label: "Expiry Date", name: "expiryDate", type: "date" },
                 ].map(({ label, name, type }) => (
                   <div key={name}>
                     <label className="block text-gray-700 font-medium mt-4">

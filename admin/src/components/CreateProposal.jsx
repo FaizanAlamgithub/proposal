@@ -1617,7 +1617,6 @@ const CreateProposal = () => {
     clientName: "",
     expiryDate: "",
     proposalDescription: "",
-    clientId: "",
     scopeOfWork: {
       title: "",
       objective: "",
@@ -1893,9 +1892,26 @@ const CreateProposal = () => {
               </div>
 
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                {[
+                {/* {[
                   { label: "Expiry Date", name: "expiryDate", type: "date" },
                   { label: "Client ID", name: "clientId", type: "text" },
+                ].map(({ label, name, type }) => (
+                  <div key={name}>
+                    <label className="block text-gray-700 font-medium mt-4">
+                      {label}
+                    </label>
+                    <input
+                      type={type}
+                      name={name}
+                      value={proposal[name] || ""}
+                      onChange={handleChange}
+                      className="w-full p-2 border border-primary-subtle rounded focus:outline-none  focus:bg-white focus:ring-0 bg-[#F5FBFF]"
+                      required
+                    />
+                  </div>
+                ))} */}
+                {[
+                  { label: "Expiry Date", name: "expiryDate", type: "date" },
                 ].map(({ label, name, type }) => (
                   <div key={name}>
                     <label className="block text-gray-700 font-medium mt-4">

@@ -1779,8 +1779,8 @@ body {
   .header-text-1 p {
     font-size: 0.4rem;
   }
-  .header-text-2 p {
-    font-size: 0.4rem;
+  .header-text-2 img {
+    width: 40%;
   }
   .bottom-text {
     padding: 0.5rem;

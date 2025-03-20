@@ -123,7 +123,7 @@ function ShowAllpages() {
     const fetchProposal = async () => {
       try {
         const response = await fetch(
-          `https://proposal-backend-1dom.onrender.com/api/proposals/${id}`
+          `http://localhost:5000/api/proposals/${id}`
         );
         if (!response.ok) {
           throw new Error("Failed to fetch proposal");

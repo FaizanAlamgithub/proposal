@@ -634,7 +634,7 @@ const EditProposal = () => {
                       },
                     })
                   }
-                  className="p-2 border border-warning-subtle rounded focus:outline-none focus:bg-white focus:ring-0 bg-[#FFFFEE] w-50"
+                  className="p-2 border border-warning-subtle rounded focus:outline-none focus:bg-white focus:ring-0 bg-[#FFFFEE] w-25"
                 />
               </div>
 
@@ -680,7 +680,7 @@ const EditProposal = () => {
                       onChange={(e) =>
                         handleTimelineChange(e, timelineIndex, "timelineText")
                       }
-                      className="p-2 border border-warning-subtle rounded focus:outline-none focus:bg-white focus:ring-0 bg-[#FFFFEE] w-50"
+                      className="p-2 border border-warning-subtle rounded focus:outline-none focus:bg-white focus:ring-0 bg-[#FFFFEE] w-25"
                     />
                   </div>
                   <button

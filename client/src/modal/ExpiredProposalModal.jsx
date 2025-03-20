@@ -27,9 +27,9 @@ const ExpiredProposalModal = ({ show, handleClose }) => {
         role="document"
         onClick={(e) => e.stopPropagation()} // Prevent closing when clicking inside modal
       >
-        <div className="modal-content shadow-lg bg-white rounded border-0">
+        <div className="modal-content shadow-lg bg-white rounded border-0 h-[260px]">
           <div className="modal-header border-0 p-4">
-            <h5 className="modal-title fw-bold text-danger">
+            <h5 className="modal-title fw-bold text-danger text-center">
               Proposal Expired
             </h5>
             <button
@@ -40,15 +40,15 @@ const ExpiredProposalModal = ({ show, handleClose }) => {
             ></button>
           </div>
           <div className="modal-body text-center px-4">
-            <p className="fs-5 text-muted">
+            <p className="fs-5 text-muted my-5">
               This proposal has expired. Please contact your manager for further
               assistance.
             </p>
           </div>
-          <div className="modal-footer border-0 d-flex justify-content-center pb-4">
+          <div className="modal-footer border-0 pb-2 flex justify-end">
             <button
               type="button"
-              className="btn btn-dark px-4 py-2 rounded bg-black text-white shadow-sm"
+              className="btn btn-dark px-4 py-2 mr-4 mt-5 rounded bg-black text-white shadow-sm"
               onClick={handleClose}
             >
               Close

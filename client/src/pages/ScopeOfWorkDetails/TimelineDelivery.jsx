@@ -598,18 +598,40 @@ function TimelineDelivery({ proposal }) {
   // Ensure timelineDeliverables exists and is an array
   const timelineDeliverables = proposal?.timelineDeliverables || [];
 
-  // Extracting the correct weeks and preparing table data
-  const tableData = timelineDeliverables.map((t) => {
-    const weekData = t.week?.[0] || {}; // Safely access the first element in week array
-    const minWeek = weekData.week1 || "N/A"; // Default to "N/A" if missing
-    const maxWeek = weekData.week2 || "N/A";
+  // // Extracting the correct weeks and preparing table data
+  // const tableData = timelineDeliverables.map((t) => {
+  //   const weekData = t.week?.[0] || {}; // Safely access the first element in week array
+  //   const minWeek = weekData.week1 || "N/A"; // Default to "N/A" if missing
+  //   const maxWeek = weekData.week2 || "N/A";
 
+  //   return {
+  //     week: `Week ${minWeek} - ${maxWeek}`,
+  //     task: t.task || "No task available",
+  //     deliverables: t.deliverables || "No deliverables available",
+  //   };
+  // });
+
+  // // Extracting the correct weeks and preparing table data
+  const tableData = timelineDeliverables.map((t) => {
     return {
-      week: `Week ${minWeek} - ${maxWeek}`,
-      task: t.task || "No task available",
-      deliverables: t.deliverables || "No deliverables available",
+      timelineText: t.timelineText,
+      task: t.task || "No Description available",
+      deliverables: t.deliverables || "No Cost available",
     };
   });
+
+  console.log("Processed Table Data:", tableData);
+
+  // const tableData = timelineDeliverables.map((t) => {
+  //   const weekData = t.week?.[0] || {}; // Safely access the first element in the week array
+  //   const weeks = weekData.weeks || "N/A"; // Extract the "weeks" field
+
+  //   return {
+  //     week: weeks, // Use the correct "weeks" value
+  //     task: t.task || "No task available",
+  //     deliverables: t.deliverables || "No deliverables available",
+  //   };
+  // });
 
   const [rowsPerPage, setRowsPerPage] = useState(2); // Default to 2 rows per page
 
@@ -672,8 +694,7 @@ function TimelineDelivery({ proposal }) {
               </p>
             </div>
             <div className="header-text-2">
-              {/* <p>Powered by Humans, Fuelled by Creativity</p> */}
-              <img src="../images/logo.svg" alt="" />
+              <p>Powered by Humans, Fuelled by Creativity</p>
             </div>
           </div>
 
@@ -684,15 +705,14 @@ function TimelineDelivery({ proposal }) {
                 <p>Deliverables</p>
               </div>
               <p className="section-8-weeks">
-                {proposal.timelineWeeks.startWeek || 1} -{" "}
-                {proposal.timelineWeeks.endWeek || 7} weeks
+                {proposal.timelineWeeks.timeLine || ""}
               </p>
 
               <div className="section-8-table-container">
                 <table className="w-full border-collapse">
                   <thead className="bg-white">
                     <tr>
-                      <th>Week</th>
+                      <th>TimeLine</th>
                       <th>Task</th>
                       <th>Deliverables</th>
                     </tr>
@@ -703,7 +723,7 @@ function TimelineDelivery({ proposal }) {
                     <tbody>
                       {pageData.map((row, rowIndex) => (
                         <tr key={rowIndex}>
-                          <td>{row.week}</td>
+                          <td>{row.timelineText}</td>
                           <td>{row.task}</td>
                           <td>{row.deliverables}</td>
                         </tr>

@@ -182,13 +182,21 @@ const EditProposal = () => {
     },
     timelineDeliverables: [
       {
-        week: { week1: "", week2: "" }, // ✅ Fixed structure
+        timelineText: "",
         task: "",
         deliverables: "",
       },
     ],
-    timelineWeeks: { startWeek: "", endWeek: "" },
-    proposedInvestment: [{ services: "", description: "", cost: "" }],
+    timelineWeeks: {
+      timeLine: "", // ✅ Matches the schema
+    },
+    proposedInvestment: [
+      {
+        services: "",
+        description: "",
+        cost: "",
+      },
+    ],
     proposedCost: "",
     payments: [
       {
@@ -200,7 +208,7 @@ const EditProposal = () => {
 
   // Fetch existing proposal data
   useEffect(() => {
-    fetch(`https://proposal-backend-1dom.onrender.com/api/proposals/${id}`)
+    fetch(`http://localhost:5000/api/proposals/${id}`)
       .then((response) => response.json())
       .then((data) => setProposal(data))
       .catch((error) => console.error("Error fetching proposal:", error));
@@ -229,14 +237,14 @@ const EditProposal = () => {
   };
 
   const handleTimelineChange = (e, timelineIndex, field) => {
-    const { value } = e.target; // Get the input value
-
-    setProposal((prev) => ({
-      ...prev,
-      timelineDeliverables: prev.timelineDeliverables.map((item, index) =>
-        index === timelineIndex ? { ...item, [field]: value } : item
-      ),
-    }));
+    setProposal((prev) => {
+      return {
+        ...prev,
+        timelineDeliverables: prev.timelineDeliverables.map((item, index) =>
+          index === timelineIndex ? { ...item, [field]: e.target.value } : item
+        ),
+      };
+    });
   };
 
   const handleInvestmentChange = (e, investmentIndex, field) => {
@@ -348,7 +356,7 @@ const EditProposal = () => {
     e.preventDefault();
     try {
       const response = await fetch(
-        `https://proposal-backend-1dom.onrender.com/api/proposals/edit/${id}`,
+        `http://localhost:5000/api/proposals/edit/${id}`,
         {
           method: "PUT",
           headers: { "Content-Type": "application/json" },
@@ -386,7 +394,7 @@ const EditProposal = () => {
             onSubmit={handleSubmit}
             className="px-3 max-h-[95vh] overflow-y-auto"
           >
-            <div className="col bg-white p-4 border border-gray-300 rounded-lg m-3">
+            <div className="col bg-white p-4 m-0 sm:p-4 sm:m-3 border border-gray-300 rounded">
               <h3 className="text-lg font-semibold">Client detail</h3>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 {[
@@ -479,7 +487,7 @@ const EditProposal = () => {
                 />
               </div>
             </div>
-            {/* <div className="col bg-white p-4 border border-gray-300 rounded-lg m-3">
+            {/* <div className="col bg-white p-4 m-0 sm:p-4 sm:m-3 border border-gray-300 rounded">
               <h3 className="text-lg font-semibold">Scope of Work</h3>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 {[
@@ -540,7 +548,7 @@ const EditProposal = () => {
               </div>
             </div> */}
 
-            <div className="col bg-white p-4 border border-gray-300 rounded-lg m-3">
+            <div className="col bg-white p-4 m-0 sm:p-4 sm:m-3 border border-gray-300 rounded">
               <h3 className="text-lg font-semibold">Scope of Work</h3>
 
               {/* Editable Fields for Title and Objective */}
@@ -566,7 +574,7 @@ const EditProposal = () => {
               </div>
 
               {/* Editable List for Services and Description */}
-              <div className="flex gap-8">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 {[
                   { title: "Services", key: "services" },
                   { title: "Description", key: "description" },
@@ -582,7 +590,7 @@ const EditProposal = () => {
                             onChange={(e) =>
                               handleArrayChange(e, "scopeOfWork", key, index)
                             }
-                            className="w-[40vw] h-[20vh] p-2 border border-warning-subtle rounded focus:outline-none focus:bg-white focus:ring-0 bg-[#FFFFEE]"
+                            className="w-full h-[20vh] p-2 border border-warning-subtle rounded focus:outline-none focus:bg-white focus:ring-0 bg-[#FFFFEE]"
                           />
                           <button
                             type="button"
@@ -606,40 +614,25 @@ const EditProposal = () => {
               </div>
             </div>
 
-            <div className="col bg-white p-4 border border-gray-300 rounded-lg m-3">
+            <div className="col bg-white p-4 m-0 sm:p-4 sm:m-3 border border-gray-300 rounded">
               {/* Timeline & Deliverables */}
               <h3 className="text-lg font-semibold">Timeline & Deliverables</h3>
 
               {/* Timeline Weeks Input */}
               <div className="mt-2 flex items-center gap-4">
-                <label className="font-medium">Weeks</label>
+                <label className="font-medium">Timeline Heading</label>
                 <input
-                  type="number"
-                  placeholder="Start"
-                  value={proposal.timelineWeeks?.startWeek || ""}
+                  type="text"
+                  placeholder="Enter timeline"
+                  value={proposal.timelineWeeks.timeLine}
                   onChange={(e) =>
-                    setProposal((prev) => ({
-                      ...prev,
+                    setProposal({
+                      ...proposal,
                       timelineWeeks: {
-                        ...prev.timelineWeeks,
-                        startWeek: e.target.value,
+                        ...proposal.timelineWeeks,
+                        timeLine: e.target.value, // Correct field update
                       },
-                    }))
-                  }
-                  className="p-2 border border-warning-subtle rounded focus:outline-none focus:bg-white focus:ring-0 bg-[#FFFFEE] w-20"
-                />
-                <input
-                  type="number"
-                  placeholder="End"
-                  value={proposal.timelineWeeks?.endWeek || ""}
-                  onChange={(e) =>
-                    setProposal((prev) => ({
-                      ...prev,
-                      timelineWeeks: {
-                        ...prev.timelineWeeks,
-                        endWeek: e.target.value,
-                      },
-                    }))
+                    })
                   }
                   className="p-2 border border-warning-subtle rounded focus:outline-none focus:bg-white focus:ring-0 bg-[#FFFFEE] w-20"
                 />
@@ -650,7 +643,7 @@ const EditProposal = () => {
                   key={timelineIndex}
                   className="border p-4 rounded-md space-y-3"
                 >
-                  <div className="grid grid-cols-2 gap-4">
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                     {/* Editable Task Field */}
                     <div>
                       <label className="block font-medium">Task</label>
@@ -679,22 +672,13 @@ const EditProposal = () => {
                   </div>
                   {/* Weeks Input */}
                   <div className="mt-2 flex items-center gap-4">
-                    <label className="font-medium">Weeks</label>
+                    <label className="font-medium">Timeline</label>
                     <input
-                      type="number"
-                      placeholder="Week 1"
-                      value={timeline.week?.week1 || ""}
+                      type="text"
+                      placeholder="Enter week range"
+                      value={timeline.timelineText || ""}
                       onChange={(e) =>
-                        handleWeekChange(e.target.value, timelineIndex, "week1")
-                      }
-                      className="p-2 border border-warning-subtle rounded focus:outline-none focus:bg-white focus:ring-0 bg-[#FFFFEE] w-20"
-                    />
-                    <input
-                      type="number"
-                      placeholder="Week 2"
-                      value={timeline.week?.week2 || ""}
-                      onChange={(e) =>
-                        handleWeekChange(e.target.value, timelineIndex, "week2")
+                        handleTimelineChange(e, timelineIndex, "timelineText")
                       }
                       className="p-2 border border-warning-subtle rounded focus:outline-none focus:bg-white focus:ring-0 bg-[#FFFFEE] w-20"
                     />
@@ -710,7 +694,7 @@ const EditProposal = () => {
               ))}
             </div>
 
-            <div className="col bg-white p-4 border border-gray-300 rounded-lg m-3">
+            <div className="col bg-white p-4 m-0 sm:p-4 sm:m-3 border border-gray-300 rounded">
               {/* Proposed Investment */}
               <h3 className="text-lg font-semibold">Proposed Investment</h3>
               {/* Timeline Weeks Input */}
@@ -731,7 +715,7 @@ const EditProposal = () => {
               </div>
               {proposal.proposedInvestment.map((investment, Index) => (
                 <div key={Index} className="border p-4 rounded-md space-y-3">
-                  <div className="grid grid-cols-2 gap-4">
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                     <div>
                       <label className="block font-medium">Services</label>
                       <textarea
@@ -779,11 +763,11 @@ const EditProposal = () => {
                 </div>
               ))}
             </div>
-            <div className="col bg-white p-4 border border-gray-300 rounded-lg m-3">
+            <div className="col bg-white p-4 m-0 sm:p-4 sm:m-3 border border-gray-300 rounded">
               <h3 className="text-lg font-semibold">Payments Terms</h3>
               {proposal.payments.map((payment, Index) => (
                 <div key={Index} className="border p-4 rounded-md space-y-3">
-                  <div className="grid grid-cols-2 gap-4">
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                     <div>
                       <label className="block font-medium">Terms</label>
                       <textarea
@@ -820,7 +804,7 @@ const EditProposal = () => {
 
             <button
               type="submit"
-              className="w-25 m-4 px-4 py-2 bg-[#f7dc6f] text-white rounded hover:bg-[#fce68d]"
+              className="m-4 px-5 py-2 bg-[#f7dc6f] text-white rounded hover:bg-[#fce68d]"
               id="updateBtn"
             >
               Update Proposal

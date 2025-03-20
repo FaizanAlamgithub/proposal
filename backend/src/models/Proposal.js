@@ -1,3 +1,14 @@
+// const TimelineDeliverySchema = new mongoose.Schema({
+//   week: [
+//     {
+//       week1: { type: String },
+//       week2: { type: String },
+//     },
+//   ],
+//   task: { type: String },
+//   deliverables: { type: String },
+// });
+
 const mongoose = require("mongoose");
 
 const ScopeOfWorkSchema = new mongoose.Schema({
@@ -8,12 +19,7 @@ const ScopeOfWorkSchema = new mongoose.Schema({
 });
 
 const TimelineDeliverySchema = new mongoose.Schema({
-  week: [
-    {
-      week1: { type: Number },
-      week2: { type: Number },
-    },
-  ],
+  timelineText: { type: String },
   task: { type: String },
   deliverables: { type: String },
 });
@@ -30,26 +36,53 @@ const ProposalSchema = new mongoose.Schema(
     clientName: { type: String, required: true },
     expiryDate: { type: Date, required: true },
     proposalDescription: { type: String, required: true },
-    clientId: { type: String, required: true },
+    clientId: { type: String },
     proposalPassword: { type: String, required: true },
     isAccepted: { type: Boolean, default: false },
     createdDate: { type: Date, default: Date.now },
     scopeOfWork: ScopeOfWorkSchema, // Embed ScopeOfWork inside Proposal
     timelineDeliverables: [TimelineDeliverySchema],
     timelineWeeks: {
-      startWeek: { type: Number, required: true }, // Example: 1
-      endWeek: { type: Number, required: true }, // Example: 7
+      timeLine: { type: String, required: true },
     },
     proposedInvestment: [ProposedSchema],
     proposedCost: { type: Number },
     payments: [
       {
         terms: { type: String },
-        amount: { type: String },
+        amount: { type: Number },
       },
     ],
   },
   { timestamps: true }
 );
+
+// const ProposalSchema = new mongoose.Schema(
+//   {
+//     companyName: { type: String, required: true },
+//     clientName: { type: String, required: true },
+//     expiryDate: { type: Date, required: true },
+//     proposalDescription: { type: String, required: true },
+//     clientId: { type: String, required: true },
+//     proposalPassword: { type: String, required: true },
+//     isAccepted: { type: Boolean, default: false },
+//     createdDate: { type: Date, default: Date.now },
+//     scopeOfWork: ScopeOfWorkSchema, // Embed ScopeOfWork inside Proposal
+//     timelineDeliverables: [TimelineDeliverySchema],
+//     timelineWeeks: {
+//       startWeek: { type: String, required: true }, // Example: 1
+//       endWeek: { type: String, required: true }, // Example: 7
+//     },
+//     proposedInvestment: [ProposedSchema],
+//     proposedCost: { type: Number },
+//     payments: [
+//       {
+//         terms: { type: String },
+//         amount: { type: Number },
+//       },
+//     ],
+//   },
+//   { timestamps: true }
+// );
 
 module.exports = mongoose.model("Proposal", ProposalSchema);

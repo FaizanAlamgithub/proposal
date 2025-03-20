@@ -10,6 +10,10 @@
   color: #000 !important;
 }
 
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
 body {
   /* width: 100vw; */
   height: 100vh;
@@ -1781,9 +1785,6 @@ body {
 
 @media (max-width: 486px) {
   /* ------------- Header & Footer ------------------- */
-  .download-btn {
-    top: 3% !important;
-  }
   .header {
     padding: 0.5rem;
   }
@@ -2159,11 +2160,13 @@ body {
   .section-8-table-container td:nth-child(1),
   .section-8-table-container th:nth-child(1) {
     width: 20%;
+    padding-right: 0.8rem;
   }
 
   .section-8-table-container td:nth-child(2),
   .section-8-table-container th:nth-child(2) {
     width: 30%;
+    padding-right: 0.8rem;
   }
 
   .section-8-table-container td:nth-child(3),
@@ -2213,16 +2216,19 @@ body {
   .section-9-table-container td:nth-child(1),
   .section-9-table-container th:nth-child(1) {
     width: 30%;
+    padding-right: 0.8rem;
   }
 
   .section-9-table-container td:nth-child(2),
   .section-9-table-container th:nth-child(2) {
     width: 50%;
+    padding-right: 0.8rem;
   }
 
   .section-9-table-container td:nth-child(3),
   .section-9-table-container th:nth-child(3) {
     width: 20%;
+    /* padding-right: 0.5rem; */
   }
   /* -------------- Section - 10 ----------------- */
   .section-10 {
@@ -2259,6 +2265,7 @@ body {
   .section-10-table-container td:nth-child(1),
   .section-10-table-container th:nth-child(1) {
     width: 80%;
+    padding-right: 0.8rem;
   }
 
   .section-10-table-container td:nth-child(2),

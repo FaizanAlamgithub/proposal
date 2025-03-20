@@ -2089,7 +2089,7 @@ body {
   }
   .section-7-text2 {
     font-size: 1rem;
-    width: 70%;
+    width: 100%;
   }
   .section-7-text2 > p {
     padding: 0.2rem 0;
@@ -2103,7 +2103,9 @@ body {
     margin: 0;
     width: 100%;
     top: 40%;
-    left: 30%;
+    right: 5%;
+    padding-left: 5rem;
+    /* left: 30%; */
   }
   /* -------------- Section - 8 ----------------- */
   .section-8 {

@@ -1524,7 +1524,7 @@ body {
   }
   .section-6-text2 {
     bottom: 25%;
-    width: 45%;
+    /* width: 45%; */
   }
   .section-6-text2 p {
     font-size: 2.5rem;

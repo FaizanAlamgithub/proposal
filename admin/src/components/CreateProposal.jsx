@@ -2180,7 +2180,7 @@ const CreateProposal = () => {
                         onChange={(e) =>
                           handleTimelineChange(e, timelineIndex, "timelineText")
                         }
-                        className="p-2 border border-primary-subtle rounded focus:outline-none focus:bg-white focus:ring-0 bg-[#F5FBFF] w-24"
+                        className="p-2 border border-primary-subtle rounded focus:outline-none focus:bg-white focus:ring-0 bg-[#F5FBFF] w-30"
                         required
                       />
                     </div>

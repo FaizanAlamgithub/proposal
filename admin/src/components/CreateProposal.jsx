@@ -177,7 +177,7 @@
 //   };
 
 //   return (
-//     <div className="flex items-center justify-center bg-gray-100 p-4">
+//     <div className="flex items-center justify-center bg-green-50 p-4">
 //       <div className="bg-white shadow-lg rounded-lg p-6 w-full relative">
 //         <button
 //           onClick={() => navigate("/dashboard")}
@@ -354,7 +354,7 @@
 //               <button
 //                 type="button"
 //                 onClick={addTimeline}
-//                 className="mt-4 p-2 bg-blue-500 text-white rounded-md"
+//                 className="mt-4 p-2 bg-green-500 text-white rounded-md"
 //               >
 //                 Add Timeline & Deliverables
 //               </button>
@@ -428,7 +428,7 @@
 //               <button
 //                 type="button"
 //                 onClick={addProposed}
-//                 className="mt-4 p-2 bg-blue-500 text-white rounded-md"
+//                 className="mt-4 p-2 bg-green-500 text-white rounded-md"
 //               >
 //                 Add Proposed Investment
 //               </button>
@@ -486,7 +486,7 @@
 //                     <button
 //                       type="button"
 //                       onClick={() => addArrayField(key)}
-//                       className="mt-2 px-4 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600"
+//                       className="mt-2 px-4 py-2 bg-green-500 text-white rounded-md hover:bg-blue-600"
 //                     >
 //                       + Add {title.slice(0, -1)}
 //                     </button>
@@ -729,8 +729,8 @@ const CreateProposal = () => {
   };
 
   return (
-    <div className="flex items-center justify-center bg-gray-100">
-      <div className="bg-[#ECEDEF] rounded-lg w-full relative">
+    <div className="flex items-center justify-center bg-green-50">
+      <div className="bg-[#ECEDEF] rounded w-full relative">
         <button
           onClick={() => navigate("/dashboard")}
           className="btn btn-close position-absolute top-0 end-0 m-3"
@@ -748,7 +748,7 @@ const CreateProposal = () => {
           >
             <div className="col bg-white p-4 border border-gray-300 rounded-lg m-3">
               <h3 className="text-lg font-semibold">Client detail</h3>
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              {/* <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 {[
                   { label: "Company Name", name: "companyName" },
                   { label: "Client Name", name: "clientName" },
@@ -767,6 +767,58 @@ const CreateProposal = () => {
                     />
                   </div>
                 ))}
+              </div> */}
+
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div>
+                  <label className="block text-gray-700 font-medium">
+                    Company Name
+                  </label>
+                  <input
+                    type="text"
+                    name="companyName"
+                    value={proposal.companyName || ""}
+                    onChange={(e) => {
+                      const words = e.target.value.trim().split(/\s+/);
+                      if (words.length <= 5) {
+                        handleChange(e);
+                      }
+                    }}
+                    className="w-full p-2 border border-primary-subtle rounded focus:outline-none  focus:bg-white focus:ring-0 bg-[#F5FBFF]"
+                    required
+                  />
+                  <p className="text-sm text-gray-500">
+                    {proposal.companyName
+                      ? proposal.companyName.trim().split(/\s+/).length
+                      : 0}{" "}
+                    / 5 words
+                  </p>
+                </div>
+
+                <div>
+                  <label className="block text-gray-700 font-medium">
+                    Client Name
+                  </label>
+                  <input
+                    type="text"
+                    name="clientName"
+                    value={proposal.clientName || ""}
+                    onChange={(e) => {
+                      const words = e.target.value.trim().split(/\s+/);
+                      if (words.length <= 5) {
+                        handleChange(e);
+                      }
+                    }}
+                    className="w-full p-2 border border-primary-subtle rounded focus:outline-none  focus:bg-white focus:ring-0 bg-[#F5FBFF]"
+                    required
+                  />
+                  <p className="text-sm text-gray-500">
+                    {proposal.clientName
+                      ? proposal.clientName.trim().split(/\s+/).length
+                      : 0}{" "}
+                    / 5 words
+                  </p>
+                </div>
               </div>
 
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
@@ -783,7 +835,7 @@ const CreateProposal = () => {
                       name={name}
                       value={proposal[name] || ""}
                       onChange={handleChange}
-                      className="w-full p-2 border rounded-md focus:ring focus:ring-blue-300"
+                      className="w-full p-2 border border-primary-subtle rounded focus:outline-none  focus:bg-white focus:ring-0 bg-[#F5FBFF]"
                       required
                     />
                   </div>
@@ -791,7 +843,7 @@ const CreateProposal = () => {
               </div>
 
               <div>
-                <label className="block text-gray-700 font-medium mt-4">
+                {/* <label className="block text-gray-700 font-medium mt-4">
                   Proposal Description
                 </label>
                 <textarea
@@ -800,33 +852,88 @@ const CreateProposal = () => {
                   onChange={handleChange}
                   className="w-full h-[25vh] p-2 border rounded-md focus:ring focus:ring-blue-300"
                   required
+                /> */}
+                <label className="block text-gray-700 font-medium mt-4">
+                  Proposal Description
+                </label>
+                <textarea
+                  name="proposalDescription"
+                  value={proposal.proposalDescription || ""}
+                  onChange={(e) => {
+                    const words = e.target.value.trim().split(/\s+/);
+                    if (words.length <= 16) {
+                      handleChange(e);
+                    }
+                  }}
+                  className="w-full h-[25vh] p-2 border border-primary-subtle rounded focus:outline-none  focus:bg-white focus:ring-0 bg-[#F5FBFF]"
+                  required
                 />
+                <p className="text-sm text-gray-500">
+                  {proposal.proposalDescription
+                    ? proposal.proposalDescription.trim().split(/\s+/).length
+                    : 0}
+                  /16 words
+                </p>
               </div>
             </div>
             <div className="col bg-white p-4 border border-gray-300 rounded-lg m-3">
               <h3 className="text-lg font-semibold">Scope of Work</h3>
+
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                {[
-                  { label: "Title", key: "title" },
-                  { label: "Objective", key: "objective" },
-                ].map(({ label, key }) => (
-                  <div key={key}>
-                    <label className="block text-gray-700 font-medium">
-                      {label}
-                    </label>
-                    <textarea
-                      type="text"
-                      value={proposal.scopeOfWork?.[key] || ""}
-                      onChange={(e) => handleScopeChange(e, key)}
-                      className="w-full h-[20vh]  p-2 border rounded-md focus:ring focus:ring-blue-300"
-                      required
-                    />
-                  </div>
-                ))}
+                {/* Title Input */}
+                <div>
+                  <label className="block text-gray-700 font-medium mt-4">
+                    Title
+                  </label>
+                  <textarea
+                    name="title"
+                    value={proposal.scopeOfWork?.title || ""}
+                    onChange={(e) => {
+                      const words = e.target.value.trim().split(/\s+/);
+                      if (words.length <= 15) {
+                        handleScopeChange(e, "title");
+                      }
+                    }}
+                    className="w-full h-[20vh] p-2 border border-primary-subtle rounded focus:outline-none  focus:bg-white focus:ring-0 bg-[#F5FBFF]"
+                    required
+                  />
+                  <p className="text-sm text-gray-500">
+                    {proposal.scopeOfWork?.title
+                      ? proposal.scopeOfWork?.title.trim().split(/\s+/).length
+                      : 0}
+                    /15 words
+                  </p>
+                </div>
+
+                {/* Objective Input */}
+                <div>
+                  <label className="block text-gray-700 font-medium mt-4">
+                    Objective
+                  </label>
+                  <textarea
+                    name="objective"
+                    value={proposal.scopeOfWork?.objective || ""}
+                    onChange={(e) => {
+                      const words = e.target.value.trim().split(/\s+/);
+                      if (words.length <= 40) {
+                        handleScopeChange(e, "objective");
+                      }
+                    }}
+                    className="w-full h-[20vh] p-2 border border-primary-subtle rounded focus:outline-none  focus:bg-white focus:ring-0 bg-[#F5FBFF]"
+                    required
+                  />
+                  <p className="text-sm text-gray-500">
+                    {proposal.scopeOfWork?.objective
+                      ? proposal.scopeOfWork?.objective.trim().split(/\s+/)
+                          .length
+                      : 0}
+                    /40 words
+                  </p>
+                </div>
               </div>
 
               <div className="flex gap-8">
-                {[
+                {/* {[
                   { title: "Services", key: "services" },
                   { title: "Description", key: "description" },
                 ].map(({ title, key }) => (
@@ -860,7 +967,117 @@ const CreateProposal = () => {
                       + Add {title.slice(0, -1)}
                     </button>
                   </div>
-                ))}
+                ))} */}
+              </div>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                {/* Services Input */}
+                <div>
+                  <h4 className="font-medium mt-4">Services</h4>
+                  <div className="space-y-2">
+                    {proposal.scopeOfWork?.services?.map((item, index) => (
+                      <div key={index} className="flex items-center gap-2">
+                        <textarea
+                          type="text"
+                          placeholder="Service"
+                          value={item}
+                          onChange={(e) => {
+                            const words = e.target.value.trim().split(/\s+/);
+                            if (words.length <= 10) {
+                              handleArrayChange(e, "services", index);
+                            }
+                          }}
+                          className="w-full h-[20vh] p-2 border border-primary-subtle rounded focus:outline-none  focus:bg-white focus:ring-0 bg-[#F5FBFF]"
+                        />
+                        <button
+                          type="button"
+                          onClick={() => removeArrayField("services", index)}
+                          className="bg-red-200 px-2 py-1 rounded"
+                        >
+                          <i className="bi bi-trash text-danger"></i>
+                        </button>
+                      </div>
+                    ))}
+                  </div>
+                  {/* <p className="text-sm text-gray-500">
+                    {proposal.scopeOfWork?.services?.map(
+                      (item) => item.trim().split(/\s+/).length
+                    ) || 0}{" "}
+                    / 10 words
+                  </p> */}
+                  <p className="text-sm text-gray-500">
+                    {proposal.scopeOfWork?.services?.length
+                      ? proposal.scopeOfWork.services
+                          .map((item) =>
+                            item.trim() ? item.trim().split(/\s+/).length : 0
+                          )
+                          .reduce((a, b) => a + b, 0)
+                      : 0}{" "}
+                    / 10 words
+                  </p>
+
+                  <button
+                    type="button"
+                    onClick={() => addArrayField("services")}
+                    className="mt-2 px-4 py-2 bg-[#0d6efd] text-white rounded hover:bg-[#afcdf7]"
+                    id="addBtn"
+                  >
+                    + Add Service
+                  </button>
+                </div>
+
+                {/* Description Input */}
+                <div>
+                  <h4 className="font-medium mt-4">Description</h4>
+                  <div className="space-y-2">
+                    {proposal.scopeOfWork?.description?.map((item, index) => (
+                      <div key={index} className="flex items-center gap-2">
+                        <textarea
+                          type="text"
+                          placeholder="Description"
+                          value={item}
+                          onChange={(e) => {
+                            const words = e.target.value.trim().split(/\s+/);
+                            if (words.length <= 30) {
+                              handleArrayChange(e, "description", index);
+                            }
+                          }}
+                          className="w-full h-[20vh] p-2 border border-primary-subtle rounded focus:outline-none  focus:bg-white focus:ring-0 bg-[#F5FBFF]"
+                        />
+                        <button
+                          type="button"
+                          onClick={() => removeArrayField("description", index)}
+                          className="bg-red-200 px-2 py-1 rounded"
+                        >
+                          <i className="bi bi-trash text-danger"></i>
+                        </button>
+                      </div>
+                    ))}
+                  </div>
+                  {/* <p className="text-sm text-gray-500">
+                    {proposal.scopeOfWork?.description?.map(
+                      (item) => item.trim().split(/\s+/).length
+                    ) || 0}{" "}
+                    / 30 words
+                  </p> */}
+                  <p className="text-sm text-gray-500">
+                    {proposal.scopeOfWork?.description?.length
+                      ? proposal.scopeOfWork.description
+                          .map((item) =>
+                            item.trim() ? item.trim().split(/\s+/).length : 0
+                          )
+                          .reduce((a, b) => a + b, 0) // Sum word counts
+                      : 0}{" "}
+                    / 30 words
+                  </p>
+                  <button
+                    type="button"
+                    onClick={() => addArrayField("description")}
+                    className="mt-2 px-4 py-2 bg-[#0d6efd] text-white rounded hover:bg-[#afcdf7]"
+                    id="addBtn"
+                  >
+                    + Add Description
+                  </button>
+                </div>
               </div>
             </div>
             <div className="col bg-white p-4 border border-gray-300 rounded-lg m-3">
@@ -882,7 +1099,7 @@ const CreateProposal = () => {
                       },
                     })
                   }
-                  className="p-2 border rounded-md w-20"
+                  className="p-2 border border-primary-subtle rounded focus:outline-none  focus:bg-white focus:ring-0 bg-[#F5FBFF]"
                 />
                 <input
                   type="number"
@@ -897,10 +1114,10 @@ const CreateProposal = () => {
                       },
                     })
                   }
-                  className="p-2 border rounded-md w-20"
+                  className="p-2 border border-primary-subtle rounded focus:outline-none  focus:bg-white focus:ring-0 bg-[#F5FBFF] w-20"
                 />
               </div>
-              {proposal.timelineDeliverables.map((timeline, timelineIndex) => (
+              {/* {proposal.timelineDeliverables.map((timeline, timelineIndex) => (
                 <div
                   key={timelineIndex}
                   className="border p-4 rounded-md space-y-3"
@@ -932,7 +1149,7 @@ const CreateProposal = () => {
                     </div>
                   </div>
 
-                  {/* Weeks */}
+                
                   <div className="mt-2">
                     <h4 className="font-medium">Weeks</h4>
                     {Object.entries(timeline.week).map(
@@ -966,11 +1183,108 @@ const CreateProposal = () => {
                     Remove Timeline & Deliverables
                   </button>
                 </div>
+              ))} */}
+
+              {proposal.timelineDeliverables.map((timeline, timelineIndex) => (
+                <div
+                  key={timelineIndex}
+                  className="border p-4 rounded-md space-y-3"
+                >
+                  <div className="grid grid-cols-2 gap-4">
+                    {/* Task Input with Word Limit (10) */}
+                    <div>
+                      <label className="block font-medium">Task</label>
+                      <textarea
+                        name="task"
+                        value={timeline.task}
+                        onChange={(e) => {
+                          const words = e.target.value.trim().split(/\s+/);
+                          if (words.length <= 10) {
+                            handleTimelineChange(e, timelineIndex, "task");
+                          }
+                        }}
+                        className="w-full p-2 border border-primary-subtle rounded focus:outline-none  focus:bg-white focus:ring-0 bg-[#F5FBFF] h-[25vh]"
+                        required
+                      />
+                      <p className="text-sm text-gray-500">
+                        {timeline.task
+                          ? timeline.task.trim().split(/\s+/).length
+                          : 0}{" "}
+                        / 10 words
+                      </p>
+                    </div>
+
+                    {/* Deliverables Input with Word Limit (20) */}
+                    <div>
+                      <label className="block font-medium">Deliverables</label>
+                      <textarea
+                        name="deliverables"
+                        value={timeline.deliverables}
+                        onChange={(e) => {
+                          const words = e.target.value.trim().split(/\s+/);
+                          if (words.length <= 20) {
+                            handleTimelineChange(
+                              e,
+                              timelineIndex,
+                              "deliverables"
+                            );
+                          }
+                        }}
+                        className="w-full p-2 border border-primary-subtle rounded focus:outline-none  focus:bg-white focus:ring-0 bg-[#F5FBFF] h-[25vh]"
+                        required
+                      />
+                      <p className="text-sm text-gray-500">
+                        {timeline.deliverables
+                          ? timeline.deliverables.trim().split(/\s+/).length
+                          : 0}{" "}
+                        / 20 words
+                      </p>
+                    </div>
+                  </div>
+
+                  {/* Weeks Section */}
+                  <div className="mt-2">
+                    <h4 className="font-medium">Weeks</h4>
+                    {Object.entries(timeline.week).map(
+                      ([weekKey, value], weekIndex) => (
+                        <div key={weekIndex} className="flex gap-4 mt-1">
+                          <label className="font-medium">{weekKey}</label>
+                          <input
+                            type="number"
+                            placeholder={`Value for ${weekKey}`}
+                            value={value}
+                            onChange={(e) =>
+                              handleTimelineChange(
+                                e,
+                                timelineIndex,
+                                "week",
+                                weekKey
+                              )
+                            }
+                            className="p-2 border border-primary-subtle rounded focus:outline-none  focus:bg-white focus:ring-0 bg-[#F5FBFF] w-24"
+                            required
+                          />
+                        </div>
+                      )
+                    )}
+                  </div>
+
+                  {/* Remove Button */}
+                  <button
+                    type="button"
+                    onClick={() => removeTimeline(timelineIndex)}
+                    className="mt-2 p-1 bg-red-200 text-red-500 px-2 rounded"
+                  >
+                    Remove Timeline & Deliverables
+                  </button>
+                </div>
               ))}
+
               <button
                 type="button"
                 onClick={addTimeline}
-                className="mt-4 p-2 bg-gray-400 text-white rounded hover:bg-black"
+                className="mt-4 p-2 bg-[#0d6efd] text-white rounded hover:bg-[#afcdf7]"
+                id="addBtn"
               >
                 Add Timeline & Deliverables
               </button>
@@ -991,10 +1305,10 @@ const CreateProposal = () => {
                       proposedCost: e.target.value,
                     })
                   }
-                  className="p-2 border rounded-md w-30"
+                  className="p-2 border border-primary-subtle rounded focus:outline-none  focus:bg-white focus:ring-0 bg-[#F5FBFF] w-30"
                 />
               </div>
-              {proposal.proposedInvestment.map((proposed, Index) => (
+              {/* {proposal.proposedInvestment.map((proposed, Index) => (
                 <div key={Index} className="border p-4 rounded-md space-y-3">
                   <div className="grid grid-cols-2 gap-4">
                     <div>
@@ -1040,18 +1354,92 @@ const CreateProposal = () => {
                     Remove Proposed Investment
                   </button>
                 </div>
+              ))} */}
+              {proposal.proposedInvestment.map((proposed, Index) => (
+                <div key={Index} className="border p-4 rounded-md space-y-3">
+                  <div className="grid grid-cols-2 gap-4">
+                    {/* Services Input with Word Limit (10) */}
+                    <div>
+                      <label className="block font-medium">Services</label>
+                      <textarea
+                        name="services"
+                        value={proposed.services}
+                        onChange={(e) => {
+                          const words = e.target.value.trim().split(/\s+/);
+                          if (words.length <= 10) {
+                            handleProposedChange(e, Index, "services");
+                          }
+                        }}
+                        className="w-full p-2 border border-primary-subtle rounded focus:outline-none  focus:bg-white focus:ring-0 bg-[#F5FBFF] h-[25vh]"
+                        required
+                      />
+                      <p className="text-sm text-gray-500">
+                        {proposed.services
+                          ? proposed.services.trim().split(/\s+/).length
+                          : 0}{" "}
+                        / 10 words
+                      </p>
+                    </div>
+
+                    {/* Description Input with Word Limit (20) */}
+                    <div>
+                      <label className="block font-medium">Description</label>
+                      <textarea
+                        name="description"
+                        value={proposed.description}
+                        onChange={(e) => {
+                          const words = e.target.value.trim().split(/\s+/);
+                          if (words.length <= 20) {
+                            handleProposedChange(e, Index, "description");
+                          }
+                        }}
+                        className="w-full p-2 border border-primary-subtle rounded focus:outline-none  focus:bg-white focus:ring-0 bg-[#F5FBFF] h-[25vh]"
+                        required
+                      />
+                      <p className="text-sm text-gray-500">
+                        {proposed.description
+                          ? proposed.description.trim().split(/\s+/).length
+                          : 0}{" "}
+                        / 20 words
+                      </p>
+                    </div>
+
+                    {/* Cost Input (No Word Limit) */}
+                    <div>
+                      <label className="block font-medium">Cost</label>
+                      <textarea
+                        name="cost"
+                        value={proposed.cost}
+                        onChange={(e) => handleProposedChange(e, Index, "cost")}
+                        className="w-50 p-2 border border-primary-subtle rounded focus:outline-none  focus:bg-white focus:ring-0 bg-[#F5FBFF] h-[6vh]"
+                        required
+                      />
+                    </div>
+                  </div>
+
+                  {/* Remove Button */}
+                  <button
+                    type="button"
+                    onClick={() => removeProposed(Index)}
+                    className="mt-2 p-1 bg-red-200 text-red-500 px-2 rounded"
+                  >
+                    Remove Proposed Investment
+                  </button>
+                </div>
               ))}
+
               <button
                 type="button"
                 onClick={addProposed}
-                className="mt-4 p-2 bg-gray-400 text-white rounded hover:bg-black"
+                className="mt-4 p-2 bg-[#0d6efd] text-white rounded hover:bg-[#afcdf7]"
+                id="addBtn"
               >
                 Add Proposed Investment
               </button>
             </div>
             <div className="col bg-white p-4 border border-gray-300 rounded-lg m-3">
               <h3 className="text-lg font-semibold">Payments Terms</h3>
-              {proposal.payments.map((proposed, Index) => (
+              {/* {proposal.payments.map((proposed, Index) => (
                 <div key={Index} className="border p-4 rounded-md space-y-3">
                   <div className="grid grid-cols-2 gap-4">
                     <div>
@@ -1087,11 +1475,64 @@ const CreateProposal = () => {
                     Remove Payments Terms
                   </button>
                 </div>
+              ))} */}
+              {proposal.payments.map((proposed, Index) => (
+                <div key={Index} className="border p-4 rounded-md space-y-3">
+                  <div className="grid grid-cols-2 gap-4">
+                    {/* Terms Input with Word Limit (10) */}
+                    <div>
+                      <label className="block font-medium">Terms</label>
+                      <textarea
+                        name="terms"
+                        value={proposed.terms}
+                        onChange={(e) => {
+                          const words = e.target.value.trim().split(/\s+/);
+                          if (words.length <= 10) {
+                            handlePaymentsChange(e, Index, "terms");
+                          }
+                        }}
+                        className="w-full p-2 border border-primary-subtle rounded focus:outline-none  focus:bg-white focus:ring-0 bg-[#F5FBFF] h-[25vh]"
+                        required
+                      />
+                      <p className="text-sm text-gray-500">
+                        {proposed.terms
+                          ? proposed.terms.trim().split(/\s+/).length
+                          : 0}{" "}
+                        / 10 words
+                      </p>
+                    </div>
+
+                    {/* Amount Input (No Word Limit) */}
+                    <div>
+                      <label className="block font-medium">Amount</label>
+                      <textarea
+                        name="amount"
+                        value={proposed.amount}
+                        onChange={(e) =>
+                          handlePaymentsChange(e, Index, "amount")
+                        }
+                        className="w-50 p-2 border border-primary-subtle rounded focus:outline-none  focus:bg-white focus:ring-0 bg-[#F5FBFF] h-[6vh]"
+                        required
+                      />
+                    </div>
+                  </div>
+
+                  {/* Remove Button */}
+                  <button
+                    type="button"
+                    onClick={() => removePayments(Index)}
+                    className="mt-2 p-1 bg-red-200 text-red-500 px-2 rounded"
+                  >
+                    Remove Payments Terms
+                  </button>
+                </div>
               ))}
+
               <button
                 type="button"
                 onClick={addPayments}
-                className="mt-4 p-2 bg-gray-400 text-white rounded hover:bg-black"
+                className="mt-4 p-2 bg-[#0d6efd] text-white rounded hover:bg-[#afcdf7]"
+                id="addBtn"
               >
                 Add Payments Terms
               </button>
@@ -1099,7 +1540,8 @@ const CreateProposal = () => {
 
             <button
               type="submit"
-              className="w-25 m-4 px-4 py-2 bg-black text-white rounded hover:bg-green-600"
+              className="w-25 m-4 px-4 py-2 bg-[#0d6efd] text-white rounded hover:bg-[#afcdf7]"
+              id="addBtn"
             >
               Create Proposal
             </button>

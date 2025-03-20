@@ -402,7 +402,7 @@ const EditProposal = () => {
                       name={name}
                       value={proposal[name] || ""}
                       onChange={(e) => handleChange(e, name)}
-                      className="w-full p-2 border rounded-md focus:ring focus:ring-blue-300"
+                      className="w-full p-2 border border-warning-subtle rounded focus:outline-none focus:bg-white focus:ring-0 bg-[#FFFFEE]"
                       required
                     />
                   </div>
@@ -459,7 +459,7 @@ const EditProposal = () => {
                           : proposal[name] || ""
                       }
                       onChange={(e) => handleChange(e, name)} // Ensure the correct field is updated
-                      className="w-full p-2 border rounded-md focus:ring focus:ring-blue-300"
+                      className="w-full p-2 border border-warning-subtle rounded focus:outline-none focus:bg-white focus:ring-0 bg-[#FFFFEE]"
                       required
                     />
                   </div>
@@ -474,7 +474,7 @@ const EditProposal = () => {
                   name="proposalDescription"
                   value={proposal.proposalDescription || ""}
                   onChange={(e) => handleChange(e, "proposalDescription")}
-                  className="w-full h-[25vh] p-2 border rounded-md focus:ring focus:ring-blue-300"
+                  className="w-full h-[25vh] p-2 border border-warning-subtle rounded focus:outline-none focus:bg-white focus:ring-0 bg-[#FFFFEE]"
                   required
                 />
               </div>
@@ -558,7 +558,7 @@ const EditProposal = () => {
                       onChange={(e) =>
                         handleNestedChange(e, "scopeOfWork", key)
                       }
-                      className="w-full h-[20vh] p-2 border rounded-md focus:ring focus:ring-blue-300"
+                      className="w-full h-[20vh] p-2 border border-warning-subtle rounded focus:outline-none focus:bg-white focus:ring-0 bg-[#FFFFEE]"
                       required
                     />
                   </div>
@@ -582,7 +582,7 @@ const EditProposal = () => {
                             onChange={(e) =>
                               handleArrayChange(e, "scopeOfWork", key, index)
                             }
-                            className="w-[40vw] h-[20vh] p-2 border rounded-md focus:ring focus:ring-blue-300"
+                            className="w-[40vw] h-[20vh] p-2 border border-warning-subtle rounded focus:outline-none focus:bg-white focus:ring-0 bg-[#FFFFEE]"
                           />
                           <button
                             type="button"
@@ -626,7 +626,7 @@ const EditProposal = () => {
                       },
                     }))
                   }
-                  className="p-2 border rounded-md w-20"
+                  className="p-2 border border-warning-subtle rounded focus:outline-none focus:bg-white focus:ring-0 bg-[#FFFFEE] w-20"
                 />
                 <input
                   type="number"
@@ -641,7 +641,7 @@ const EditProposal = () => {
                       },
                     }))
                   }
-                  className="p-2 border rounded-md w-20"
+                  className="p-2 border border-warning-subtle rounded focus:outline-none focus:bg-white focus:ring-0 bg-[#FFFFEE] w-20"
                 />
               </div>
 
@@ -659,7 +659,7 @@ const EditProposal = () => {
                         onChange={(e) =>
                           handleTimelineChange(e, timelineIndex, "task")
                         }
-                        className="w-full p-2 border rounded-md h-[25vh]"
+                        className="w-full p-2 border border-warning-subtle rounded focus:outline-none focus:bg-white focus:ring-0 bg-[#FFFFEE] h-[25vh]"
                         required
                       />
                     </div>
@@ -672,7 +672,7 @@ const EditProposal = () => {
                         onChange={(e) =>
                           handleTimelineChange(e, timelineIndex, "deliverables")
                         }
-                        className="w-full p-2 border rounded-md h-[25vh]"
+                        className="w-full p-2 border border-warning-subtle rounded focus:outline-none focus:bg-white focus:ring-0 bg-[#FFFFEE] h-[25vh]"
                         required
                       />
                     </div>
@@ -687,7 +687,7 @@ const EditProposal = () => {
                       onChange={(e) =>
                         handleWeekChange(e.target.value, timelineIndex, "week1")
                       }
-                      className="p-2 border rounded-md w-20"
+                      className="p-2 border border-warning-subtle rounded focus:outline-none focus:bg-white focus:ring-0 bg-[#FFFFEE] w-20"
                     />
                     <input
                       type="number"
@@ -696,21 +696,16 @@ const EditProposal = () => {
                       onChange={(e) =>
                         handleWeekChange(e.target.value, timelineIndex, "week2")
                       }
-                      className="p-2 border rounded-md w-20"
+                      className="p-2 border border-warning-subtle rounded focus:outline-none focus:bg-white focus:ring-0 bg-[#FFFFEE] w-20"
                     />
                   </div>
-                  <div className="flex items-center">
-                    <h2 className="px-2 w-[250px]">
-                      Remove Timeline & Deliverables
-                    </h2>
-                    <button
-                      type="button"
-                      onClick={() => removeTimeline(timelineIndex)}
-                      className="bg-red-200 px-2 py-1 rounded"
-                    >
-                      <i className="bi bi-trash text-danger"></i>
-                    </button>
-                  </div>
+                  <button
+                    type="button"
+                    onClick={() => removeTimeline(timelineIndex)}
+                    className="mt-2 p-1 bg-red-200 text-red-500 px-2 rounded"
+                  >
+                    Remove Timeline & Deliverables
+                  </button>
                 </div>
               ))}
             </div>
@@ -731,7 +726,7 @@ const EditProposal = () => {
                       proposedCost: e.target.value,
                     })
                   }
-                  className="p-2 border rounded-md w-30"
+                  className="p-2 border border-warning-subtle rounded focus:outline-none focus:bg-white focus:ring-0 bg-[#FFFFEE] w-30"
                 />
               </div>
               {proposal.proposedInvestment.map((investment, Index) => (
@@ -745,7 +740,7 @@ const EditProposal = () => {
                         onChange={(e) =>
                           handleInvestmentChange(e, Index, "services")
                         }
-                        className="w-full p-2 border rounded-md h-[25vh]"
+                        className="w-full p-2 border border-warning-subtle rounded focus:outline-none focus:bg-white focus:ring-0 bg-[#FFFFEE] h-[25vh]"
                         required
                       />
                     </div>
@@ -757,7 +752,7 @@ const EditProposal = () => {
                         onChange={(e) =>
                           handleInvestmentChange(e, Index, "description")
                         }
-                        className="w-full p-2 border rounded-md h-[25vh]"
+                        className="w-full p-2 border border-warning-subtle rounded focus:outline-none focus:bg-white focus:ring-0 bg-[#FFFFEE] h-[25vh]"
                         required
                       />
                     </div>
@@ -769,23 +764,18 @@ const EditProposal = () => {
                         onChange={(e) =>
                           handleInvestmentChange(e, Index, "cost")
                         }
-                        className="w-full p-2 border rounded-md h-[25vh]"
+                        className="w-full p-2 border border-warning-subtle rounded focus:outline-none focus:bg-white focus:ring-0 bg-[#FFFFEE] h-[25vh]"
                         required
                       />
                     </div>
                   </div>
-                  <div className="flex items-center">
-                    <h2 className="px-2 w-[250px]">
-                      Remove Proposed Investment
-                    </h2>
-                    <button
-                      type="button"
-                      onClick={() => removeProposed(Index)}
-                      className="bg-red-200 px-2 py-1 rounded"
-                    >
-                      <i className="bi bi-trash text-danger"></i>
-                    </button>
-                  </div>
+                  <button
+                    type="button"
+                    onClick={() => removeProposed(Index)}
+                    className="mt-2 p-1 bg-red-200 text-red-500 px-2 rounded"
+                  >
+                    Remove Proposed Investment
+                  </button>
                 </div>
               ))}
             </div>
@@ -800,7 +790,7 @@ const EditProposal = () => {
                         type="text"
                         value={payment.terms || ""}
                         onChange={(e) => handlePaymentChange(e, Index, "terms")}
-                        className="w-full p-2 border rounded-md h-[25vh]"
+                        className="w-full p-2 border border-warning-subtle rounded focus:outline-none focus:bg-white focus:ring-0 bg-[#FFFFEE] h-[25vh]"
                         required
                       />
                     </div>
@@ -812,28 +802,26 @@ const EditProposal = () => {
                         onChange={(e) =>
                           handlePaymentChange(e, Index, "amount")
                         }
-                        className="w-full p-2 border rounded-md h-[25vh]"
+                        className="w-full p-2 border border-warning-subtle rounded focus:outline-none focus:bg-white focus:ring-0 bg-[#FFFFEE] h-[25vh]"
                         required
                       />
                     </div>
                   </div>
-                  <div className="flex items-center">
-                    <h2 className="px-2 w-[250px]">Remove Payments Terms</h2>
-                    <button
-                      type="button"
-                      onClick={() => removePayments(Index)}
-                      className="bg-red-200 px-2 py-1 rounded"
-                    >
-                      <i className="bi bi-trash text-danger"></i>
-                    </button>
-                  </div>
+                  <button
+                    type="button"
+                    onClick={() => removePayments(Index)}
+                    className="mt-2 p-1 bg-red-200 text-red-500 px-2 rounded"
+                  >
+                    Remove Payments Terms
+                  </button>
                 </div>
               ))}
             </div>
 
             <button
               type="submit"
-              className="w-25 m-4 px-4 py-2 bg-black text-white rounded hover:bg-green-600"
+              className="w-25 m-4 px-4 py-2 bg-[#f7dc6f] text-white rounded hover:bg-[#fce68d]"
+              id="updateBtn"
             >
               Update Proposal
             </button>

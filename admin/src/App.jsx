@@ -201,6 +201,7 @@ import RefreshHandler from "./components/RefreshHandler";
 import CreateProposal from "./components/CreateProposal";
 import EditProposal from "./components/EditProposal";
 import ShowAllpages from "./ShowAllpages";
+import "./index.css";
 
 function App() {
   const [isAuthenticated, setIsAuthenticated] = useState(null); // Start as null to avoid premature redirection
@@ -219,8 +220,9 @@ function App() {
   };
 
   const downloadPDF = (id) => {
-    console.log("Download PDF called with ID:", id);
-    window.location.href = `/proposal/${id}`;
+    // console.log("Download PDF called with ID:", id);
+    // window.location.href = `/proposal/${id}`;
+    window.open(`/proposal/${id}`, "_blank", "noopener,noreferrer");
   };
 
   return (

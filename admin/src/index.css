@@ -1,0 +1,11 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+#addBtn:hover {
+  color: blue !important;
+}
+
+#updateBtn:hover {
+  color: #000 !important;
+}

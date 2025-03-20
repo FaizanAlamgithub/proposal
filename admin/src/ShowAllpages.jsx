@@ -123,7 +123,7 @@ function ShowAllpages() {
     const fetchProposal = async () => {
       try {
         const response = await fetch(
-          `https://proposal-backend-1dom.onrender.com/api/proposals/${id}`
+          `http://localhost:5000/api/proposals/${id}`
         );
         if (!response.ok) {
           throw new Error("Failed to fetch proposal");
@@ -157,7 +157,7 @@ function ShowAllpages() {
       <button
         onClick={downloadPDF}
         disabled={downloading}
-        className="download-btn absolute right-0 top-[10%] z-10 flex items-center gap-2 px-4 py-2 bg-blue-600 text-white font-semibold hover:bg-blue-700 disabled:opacity-50 disabled:cursor-not-allowed"
+        className="download-btn absolute left-0 bottom-[10%] z-10 flex items-center gap-2 px-4 py-2 bg-blue-600 text-white font-semibold hover:bg-blue-700 disabled:opacity-50 disabled:cursor-not-allowed"
       >
         {downloading ? (
           <>

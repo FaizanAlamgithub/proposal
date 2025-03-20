@@ -48,7 +48,7 @@ const ExpiredProposalModal = ({ show, handleClose }) => {
           <div className="modal-footer border-0 d-flex justify-content-center pb-4">
             <button
               type="button"
-              className="btn btn-dark px-4 py-2 rounded shadow-sm"
+              className="btn btn-dark px-4 py-2 rounded bg-black text-white shadow-sm"
               onClick={handleClose}
             >
               Close

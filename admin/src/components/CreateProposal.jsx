@@ -2100,7 +2100,7 @@ const CreateProposal = () => {
                 <label className="font-medium">Timeline Heading</label>
                 <input
                   type="text"
-                  placeholder="Enter timeline"
+                  placeholder="Enter timeline heading"
                   value={proposal.timelineWeeks.timeLine}
                   onChange={(e) =>
                     setProposal({
@@ -2175,7 +2175,7 @@ const CreateProposal = () => {
                       <label className="font-medium">Timeline</label>
                       <input
                         type="text"
-                        placeholder="Enter week range"
+                        placeholder="Enter Timeline"
                         value={timeline.timelineText || ""}
                         onChange={(e) =>
                           handleTimelineChange(e, timelineIndex, "timelineText")

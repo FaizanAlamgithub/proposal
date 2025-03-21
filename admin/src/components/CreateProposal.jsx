@@ -2409,10 +2409,6 @@ const CreateProposal = () => {
     clientName: "",
     expiryDate: "",
     proposalDescription: "",
-<<<<<<< HEAD
-=======
-    // clientId: "",
->>>>>>> f2ef5f6d07470127345162c655a50a4746ec1b6f
     scopeOfWork: {
       title: "",
       objective: "",

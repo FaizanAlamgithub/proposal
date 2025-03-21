@@ -689,7 +689,7 @@ function Dashboard({ downloadPDF }) {
     try {
       const token = localStorage.getItem("token");
       const response = await fetch(
-        `http://localhost:5000/api/proposals/delete/${selectedProposalId}`,
+        `https://proposal-backend-r6dj.onrender.com/api/proposals/delete/${selectedProposalId}`,
         {
           method: "DELETE",
           headers: {

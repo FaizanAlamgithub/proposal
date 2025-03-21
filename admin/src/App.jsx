@@ -202,6 +202,7 @@ import CreateProposal from "./components/CreateProposal";
 import EditProposal from "./components/EditProposal";
 import ShowAllpages from "./ShowAllpages";
 import "./index.css";
+import Archived from "./components/Archived";
 
 function App() {
   const [isAuthenticated, setIsAuthenticated] = useState(null); // Start as null to avoid premature redirection
@@ -251,6 +252,10 @@ function App() {
         <Route
           path="/proposal/:id"
           element={<PrivateRoute element={<ShowAllpages />} />}
+        />
+        <Route
+          path="/proposal/archive"
+          element={<PrivateRoute element={<Archived />} />}
         />
         <Route
           path="/create-proposal"

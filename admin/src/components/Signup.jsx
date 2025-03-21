@@ -24,7 +24,7 @@ const Signup = () => {
       return handleError("All fields are require");
     }
     try {
-      const url = "http://localhost:5000/auth/signup";
+      const url = "https://proposal-backend-1dom.onrender.com/auth/signup";
       const response = await fetch(url, {
         method: "POST",
         headers: {

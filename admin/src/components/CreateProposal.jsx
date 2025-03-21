@@ -2409,6 +2409,10 @@ const CreateProposal = () => {
     clientName: "",
     expiryDate: "",
     proposalDescription: "",
+<<<<<<< HEAD
+=======
+    // clientId: "",
+>>>>>>> f2ef5f6d07470127345162c655a50a4746ec1b6f
     scopeOfWork: {
       title: "",
       objective: "",
@@ -2566,7 +2570,7 @@ const CreateProposal = () => {
     e.preventDefault();
     try {
       const response = await fetch(
-        "http://localhost:5000/api/proposals/create",
+        "https://proposal-backend-1dom.onrender.com/api/proposals/create",
         {
           method: "POST",
           headers: { "Content-Type": "application/json" },

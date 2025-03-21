@@ -593,7 +593,7 @@ function Dashboard({ downloadPDF }) {
       if (!token) throw new Error("Unauthorized access. Please log in.");
 
       const response = await fetch(
-        "http://localhost:5000/api/proposals/?admin=true",
+        `http://localhost:5000/api/proposals/?admin=true`,
         {
           method: "GET",
           headers: {

@@ -245,7 +245,7 @@ const ClientLogin = ({ setProposal }) => {
 
     try {
       const response = await fetch(
-        "http://localhost:5000/api/proposals/login",
+        "https://proposal-backend-r6dj.onrender.com/api/proposals/login",
         {
           method: "POST",
           headers: {

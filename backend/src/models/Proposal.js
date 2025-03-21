@@ -36,7 +36,6 @@ const ProposalSchema = new mongoose.Schema(
     clientName: { type: String, required: true },
     expiryDate: { type: Date, required: true },
     proposalDescription: { type: String, required: true },
-    clientId: { type: String },
     proposalPassword: { type: String, required: true },
     isAccepted: { type: Boolean, default: false },
     createdDate: { type: Date, default: Date.now },

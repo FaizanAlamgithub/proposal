@@ -46,6 +46,67 @@ const generatePassword = () => Math.floor(1000 + Math.random() * 9000);
 //   }
 // };
 
+// exports.createProposal = async (req, res) => {
+//   try {
+//     const {
+//       companyName,
+//       clientName,
+//       expiryDate,
+//       proposalDescription,
+//       scopeOfWork, // Keep scopeOfWork
+//       timelineDeliverables,
+//       timelineWeeks,
+//       proposedInvestment,
+//       proposedCost,
+//       payments,
+//     } = req.body;
+
+//     if (
+//       !companyName ||
+//       !clientName ||
+//       !expiryDate ||
+//       !proposalDescription ||
+//       !scopeOfWork ||
+//       !timelineDeliverables ||
+//       !timelineWeeks ||
+//       !proposedInvestment ||
+//       !proposedCost ||
+//       !payments
+//     ) {
+//       return res.status(400).json({ error: "All fields are required." });
+//     }
+
+//     // Generate auto password
+//     const proposalPassword = generatePassword();
+
+//     // Create a new Proposal
+//     const newProposal = new Proposal({
+//       companyName,
+//       clientName,
+//       expiryDate: new Date(expiryDate),
+//       proposalDescription,
+//       proposalPassword,
+//       isAccepted: false,
+//       createdDate: new Date(),
+//       scopeOfWork, // Save scopeOfWork inside Proposal
+//       timelineDeliverables,
+//       timelineWeeks,
+//       proposedInvestment,
+//       proposedCost,
+//       payments,
+//     });
+
+//     await newProposal.save();
+//     res.status(201).json({
+//       message: "Proposal created successfully",
+//       proposal: newProposal,
+//     });
+//   } catch (error) {
+//     res.status(500).json({ error: error.message });
+//   }
+// };
+
+
 exports.createProposal = async (req, res) => {
   try {
     const {
@@ -53,8 +114,7 @@ exports.createProposal = async (req, res) => {
       clientName,
       expiryDate,
       proposalDescription,
-      // clientId,
-      scopeOfWork, // Keep scopeOfWork
+      scopeOfWork,
       timelineDeliverables,
       timelineWeeks,
       proposedInvestment,
@@ -62,12 +122,12 @@ exports.createProposal = async (req, res) => {
       payments,
     } = req.body;
 
+    // Validation: Check for required fields
     if (
       !companyName ||
       !clientName ||
       !expiryDate ||
       !proposalDescription ||
-      // !clientId ||
       !scopeOfWork ||
       !timelineDeliverables ||
       !timelineWeeks ||
@@ -78,20 +138,31 @@ exports.createProposal = async (req, res) => {
       return res.status(400).json({ error: "All fields are required." });
     }
 
+    // Additional validation for nested required fields (optional, based on schema)
+    if (
+      !scopeOfWork.title ||
+      !scopeOfWork.objective ||
+      !timelineWeeks.timeLine
+    ) {
+      return res.status(400).json({ error: "Nested required fields are missing." });
+    }
+
     // Generate auto password
     const proposalPassword = generatePassword();
+
+    // Log the incoming data for debugging
+    console.log("Received proposal data:", JSON.stringify(req.body, null, 2));
 
     // Create a new Proposal
     const newProposal = new Proposal({
       companyName,
       clientName,
-      expiryDate: new Date(expiryDate),
+      expiryDate: new Date(expiryDate), // Ensure proper Date conversion
       proposalDescription,
-      // clientId,
       proposalPassword,
-      isAccepted: false,
-      createdDate: new Date(),
-      scopeOfWork, // Save scopeOfWork inside Proposal
+      isAccepted: false, // Default value already in schema, but explicit here
+      createdDate: new Date(), // Explicitly set, though schema default works too
+      scopeOfWork,
       timelineDeliverables,
       timelineWeeks,
       proposedInvestment,
@@ -99,12 +170,16 @@ exports.createProposal = async (req, res) => {
       payments,
     });
 
+    // Save to database
     await newProposal.save();
+
+    // Success response
     res.status(201).json({
       message: "Proposal created successfully",
       proposal: newProposal,
     });
   } catch (error) {
+    console.error("Error creating proposal:", error);
     res.status(500).json({ error: error.message });
   }
 };

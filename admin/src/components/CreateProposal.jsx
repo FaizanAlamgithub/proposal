@@ -1604,6 +1604,798 @@
 
 // export default CreateProposal;
 
+// import React, { useState } from "react";
+// import { useNavigate } from "react-router-dom";
+// import { handleError, handleSuccess } from "../utils";
+// import { ToastContainer } from "react-toastify";
+
+// const CreateProposal = () => {
+//   const navigate = useNavigate();
+
+//   const [proposal, setProposal] = useState({
+//     companyName: "",
+//     clientName: "",
+//     expiryDate: "",
+//     proposalDescription: "",
+//     scopeOfWork: {
+//       title: "",
+//       objective: "",
+//       services: [""],
+//       description: [""],
+//     },
+//     timelineDeliverables: [
+//       {
+//         timelineText: "",
+//         task: "",
+//         deliverables: "",
+//       },
+//     ],
+//     timelineWeeks: {
+//       timeLine: "", // ✅ Matches the schema
+//     },
+//     proposedInvestment: [
+//       {
+//         services: "",
+//         description: "",
+//         cost: "",
+//       },
+//     ],
+//     proposedCost: "",
+//     payments: [
+//       {
+//         terms: "",
+//         amount: "",
+//       },
+//     ],
+//   });
+
+//   const handleChange = (e) => {
+//     const { name, value } = e.target;
+//     setProposal({ ...proposal, [name]: value });
+//   };
+
+//   const handleScopeChange = (e, field) => {
+//     setProposal({
+//       ...proposal,
+//       scopeOfWork: { ...proposal.scopeOfWork, [field]: e.target.value },
+//     });
+//   };
+
+//   // Handle changes in Timeline & Deliverables
+
+//   const handleTimelineChange = (e, timelineIndex, field) => {
+//     setProposal((prev) => {
+//       return {
+//         ...prev,
+//         timelineDeliverables: prev.timelineDeliverables.map((item, index) =>
+//           index === timelineIndex ? { ...item, [field]: e.target.value } : item
+//         ),
+//       };
+//     });
+//   };
+
+//   const handleProposedChange = (e, index, field) => {
+//     setProposal((prev) => {
+//       const updatedProposed = [...prev.proposedInvestment];
+
+//       if (field === "Services") {
+//         updatedProposed[index] = e.target.value;
+//       } else if (updatedProposed[index]) {
+//         updatedProposed[index] = {
+//           ...updatedProposed[index],
+//           [field]: e.target.value,
+//         };
+//       }
+
+//       return { ...prev, proposedInvestment: updatedProposed };
+//     });
+//   };
+
+//   const handlePaymentsChange = (e, index, field) => {
+//     setProposal((prev) => {
+//       const updatedPayments = [...prev.payments];
+
+//       if (field === "Terms") {
+//         updatedPayments[index] = e.target.value;
+//       } else if (updatedPayments[index]) {
+//         updatedPayments[index] = {
+//           ...updatedPayments[index],
+//           [field]: e.target.value,
+//         };
+//       }
+
+//       return { ...prev, payments: updatedPayments };
+//     });
+//   };
+
+//   const addTimeline = () => {
+//     setProposal((prev) => ({
+//       ...prev,
+//       timelineDeliverables: [
+//         ...prev.timelineDeliverables,
+//         { timelineText: "", task: "", deliverables: "" }, // ✅ Corrected structure
+//       ],
+//     }));
+//   };
+
+//   // Add a new Proposed Investment section
+//   const addProposed = () => {
+//     setProposal((prev) => ({
+//       ...prev,
+//       proposedInvestment: [
+//         ...prev.proposedInvestment,
+//         { services: "", description: "", cost: "" },
+//       ],
+//     }));
+//   };
+
+//   // Add a new Payments Terms section
+//   const addPayments = () => {
+//     setProposal((prev) => ({
+//       ...prev,
+//       payments: [...prev.payments, { terms: "", amount: "" }],
+//     }));
+//   };
+
+//   // Remove a Timeline & Deliverables section
+//   const removeTimeline = (timelineIndex) => {
+//     setProposal((prev) => {
+//       const updatedTimeline = prev.timelineDeliverables.filter(
+//         (_, index) => index !== timelineIndex
+//       );
+//       return { ...prev, timelineDeliverables: updatedTimeline };
+//     });
+//   };
+
+//   // Remove a Payments Terms section
+//   const removePayments = (Index) => {
+//     setProposal((prev) => {
+//       const updatedPayments = prev.payments.filter(
+//         (_, index) => index !== Index
+//       );
+//       return { ...prev, payments: updatedPayments };
+//     });
+//   };
+
+//   // Remove a Proposed Investment section
+//   const removeProposed = (Index) => {
+//     setProposal((prev) => {
+//       const updatedProposed = prev.proposedInvestment.filter(
+//         (_, index) => index !== Index
+//       );
+//       return { ...prev, proposedInvestment: updatedProposed };
+//     });
+//   };
+
+//   const handleArrayChange = (e, field, index) => {
+//     const newArray = [...proposal.scopeOfWork[field]];
+//     newArray[index] = e.target.value;
+//     setProposal({
+//       ...proposal,
+//       scopeOfWork: { ...proposal.scopeOfWork, [field]: newArray },
+//     });
+//   };
+
+//   const addArrayField = (field) => {
+//     setProposal({
+//       ...proposal,
+//       scopeOfWork: {
+//         ...proposal.scopeOfWork,
+//         [field]: [...proposal.scopeOfWork[field], ""],
+//       },
+//     });
+//   };
+
+//   const removeArrayField = (field, index) => {
+//     const newArray = [...proposal.scopeOfWork[field]];
+//     newArray.splice(index, 1);
+//     setProposal({
+//       ...proposal,
+//       scopeOfWork: { ...proposal.scopeOfWork, [field]: newArray },
+//     });
+//   };
+
+//   const handleSubmit = async (e) => {
+//     e.preventDefault();
+//     try {
+//       const response = await fetch(
+//         "http://localhost:5000/api/proposals/create",
+//         {
+//           method: "POST",
+//           headers: { "Content-Type": "application/json" },
+//           body: JSON.stringify(proposal),
+//         }
+//       );
+
+//       if (!response.ok) {
+//         throw new Error("Failed to create proposal");
+//       }
+
+//       handleSuccess("Proposal Created Successfully!");
+//       setTimeout(() => navigate("/dashboard"), 1000);
+//     } catch (error) {
+//       handleError(error.message);
+//     }
+//   };
+
+//   return (
+//     <div className="flex items-center justify-center bg-green-50">
+//       <div className="bg-[#ECEDEF] rounded w-full relative">
+//         <button
+//           onClick={() => navigate("/dashboard")}
+//           className="btn btn-close position-absolute top-0 end-0 m-3"
+//           aria-label="Close"
+//         ></button>
+
+//         <h2 className="text-2xl font-semibold text-center mb-2">
+//           Create Proposal
+//         </h2>
+
+//         <div className="">
+//           <form
+//             onSubmit={handleSubmit}
+//             className="px-3 max-h-[95vh] overflow-y-auto"
+//           >
+//             <div className="col bg-white p-4 m-0 sm:p-4 sm:m-3 border border-gray-300 rounded">
+//               <h3 className="text-lg font-semibold">Client detail</h3>
+
+//               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+//                 <div>
+//                   <label className="block text-gray-700 font-medium">
+//                     Company Name
+//                   </label>
+//                   <input
+//                     type="text"
+//                     name="companyName"
+//                     value={proposal.companyName || ""}
+//                     onChange={(e) => {
+//                       const words = e.target.value.trim().split(/\s+/);
+//                       if (words.length <= 5) {
+//                         handleChange(e);
+//                       }
+//                     }}
+//                     className="w-full p-2 border border-primary-subtle rounded focus:outline-none  focus:bg-white focus:ring-0 bg-[#F5FBFF]"
+//                     required
+//                   />
+//                   <p className="text-sm text-gray-500">
+//                     {proposal.companyName
+//                       ? proposal.companyName.trim().split(/\s+/).length
+//                       : 0}{" "}
+//                     / 5 words
+//                   </p>
+//                 </div>
+
+//                 <div>
+//                   <label className="block text-gray-700 font-medium">
+//                     Client Name
+//                   </label>
+//                   <input
+//                     type="text"
+//                     name="clientName"
+//                     value={proposal.clientName || ""}
+//                     onChange={(e) => {
+//                       const words = e.target.value.trim().split(/\s+/);
+//                       if (words.length <= 5) {
+//                         handleChange(e);
+//                       }
+//                     }}
+//                     className="w-full p-2 border border-primary-subtle rounded focus:outline-none  focus:bg-white focus:ring-0 bg-[#F5FBFF]"
+//                     required
+//                   />
+//                   <p className="text-sm text-gray-500">
+//                     {proposal.clientName
+//                       ? proposal.clientName.trim().split(/\s+/).length
+//                       : 0}{" "}
+//                     / 5 words
+//                   </p>
+//                 </div>
+//               </div>
+
+//               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+//                 {/* {[
+//                   { label: "Expiry Date", name: "expiryDate", type: "date" },
+//                   { label: "Client ID", name: "clientId", type: "text" },
+//                 ].map(({ label, name, type }) => (
+//                   <div key={name}>
+//                     <label className="block text-gray-700 font-medium mt-4">
+//                       {label}
+//                     </label>
+//                     <input
+//                       type={type}
+//                       name={name}
+//                       value={proposal[name] || ""}
+//                       onChange={handleChange}
+//                       className="w-full p-2 border border-primary-subtle rounded focus:outline-none  focus:bg-white focus:ring-0 bg-[#F5FBFF]"
+//                       required
+//                     />
+//                   </div>
+//                 ))} */}
+//                 {[
+//                   { label: "Expiry Date", name: "expiryDate", type: "date" },
+//                 ].map(({ label, name, type }) => (
+//                   <div key={name}>
+//                     <label className="block text-gray-700 font-medium mt-4">
+//                       {label}
+//                     </label>
+//                     <input
+//                       type={type}
+//                       name={name}
+//                       value={proposal[name] || ""}
+//                       onChange={handleChange}
+//                       className="w-full p-2 border border-primary-subtle rounded focus:outline-none  focus:bg-white focus:ring-0 bg-[#F5FBFF]"
+//                       required
+//                     />
+//                   </div>
+//                 ))}
+//               </div>
+
+//               <div>
+//                 <label className="block text-gray-700 font-medium mt-4">
+//                   Proposal Description
+//                 </label>
+//                 <textarea
+//                   name="proposalDescription"
+//                   value={proposal.proposalDescription || ""}
+//                   onChange={(e) => {
+//                     const words = e.target.value.trim().split(/\s+/);
+//                     if (words.length <= 16) {
+//                       handleChange(e);
+//                     }
+//                   }}
+//                   className="w-full h-[25vh] p-2 border border-primary-subtle rounded focus:outline-none  focus:bg-white focus:ring-0 bg-[#F5FBFF]"
+//                   required
+//                 />
+//                 <p className="text-sm text-gray-500">
+//                   {proposal.proposalDescription
+//                     ? proposal.proposalDescription.trim().split(/\s+/).length
+//                     : 0}
+//                   /16 words
+//                 </p>
+//               </div>
+//             </div>
+//             <div className="col bg-white p-4 m-0 sm:p-4 sm:m-3 border border-gray-300 rounded">
+//               <h3 className="text-lg font-semibold">Scope of Work</h3>
+
+//               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+//                 {/* Title Input */}
+//                 <div>
+//                   <label className="block text-gray-700 font-medium mt-4">
+//                     Title
+//                   </label>
+//                   <textarea
+//                     name="title"
+//                     value={proposal.scopeOfWork?.title || ""}
+//                     onChange={(e) => {
+//                       const words = e.target.value.trim().split(/\s+/);
+//                       if (words.length <= 15) {
+//                         handleScopeChange(e, "title");
+//                       }
+//                     }}
+//                     className="w-full h-[20vh] p-2 border border-primary-subtle rounded focus:outline-none  focus:bg-white focus:ring-0 bg-[#F5FBFF]"
+//                     required
+//                   />
+//                   <p className="text-sm text-gray-500">
+//                     {proposal.scopeOfWork?.title
+//                       ? proposal.scopeOfWork?.title.trim().split(/\s+/).length
+//                       : 0}
+//                     /15 words
+//                   </p>
+//                 </div>
+
+//                 <div>
+//                   <label className="block text-gray-700 font-medium mt-4">
+//                     Objective
+//                   </label>
+//                   <textarea
+//                     name="objective"
+//                     value={proposal.scopeOfWork?.objective || ""}
+//                     onChange={(e) => {
+//                       const words = e.target.value.trim().split(/\s+/);
+//                       if (words.length <= 40) {
+//                         handleScopeChange(e, "objective");
+//                       }
+//                     }}
+//                     className="w-full h-[20vh] p-2 border border-primary-subtle rounded focus:outline-none  focus:bg-white focus:ring-0 bg-[#F5FBFF]"
+//                     required
+//                   />
+//                   <p className="text-sm text-gray-500">
+//                     {proposal.scopeOfWork?.objective
+//                       ? proposal.scopeOfWork?.objective.trim().split(/\s+/)
+//                           .length
+//                       : 0}
+//                     /40 words
+//                   </p>
+//                 </div>
+//               </div>
+
+//               <div className="flex gap-8"></div>
+//               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+//                 <div>
+//                   <h4 className="font-medium mt-4">Services</h4>
+//                   <div className="space-y-2">
+//                     {proposal.scopeOfWork?.services?.map((item, index) => (
+//                       <div key={index} className="flex items-center gap-2">
+//                         <textarea
+//                           type="text"
+//                           placeholder="Service"
+//                           value={item}
+//                           onChange={(e) => {
+//                             const words = e.target.value.trim().split(/\s+/);
+//                             if (words.length <= 10) {
+//                               handleArrayChange(e, "services", index);
+//                             }
+//                           }}
+//                           className="w-full h-[20vh] p-2 border border-primary-subtle rounded focus:outline-none  focus:bg-white focus:ring-0 bg-[#F5FBFF]"
+//                         />
+//                         <button
+//                           type="button"
+//                           onClick={() => removeArrayField("services", index)}
+//                           className="bg-red-200 px-2 py-1 rounded"
+//                         >
+//                           <i className="bi bi-trash text-danger"></i>
+//                         </button>
+//                       </div>
+//                     ))}
+//                   </div>
+
+//                   <p className="text-sm text-gray-500">
+//                     {proposal.scopeOfWork?.services?.length
+//                       ? proposal.scopeOfWork.services
+//                           .map((item) =>
+//                             item.trim() ? item.trim().split(/\s+/).length : 0
+//                           )
+//                           .reduce((a, b) => a + b, 0)
+//                       : 0}{" "}
+//                     / 10 words
+//                   </p>
+
+//                   <button
+//                     type="button"
+//                     onClick={() => addArrayField("services")}
+//                     className="mt-2 px-4 py-2 bg-[#0d6efd] text-white rounded hover:bg-[#afcdf7]"
+//                     id="addBtn"
+//                   >
+//                     + Add Service
+//                   </button>
+//                 </div>
+
+//                 <div>
+//                   <h4 className="font-medium mt-4">Description</h4>
+//                   <div className="space-y-2">
+//                     {proposal.scopeOfWork?.description?.map((item, index) => (
+//                       <div key={index} className="flex items-center gap-2">
+//                         <textarea
+//                           type="text"
+//                           placeholder="Description"
+//                           value={item}
+//                           onChange={(e) => {
+//                             const words = e.target.value.trim().split(/\s+/);
+//                             if (words.length <= 30) {
+//                               handleArrayChange(e, "description", index);
+//                             }
+//                           }}
+//                           className="w-full h-[20vh] p-2 border border-primary-subtle rounded focus:outline-none  focus:bg-white focus:ring-0 bg-[#F5FBFF]"
+//                         />
+//                         <button
+//                           type="button"
+//                           onClick={() => removeArrayField("description", index)}
+//                           className="bg-red-200 px-2 py-1 rounded"
+//                         >
+//                           <i className="bi bi-trash text-danger"></i>
+//                         </button>
+//                       </div>
+//                     ))}
+//                   </div>
+
+//                   <p className="text-sm text-gray-500">
+//                     {proposal.scopeOfWork?.description?.length
+//                       ? proposal.scopeOfWork.description
+//                           .map((item) =>
+//                             item.trim() ? item.trim().split(/\s+/).length : 0
+//                           )
+//                           .reduce((a, b) => a + b, 0) // Sum word counts
+//                       : 0}{" "}
+//                     / 30 words
+//                   </p>
+//                   <button
+//                     type="button"
+//                     onClick={() => addArrayField("description")}
+//                     className="mt-2 px-4 py-2 bg-[#0d6efd] text-white rounded hover:bg-[#afcdf7]"
+//                     id="addBtn"
+//                   >
+//                     + Add Description
+//                   </button>
+//                 </div>
+//               </div>
+//             </div>
+//             <div className="col bg-white p-0 m-0 sm:p-4 sm:m-3 border border-gray-300 rounded">
+//               <h3 className="text-lg font-semibold p-4">
+//                 Timeline & Deliverables
+//               </h3>
+//               <div className="mt-2 flex flex-col md:block gap-4 p-4">
+//                 <label className="font-medium">Timeline Heading</label>
+//                 <input
+//                   type="text"
+//                   placeholder="Enter timeline heading"
+//                   value={proposal.timelineWeeks.timeLine}
+//                   onChange={(e) =>
+//                     setProposal({
+//                       ...proposal,
+//                       timelineWeeks: {
+//                         ...proposal.timelineWeeks,
+//                         timeLine: e.target.value, // Correct field update
+//                       },
+//                     })
+//                   }
+//                   className="p-2 border border-primary-subtle rounded focus:outline-none focus:bg-white focus:ring-0 bg-[#F5FBFF] w-30"
+//                 />
+//               </div>
+
+//               {proposal.timelineDeliverables.map((timeline, timelineIndex) => (
+//                 <div
+//                   key={timelineIndex}
+//                   className="border p-4 rounded-md space-y-3"
+//                 >
+//                   <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+//                     <div>
+//                       <label className="block font-medium">Task</label>
+//                       <textarea
+//                         name="task"
+//                         value={timeline.task}
+//                         onChange={(e) => {
+//                           const words = e.target.value.trim().split(/\s+/);
+//                           if (words.length <= 10) {
+//                             handleTimelineChange(e, timelineIndex, "task");
+//                           }
+//                         }}
+//                         className="w-full p-2 border border-primary-subtle rounded focus:outline-none  focus:bg-white focus:ring-0 bg-[#F5FBFF] h-[25vh]"
+//                         required
+//                       />
+//                       <p className="text-sm text-gray-500">
+//                         {timeline.task
+//                           ? timeline.task.trim().split(/\s+/).length
+//                           : 0}{" "}
+//                         / 10 words
+//                       </p>
+//                     </div>
+
+//                     <div>
+//                       <label className="block font-medium">Deliverables</label>
+//                       <textarea
+//                         name="deliverables"
+//                         value={timeline.deliverables}
+//                         onChange={(e) => {
+//                           const words = e.target.value.trim().split(/\s+/);
+//                           if (words.length <= 20) {
+//                             handleTimelineChange(
+//                               e,
+//                               timelineIndex,
+//                               "deliverables"
+//                             );
+//                           }
+//                         }}
+//                         className="w-full p-2 border border-primary-subtle rounded focus:outline-none  focus:bg-white focus:ring-0 bg-[#F5FBFF] h-[25vh]"
+//                         required
+//                       />
+//                       <p className="text-sm text-gray-500">
+//                         {timeline.deliverables
+//                           ? timeline.deliverables.trim().split(/\s+/).length
+//                           : 0}{" "}
+//                         / 20 words
+//                       </p>
+//                     </div>
+//                   </div>
+
+//                   <div className="mt-2">
+//                     <div className="flex items-center gap-4 mt-1">
+//                       <label className="font-medium">Timeline</label>
+//                       <input
+//                         type="text"
+//                         placeholder="Enter Timeline"
+//                         value={timeline.timelineText || ""}
+//                         onChange={(e) =>
+//                           handleTimelineChange(e, timelineIndex, "timelineText")
+//                         }
+//                         className="p-2 border border-primary-subtle rounded focus:outline-none focus:bg-white focus:ring-0 bg-[#F5FBFF] w-30"
+//                         required
+//                       />
+//                     </div>
+//                   </div>
+
+//                   <button
+//                     type="button"
+//                     onClick={() => removeTimeline(timelineIndex)}
+//                     className="mt-2 p-1 bg-red-200 text-red-500 px-2 rounded"
+//                   >
+//                     Remove Timeline & Deliverables
+//                   </button>
+//                 </div>
+//               ))}
+
+//               <button
+//                 type="button"
+//                 onClick={addTimeline}
+//                 className="m-4 p-2 bg-[#0d6efd] text-white rounded hover:bg-[#afcdf7]"
+//                 id="addBtn"
+//               >
+//                 Add Timeline & Deliverables
+//               </button>
+//             </div>
+//             <div className="col bg-white p-0 m-0 sm:p-4 sm:m-3 border border-gray-300 rounded">
+//               <h3 className="text-lg font-semibold p-4">Proposed Investment</h3>
+//               <div className="mt-2 flex gap-4 items-center p-4">
+//                 <label className="font-medium">Cost</label>
+//                 <input
+//                   type="number"
+//                   placeholder="Enter cost"
+//                   value={proposal.proposedCost || ""}
+//                   onChange={(e) =>
+//                     setProposal({
+//                       ...proposal,
+//                       proposedCost: e.target.value,
+//                     })
+//                   }
+//                   className="p-2 border border-primary-subtle rounded focus:outline-none  focus:bg-white focus:ring-0 bg-[#F5FBFF] w-30"
+//                 />
+//               </div>
+
+//               {proposal.proposedInvestment.map((proposed, Index) => (
+//                 <div key={Index} className="border p-4 rounded-md space-y-3">
+//                   <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+//                     <div>
+//                       <label className="block font-medium">Services</label>
+//                       <textarea
+//                         name="services"
+//                         value={proposed.services}
+//                         onChange={(e) => {
+//                           const words = e.target.value.trim().split(/\s+/);
+//                           if (words.length <= 10) {
+//                             handleProposedChange(e, Index, "services");
+//                           }
+//                         }}
+//                         className="w-full p-2 border border-primary-subtle rounded focus:outline-none  focus:bg-white focus:ring-0 bg-[#F5FBFF] h-[25vh]"
+//                         required
+//                       />
+//                       <p className="text-sm text-gray-500">
+//                         {proposed.services
+//                           ? proposed.services.trim().split(/\s+/).length
+//                           : 0}{" "}
+//                         / 10 words
+//                       </p>
+//                     </div>
+
+//                     <div>
+//                       <label className="block font-medium">Description</label>
+//                       <textarea
+//                         name="description"
+//                         value={proposed.description}
+//                         onChange={(e) => {
+//                           const words = e.target.value.trim().split(/\s+/);
+//                           if (words.length <= 20) {
+//                             handleProposedChange(e, Index, "description");
+//                           }
+//                         }}
+//                         className="w-full p-2 border border-primary-subtle rounded focus:outline-none  focus:bg-white focus:ring-0 bg-[#F5FBFF] h-[25vh]"
+//                         required
+//                       />
+//                       <p className="text-sm text-gray-500">
+//                         {proposed.description
+//                           ? proposed.description.trim().split(/\s+/).length
+//                           : 0}{" "}
+//                         / 20 words
+//                       </p>
+//                     </div>
+
+//                     <div>
+//                       <label className="block font-medium">Cost</label>
+//                       <textarea
+//                         name="cost"
+//                         value={proposed.cost}
+//                         onChange={(e) => handleProposedChange(e, Index, "cost")}
+//                         className="w-50 p-2 border border-primary-subtle rounded focus:outline-none  focus:bg-white focus:ring-0 bg-[#F5FBFF] h-[6vh]"
+//                         required
+//                       />
+//                     </div>
+//                   </div>
+
+//                   <button
+//                     type="button"
+//                     onClick={() => removeProposed(Index)}
+//                     className="mt-2 p-1 bg-red-200 text-red-500 px-2 rounded"
+//                   >
+//                     Remove Proposed Investment
+//                   </button>
+//                 </div>
+//               ))}
+
+//               <button
+//                 type="button"
+//                 onClick={addProposed}
+//                 className="m-4 p-2 bg-[#0d6efd] text-white rounded hover:bg-[#afcdf7]"
+//                 id="addBtn"
+//               >
+//                 Add Proposed Investment
+//               </button>
+//             </div>
+//             <div className="col bg-white p-0 m-0 sm:p-4 sm:m-3 border border-gray-300 rounded">
+//               <h3 className="text-lg font-semibold p-4">Payments Terms</h3>
+
+//               {proposal.payments.map((proposed, Index) => (
+//                 <div key={Index} className="border p-4 rounded-md space-y-3">
+//                   <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+//                     <div>
+//                       <label className="block font-medium">Terms</label>
+//                       <textarea
+//                         name="terms"
+//                         value={proposed.terms}
+//                         onChange={(e) => {
+//                           const words = e.target.value.trim().split(/\s+/);
+//                           if (words.length <= 10) {
+//                             handlePaymentsChange(e, Index, "terms");
+//                           }
+//                         }}
+//                         className="w-full p-2 border border-primary-subtle rounded focus:outline-none  focus:bg-white focus:ring-0 bg-[#F5FBFF] h-[25vh]"
+//                         required
+//                       />
+//                       <p className="text-sm text-gray-500">
+//                         {proposed.terms
+//                           ? proposed.terms.trim().split(/\s+/).length
+//                           : 0}{" "}
+//                         / 10 words
+//                       </p>
+//                     </div>
+
+//                     <div>
+//                       <label className="block font-medium">Amount</label>
+//                       <textarea
+//                         name="amount"
+//                         value={proposed.amount}
+//                         onChange={(e) =>
+//                           handlePaymentsChange(e, Index, "amount")
+//                         }
+//                         className="w-50 p-2 border border-primary-subtle rounded focus:outline-none  focus:bg-white focus:ring-0 bg-[#F5FBFF] h-[6vh]"
+//                         required
+//                       />
+//                     </div>
+//                   </div>
+
+//                   <button
+//                     type="button"
+//                     onClick={() => removePayments(Index)}
+//                     className="mt-2 p-1 bg-red-200 text-red-500 px-2 rounded"
+//                   >
+//                     Remove Payments Terms
+//                   </button>
+//                 </div>
+//               ))}
+
+//               <button
+//                 type="button"
+//                 onClick={addPayments}
+//                 className="m-4 p-2 bg-[#0d6efd] text-white rounded hover:bg-[#afcdf7]"
+//                 id="addBtn"
+//               >
+//                 Add Payments Terms
+//               </button>
+//             </div>
+
+//             <button
+//               type="submit"
+//               className="m-4 px-5 py-2 bg-[#0d6efd] text-white rounded hover:bg-[#afcdf7]"
+//               id="addBtn"
+//             >
+//               Create Proposal
+//             </button>
+//           </form>
+//           <ToastContainer />
+//         </div>
+//       </div>
+//     </div>
+//   );
+// };
+
+// export default CreateProposal;
+
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { handleError, handleSuccess } from "../utils";
@@ -1617,7 +2409,6 @@ const CreateProposal = () => {
     clientName: "",
     expiryDate: "",
     proposalDescription: "",
-    clientId: "",
     scopeOfWork: {
       title: "",
       objective: "",
@@ -1632,7 +2423,7 @@ const CreateProposal = () => {
       },
     ],
     timelineWeeks: {
-      timeLine: "", // ✅ Matches the schema
+      timeLine: "",
     },
     proposedInvestment: [
       {
@@ -1662,32 +2453,22 @@ const CreateProposal = () => {
     });
   };
 
-  // Handle changes in Timeline & Deliverables
-
   const handleTimelineChange = (e, timelineIndex, field) => {
-    setProposal((prev) => {
-      return {
-        ...prev,
-        timelineDeliverables: prev.timelineDeliverables.map((item, index) =>
-          index === timelineIndex ? { ...item, [field]: e.target.value } : item
-        ),
-      };
-    });
+    setProposal((prev) => ({
+      ...prev,
+      timelineDeliverables: prev.timelineDeliverables.map((item, index) =>
+        index === timelineIndex ? { ...item, [field]: e.target.value } : item
+      ),
+    }));
   };
 
   const handleProposedChange = (e, index, field) => {
     setProposal((prev) => {
       const updatedProposed = [...prev.proposedInvestment];
-
-      if (field === "Services") {
-        updatedProposed[index] = e.target.value;
-      } else if (updatedProposed[index]) {
-        updatedProposed[index] = {
-          ...updatedProposed[index],
-          [field]: e.target.value,
-        };
-      }
-
+      updatedProposed[index] = {
+        ...updatedProposed[index],
+        [field]: e.target.value,
+      };
       return { ...prev, proposedInvestment: updatedProposed };
     });
   };
@@ -1695,16 +2476,10 @@ const CreateProposal = () => {
   const handlePaymentsChange = (e, index, field) => {
     setProposal((prev) => {
       const updatedPayments = [...prev.payments];
-
-      if (field === "Terms") {
-        updatedPayments[index] = e.target.value;
-      } else if (updatedPayments[index]) {
-        updatedPayments[index] = {
-          ...updatedPayments[index],
-          [field]: e.target.value,
-        };
-      }
-
+      updatedPayments[index] = {
+        ...updatedPayments[index],
+        [field]: e.target.value,
+      };
       return { ...prev, payments: updatedPayments };
     });
   };
@@ -1714,12 +2489,11 @@ const CreateProposal = () => {
       ...prev,
       timelineDeliverables: [
         ...prev.timelineDeliverables,
-        { timelineText: "", task: "", deliverables: "" }, // ✅ Corrected structure
+        { timelineText: "", task: "", deliverables: "" },
       ],
     }));
   };
 
-  // Add a new Proposed Investment section
   const addProposed = () => {
     setProposal((prev) => ({
       ...prev,
@@ -1730,7 +2504,6 @@ const CreateProposal = () => {
     }));
   };
 
-  // Add a new Payments Terms section
   const addPayments = () => {
     setProposal((prev) => ({
       ...prev,
@@ -1738,34 +2511,27 @@ const CreateProposal = () => {
     }));
   };
 
-  // Remove a Timeline & Deliverables section
   const removeTimeline = (timelineIndex) => {
-    setProposal((prev) => {
-      const updatedTimeline = prev.timelineDeliverables.filter(
+    setProposal((prev) => ({
+      ...prev,
+      timelineDeliverables: prev.timelineDeliverables.filter(
         (_, index) => index !== timelineIndex
-      );
-      return { ...prev, timelineDeliverables: updatedTimeline };
-    });
+      ),
+    }));
   };
 
-  // Remove a Payments Terms section
-  const removePayments = (Index) => {
-    setProposal((prev) => {
-      const updatedPayments = prev.payments.filter(
-        (_, index) => index !== Index
-      );
-      return { ...prev, payments: updatedPayments };
-    });
+  const removePayments = (index) => {
+    setProposal((prev) => ({
+      ...prev,
+      payments: prev.payments.filter((_, i) => i !== index),
+    }));
   };
 
-  // Remove a Proposed Investment section
-  const removeProposed = (Index) => {
-    setProposal((prev) => {
-      const updatedProposed = prev.proposedInvestment.filter(
-        (_, index) => index !== Index
-      );
-      return { ...prev, proposedInvestment: updatedProposed };
-    });
+  const removeProposed = (index) => {
+    setProposal((prev) => ({
+      ...prev,
+      proposedInvestment: prev.proposedInvestment.filter((_, i) => i !== index),
+    }));
   };
 
   const handleArrayChange = (e, field, index) => {
@@ -1848,21 +2614,16 @@ const CreateProposal = () => {
                   <input
                     type="text"
                     name="companyName"
-                    value={proposal.companyName || ""}
+                    value={proposal.companyName}
                     onChange={(e) => {
                       const words = e.target.value.trim().split(/\s+/);
-                      if (words.length <= 5) {
-                        handleChange(e);
-                      }
+                      if (words.length <= 5) handleChange(e);
                     }}
-                    className="w-full p-2 border border-primary-subtle rounded focus:outline-none  focus:bg-white focus:ring-0 bg-[#F5FBFF]"
+                    className="w-full p-2 border border-primary-subtle rounded focus:outline-none focus:bg-white focus:ring-0 bg-[#F5FBFF]"
                     required
                   />
                   <p className="text-sm text-gray-500">
-                    {proposal.companyName
-                      ? proposal.companyName.trim().split(/\s+/).length
-                      : 0}{" "}
-                    / 5 words
+                    {proposal.companyName.trim().split(/\s+/).length} / 5 words
                   </p>
                 </div>
 
@@ -1873,61 +2634,34 @@ const CreateProposal = () => {
                   <input
                     type="text"
                     name="clientName"
-                    value={proposal.clientName || ""}
+                    value={proposal.clientName}
                     onChange={(e) => {
                       const words = e.target.value.trim().split(/\s+/);
-                      if (words.length <= 5) {
-                        handleChange(e);
-                      }
+                      if (words.length <= 5) handleChange(e);
                     }}
-                    className="w-full p-2 border border-primary-subtle rounded focus:outline-none  focus:bg-white focus:ring-0 bg-[#F5FBFF]"
+                    className="w-full p-2 border border-primary-subtle rounded focus:outline-none focus:bg-white focus:ring-0 bg-[#F5FBFF]"
                     required
                   />
                   <p className="text-sm text-gray-500">
-                    {proposal.clientName
-                      ? proposal.clientName.trim().split(/\s+/).length
-                      : 0}{" "}
-                    / 5 words
+                    {proposal.clientName.trim().split(/\s+/).length} / 5 words
                   </p>
                 </div>
               </div>
 
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                {/* {[
-                  { label: "Expiry Date", name: "expiryDate", type: "date" },
-                  { label: "Client ID", name: "clientId", type: "text" },
-                ].map(({ label, name, type }) => (
-                  <div key={name}>
-                    <label className="block text-gray-700 font-medium mt-4">
-                      {label}
-                    </label>
-                    <input
-                      type={type}
-                      name={name}
-                      value={proposal[name] || ""}
-                      onChange={handleChange}
-                      className="w-full p-2 border border-primary-subtle rounded focus:outline-none  focus:bg-white focus:ring-0 bg-[#F5FBFF]"
-                      required
-                    />
-                  </div>
-                ))} */}
-                {[
-                  { label: "Expiry Date", name: "expiryDate", type: "date" },
-                ].map(({ label, name, type }) => (
-                  <div key={name}>
-                    <label className="block text-gray-700 font-medium mt-4">
-                      {label}
-                    </label>
-                    <input
-                      type={type}
-                      name={name}
-                      value={proposal[name] || ""}
-                      onChange={handleChange}
-                      className="w-full p-2 border border-primary-subtle rounded focus:outline-none  focus:bg-white focus:ring-0 bg-[#F5FBFF]"
-                      required
-                    />
-                  </div>
-                ))}
+                <div>
+                  <label className="block text-gray-700 font-medium mt-4">
+                    Expiry Date
+                  </label>
+                  <input
+                    type="date"
+                    name="expiryDate"
+                    value={proposal.expiryDate}
+                    onChange={handleChange}
+                    className="w-full p-2 border border-primary-subtle rounded focus:outline-none focus:bg-white focus:ring-0 bg-[#F5FBFF]"
+                    required
+                  />
+                </div>
               </div>
 
               <div>
@@ -1936,50 +2670,42 @@ const CreateProposal = () => {
                 </label>
                 <textarea
                   name="proposalDescription"
-                  value={proposal.proposalDescription || ""}
+                  value={proposal.proposalDescription}
                   onChange={(e) => {
                     const words = e.target.value.trim().split(/\s+/);
-                    if (words.length <= 16) {
-                      handleChange(e);
-                    }
+                    if (words.length <= 16) handleChange(e);
                   }}
-                  className="w-full h-[25vh] p-2 border border-primary-subtle rounded focus:outline-none  focus:bg-white focus:ring-0 bg-[#F5FBFF]"
+                  className="w-full h-[25vh] p-2 border border-primary-subtle rounded focus:outline-none focus:bg-white focus:ring-0 bg-[#F5FBFF]"
                   required
                 />
                 <p className="text-sm text-gray-500">
-                  {proposal.proposalDescription
-                    ? proposal.proposalDescription.trim().split(/\s+/).length
-                    : 0}
-                  /16 words
+                  {proposal.proposalDescription.trim().split(/\s+/).length} / 16
+                  words
                 </p>
               </div>
             </div>
+
             <div className="col bg-white p-4 m-0 sm:p-4 sm:m-3 border border-gray-300 rounded">
               <h3 className="text-lg font-semibold">Scope of Work</h3>
 
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                {/* Title Input */}
                 <div>
                   <label className="block text-gray-700 font-medium mt-4">
                     Title
                   </label>
                   <textarea
                     name="title"
-                    value={proposal.scopeOfWork?.title || ""}
+                    value={proposal.scopeOfWork.title}
                     onChange={(e) => {
                       const words = e.target.value.trim().split(/\s+/);
-                      if (words.length <= 15) {
-                        handleScopeChange(e, "title");
-                      }
+                      if (words.length <= 15) handleScopeChange(e, "title");
                     }}
-                    className="w-full h-[20vh] p-2 border border-primary-subtle rounded focus:outline-none  focus:bg-white focus:ring-0 bg-[#F5FBFF]"
+                    className="w-full h-[20vh] p-2 border border-primary-subtle rounded focus:outline-none focus:bg-white focus:ring-0 bg-[#F5FBFF]"
                     required
                   />
                   <p className="text-sm text-gray-500">
-                    {proposal.scopeOfWork?.title
-                      ? proposal.scopeOfWork?.title.trim().split(/\s+/).length
-                      : 0}
-                    /15 words
+                    {proposal.scopeOfWork.title.trim().split(/\s+/).length} / 15
+                    words
                   </p>
                 </div>
 
@@ -1989,72 +2715,56 @@ const CreateProposal = () => {
                   </label>
                   <textarea
                     name="objective"
-                    value={proposal.scopeOfWork?.objective || ""}
+                    value={proposal.scopeOfWork.objective}
                     onChange={(e) => {
                       const words = e.target.value.trim().split(/\s+/);
-                      if (words.length <= 40) {
-                        handleScopeChange(e, "objective");
-                      }
+                      if (words.length <= 40) handleScopeChange(e, "objective");
                     }}
-                    className="w-full h-[20vh] p-2 border border-primary-subtle rounded focus:outline-none  focus:bg-white focus:ring-0 bg-[#F5FBFF]"
+                    className="w-full h-[20vh] p-2 border border-primary-subtle rounded focus:outline-none focus:bg-white focus:ring-0 bg-[#F5FBFF]"
                     required
                   />
                   <p className="text-sm text-gray-500">
-                    {proposal.scopeOfWork?.objective
-                      ? proposal.scopeOfWork?.objective.trim().split(/\s+/)
-                          .length
-                      : 0}
-                    /40 words
+                    {proposal.scopeOfWork.objective.trim().split(/\s+/).length}{" "}
+                    / 40 words
                   </p>
                 </div>
               </div>
 
-              <div className="flex gap-8"></div>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <div>
                   <h4 className="font-medium mt-4">Services</h4>
-                  <div className="space-y-2">
-                    {proposal.scopeOfWork?.services?.map((item, index) => (
-                      <div key={index} className="flex items-center gap-2">
-                        <textarea
-                          type="text"
-                          placeholder="Service"
-                          value={item}
-                          onChange={(e) => {
-                            const words = e.target.value.trim().split(/\s+/);
-                            if (words.length <= 10) {
-                              handleArrayChange(e, "services", index);
-                            }
-                          }}
-                          className="w-full h-[20vh] p-2 border border-primary-subtle rounded focus:outline-none  focus:bg-white focus:ring-0 bg-[#F5FBFF]"
-                        />
-                        <button
-                          type="button"
-                          onClick={() => removeArrayField("services", index)}
-                          className="bg-red-200 px-2 py-1 rounded"
-                        >
-                          <i className="bi bi-trash text-danger"></i>
-                        </button>
-                      </div>
-                    ))}
-                  </div>
-
+                  {proposal.scopeOfWork.services.map((item, index) => (
+                    <div key={index} className="flex items-center gap-2 mb-2">
+                      <textarea
+                        type="text"
+                        placeholder="Service"
+                        value={item}
+                        onChange={(e) => {
+                          const words = e.target.value.trim().split(/\s+/);
+                          if (words.length <= 10)
+                            handleArrayChange(e, "services", index);
+                        }}
+                        className="w-full h-[20vh] p-2 border border-primary-subtle rounded focus:outline-none focus:bg-white focus:ring-0 bg-[#F5FBFF]"
+                      />
+                      <button
+                        type="button"
+                        onClick={() => removeArrayField("services", index)}
+                        className="bg-red-200 px-2 py-1 rounded"
+                      >
+                        <i className="bi bi-trash text-danger"></i>
+                      </button>
+                    </div>
+                  ))}
                   <p className="text-sm text-gray-500">
-                    {proposal.scopeOfWork?.services?.length
-                      ? proposal.scopeOfWork.services
-                          .map((item) =>
-                            item.trim() ? item.trim().split(/\s+/).length : 0
-                          )
-                          .reduce((a, b) => a + b, 0)
-                      : 0}{" "}
-                    / 10 words
+                    {proposal.scopeOfWork.services
+                      .map((item) => item.trim().split(/\s+/).length)
+                      .reduce((a, b) => a + b, 0)}{" "}
+                    / 10 words per service
                   </p>
-
                   <button
                     type="button"
                     onClick={() => addArrayField("services")}
                     className="mt-2 px-4 py-2 bg-[#0d6efd] text-white rounded hover:bg-[#afcdf7]"
-                    id="addBtn"
                   >
                     + Add Service
                   </button>
@@ -2062,53 +2772,45 @@ const CreateProposal = () => {
 
                 <div>
                   <h4 className="font-medium mt-4">Description</h4>
-                  <div className="space-y-2">
-                    {proposal.scopeOfWork?.description?.map((item, index) => (
-                      <div key={index} className="flex items-center gap-2">
-                        <textarea
-                          type="text"
-                          placeholder="Description"
-                          value={item}
-                          onChange={(e) => {
-                            const words = e.target.value.trim().split(/\s+/);
-                            if (words.length <= 30) {
-                              handleArrayChange(e, "description", index);
-                            }
-                          }}
-                          className="w-full h-[20vh] p-2 border border-primary-subtle rounded focus:outline-none  focus:bg-white focus:ring-0 bg-[#F5FBFF]"
-                        />
-                        <button
-                          type="button"
-                          onClick={() => removeArrayField("description", index)}
-                          className="bg-red-200 px-2 py-1 rounded"
-                        >
-                          <i className="bi bi-trash text-danger"></i>
-                        </button>
-                      </div>
-                    ))}
-                  </div>
-
+                  {proposal.scopeOfWork.description.map((item, index) => (
+                    <div key={index} className="flex items-center gap-2 mb-2">
+                      <textarea
+                        type="text"
+                        placeholder="Description"
+                        value={item}
+                        onChange={(e) => {
+                          const words = e.target.value.trim().split(/\s+/);
+                          if (words.length <= 30)
+                            handleArrayChange(e, "description", index);
+                        }}
+                        className="w-full h-[20vh] p-2 border border-primary-subtle rounded focus:outline-none focus:bg-white focus:ring-0 bg-[#F5FBFF]"
+                      />
+                      <button
+                        type="button"
+                        onClick={() => removeArrayField("description", index)}
+                        className="bg-red-200 px-2 py-1 rounded"
+                      >
+                        <i className="bi bi-trash text-danger"></i>
+                      </button>
+                    </div>
+                  ))}
                   <p className="text-sm text-gray-500">
-                    {proposal.scopeOfWork?.description?.length
-                      ? proposal.scopeOfWork.description
-                          .map((item) =>
-                            item.trim() ? item.trim().split(/\s+/).length : 0
-                          )
-                          .reduce((a, b) => a + b, 0) // Sum word counts
-                      : 0}{" "}
-                    / 30 words
+                    {proposal.scopeOfWork.description
+                      .map((item) => item.trim().split(/\s+/).length)
+                      .reduce((a, b) => a + b, 0)}{" "}
+                    / 30 words per description
                   </p>
                   <button
                     type="button"
                     onClick={() => addArrayField("description")}
                     className="mt-2 px-4 py-2 bg-[#0d6efd] text-white rounded hover:bg-[#afcdf7]"
-                    id="addBtn"
                   >
                     + Add Description
                   </button>
                 </div>
               </div>
             </div>
+
             <div className="col bg-white p-0 m-0 sm:p-4 sm:m-3 border border-gray-300 rounded">
               <h3 className="text-lg font-semibold p-4">
                 Timeline & Deliverables
@@ -2122,20 +2824,17 @@ const CreateProposal = () => {
                   onChange={(e) =>
                     setProposal({
                       ...proposal,
-                      timelineWeeks: {
-                        ...proposal.timelineWeeks,
-                        timeLine: e.target.value, // Correct field update
-                      },
+                      timelineWeeks: { timeLine: e.target.value },
                     })
                   }
                   className="p-2 border border-primary-subtle rounded focus:outline-none focus:bg-white focus:ring-0 bg-[#F5FBFF] w-30"
                 />
               </div>
 
-              {proposal.timelineDeliverables.map((timeline, timelineIndex) => (
+              {proposal.timelineDeliverables.map((timeline, index) => (
                 <div
-                  key={timelineIndex}
-                  className="border p-4 rounded-md space-y-3"
+                  key={index}
+                  className="border p-4 rounded-md space-y-3 m-4"
                 >
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                     <div>
@@ -2145,18 +2844,14 @@ const CreateProposal = () => {
                         value={timeline.task}
                         onChange={(e) => {
                           const words = e.target.value.trim().split(/\s+/);
-                          if (words.length <= 10) {
-                            handleTimelineChange(e, timelineIndex, "task");
-                          }
+                          if (words.length <= 10)
+                            handleTimelineChange(e, index, "task");
                         }}
-                        className="w-full p-2 border border-primary-subtle rounded focus:outline-none  focus:bg-white focus:ring-0 bg-[#F5FBFF] h-[25vh]"
+                        className="w-full p-2 border border-primary-subtle rounded focus:outline-none focus:bg-white focus:ring-0 bg-[#F5FBFF] h-[25vh]"
                         required
                       />
                       <p className="text-sm text-gray-500">
-                        {timeline.task
-                          ? timeline.task.trim().split(/\s+/).length
-                          : 0}{" "}
-                        / 10 words
+                        {timeline.task.trim().split(/\s+/).length} / 10 words
                       </p>
                     </div>
 
@@ -2167,22 +2862,15 @@ const CreateProposal = () => {
                         value={timeline.deliverables}
                         onChange={(e) => {
                           const words = e.target.value.trim().split(/\s+/);
-                          if (words.length <= 20) {
-                            handleTimelineChange(
-                              e,
-                              timelineIndex,
-                              "deliverables"
-                            );
-                          }
+                          if (words.length <= 20)
+                            handleTimelineChange(e, index, "deliverables");
                         }}
-                        className="w-full p-2 border border-primary-subtle rounded focus:outline-none  focus:bg-white focus:ring-0 bg-[#F5FBFF] h-[25vh]"
+                        className="w-full p-2 border border-primary-subtle rounded focus:outline-none focus:bg-white focus:ring-0 bg-[#F5FBFF] h-[25vh]"
                         required
                       />
                       <p className="text-sm text-gray-500">
-                        {timeline.deliverables
-                          ? timeline.deliverables.trim().split(/\s+/).length
-                          : 0}{" "}
-                        / 20 words
+                        {timeline.deliverables.trim().split(/\s+/).length} / 20
+                        words
                       </p>
                     </div>
                   </div>
@@ -2193,9 +2881,9 @@ const CreateProposal = () => {
                       <input
                         type="text"
                         placeholder="Enter Timeline"
-                        value={timeline.timelineText || ""}
+                        value={timeline.timelineText}
                         onChange={(e) =>
-                          handleTimelineChange(e, timelineIndex, "timelineText")
+                          handleTimelineChange(e, index, "timelineText")
                         }
                         className="p-2 border border-primary-subtle rounded focus:outline-none focus:bg-white focus:ring-0 bg-[#F5FBFF] w-30"
                         required
@@ -2205,7 +2893,7 @@ const CreateProposal = () => {
 
                   <button
                     type="button"
-                    onClick={() => removeTimeline(timelineIndex)}
+                    onClick={() => removeTimeline(index)}
                     className="mt-2 p-1 bg-red-200 text-red-500 px-2 rounded"
                   >
                     Remove Timeline & Deliverables
@@ -2217,11 +2905,11 @@ const CreateProposal = () => {
                 type="button"
                 onClick={addTimeline}
                 className="m-4 p-2 bg-[#0d6efd] text-white rounded hover:bg-[#afcdf7]"
-                id="addBtn"
               >
                 Add Timeline & Deliverables
               </button>
             </div>
+
             <div className="col bg-white p-0 m-0 sm:p-4 sm:m-3 border border-gray-300 rounded">
               <h3 className="text-lg font-semibold p-4">Proposed Investment</h3>
               <div className="mt-2 flex gap-4 items-center p-4">
@@ -2229,19 +2917,19 @@ const CreateProposal = () => {
                 <input
                   type="number"
                   placeholder="Enter cost"
-                  value={proposal.proposedCost || ""}
+                  value={proposal.proposedCost}
                   onChange={(e) =>
-                    setProposal({
-                      ...proposal,
-                      proposedCost: e.target.value,
-                    })
+                    setProposal({ ...proposal, proposedCost: e.target.value })
                   }
-                  className="p-2 border border-primary-subtle rounded focus:outline-none  focus:bg-white focus:ring-0 bg-[#F5FBFF] w-30"
+                  className="p-2 border border-primary-subtle rounded focus:outline-none focus:bg-white focus:ring-0 bg-[#F5FBFF] w-30"
                 />
               </div>
 
-              {proposal.proposedInvestment.map((proposed, Index) => (
-                <div key={Index} className="border p-4 rounded-md space-y-3">
+              {proposal.proposedInvestment.map((proposed, index) => (
+                <div
+                  key={index}
+                  className="border p-4 rounded-md space-y-3 m-4"
+                >
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                     <div>
                       <label className="block font-medium">Services</label>
@@ -2250,18 +2938,15 @@ const CreateProposal = () => {
                         value={proposed.services}
                         onChange={(e) => {
                           const words = e.target.value.trim().split(/\s+/);
-                          if (words.length <= 10) {
-                            handleProposedChange(e, Index, "services");
-                          }
+                          if (words.length <= 10)
+                            handleProposedChange(e, index, "services");
                         }}
-                        className="w-full p-2 border border-primary-subtle rounded focus:outline-none  focus:bg-white focus:ring-0 bg-[#F5FBFF] h-[25vh]"
+                        className="w-full p-2 border border-primary-subtle rounded focus:outline-none focus:bg-white focus:ring-0 bg-[#F5FBFF] h-[25vh]"
                         required
                       />
                       <p className="text-sm text-gray-500">
-                        {proposed.services
-                          ? proposed.services.trim().split(/\s+/).length
-                          : 0}{" "}
-                        / 10 words
+                        {proposed.services.trim().split(/\s+/).length} / 10
+                        words
                       </p>
                     </div>
 
@@ -2272,28 +2957,25 @@ const CreateProposal = () => {
                         value={proposed.description}
                         onChange={(e) => {
                           const words = e.target.value.trim().split(/\s+/);
-                          if (words.length <= 20) {
-                            handleProposedChange(e, Index, "description");
-                          }
+                          if (words.length <= 20)
+                            handleProposedChange(e, index, "description");
                         }}
-                        className="w-full p-2 border border-primary-subtle rounded focus:outline-none  focus:bg-white focus:ring-0 bg-[#F5FBFF] h-[25vh]"
+                        className="w-full p-2 border border-primary-subtle rounded focus:outline-none focus:bg-white focus:ring-0 bg-[#F5FBFF] h-[25vh]"
                         required
                       />
                       <p className="text-sm text-gray-500">
-                        {proposed.description
-                          ? proposed.description.trim().split(/\s+/).length
-                          : 0}{" "}
-                        / 20 words
+                        {proposed.description.trim().split(/\s+/).length} / 20
+                        words
                       </p>
                     </div>
 
                     <div>
                       <label className="block font-medium">Cost</label>
-                      <textarea
+                      <input
                         name="cost"
                         value={proposed.cost}
-                        onChange={(e) => handleProposedChange(e, Index, "cost")}
-                        className="w-50 p-2 border border-primary-subtle rounded focus:outline-none  focus:bg-white focus:ring-0 bg-[#F5FBFF] h-[6vh]"
+                        onChange={(e) => handleProposedChange(e, index, "cost")}
+                        className="w-full p-2 border border-primary-subtle rounded focus:outline-none focus:bg-white focus:ring-0 bg-[#F5FBFF]"
                         required
                       />
                     </div>
@@ -2301,7 +2983,7 @@ const CreateProposal = () => {
 
                   <button
                     type="button"
-                    onClick={() => removeProposed(Index)}
+                    onClick={() => removeProposed(index)}
                     className="mt-2 p-1 bg-red-200 text-red-500 px-2 rounded"
                   >
                     Remove Proposed Investment
@@ -2313,48 +2995,47 @@ const CreateProposal = () => {
                 type="button"
                 onClick={addProposed}
                 className="m-4 p-2 bg-[#0d6efd] text-white rounded hover:bg-[#afcdf7]"
-                id="addBtn"
               >
                 Add Proposed Investment
               </button>
             </div>
+
             <div className="col bg-white p-0 m-0 sm:p-4 sm:m-3 border border-gray-300 rounded">
               <h3 className="text-lg font-semibold p-4">Payments Terms</h3>
 
-              {proposal.payments.map((proposed, Index) => (
-                <div key={Index} className="border p-4 rounded-md space-y-3">
+              {proposal.payments.map((payment, index) => (
+                <div
+                  key={index}
+                  className="border p-4 rounded-md space-y-3 m-4"
+                >
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                     <div>
                       <label className="block font-medium">Terms</label>
                       <textarea
                         name="terms"
-                        value={proposed.terms}
+                        value={payment.terms}
                         onChange={(e) => {
                           const words = e.target.value.trim().split(/\s+/);
-                          if (words.length <= 10) {
-                            handlePaymentsChange(e, Index, "terms");
-                          }
+                          if (words.length <= 10)
+                            handlePaymentsChange(e, index, "terms");
                         }}
-                        className="w-full p-2 border border-primary-subtle rounded focus:outline-none  focus:bg-white focus:ring-0 bg-[#F5FBFF] h-[25vh]"
+                        className="w-full p-2 border border-primary-subtle rounded focus:outline-none focus:bg-white focus:ring-0 bg-[#F5FBFF] h-[25vh]"
                         required
                       />
                       <p className="text-sm text-gray-500">
-                        {proposed.terms
-                          ? proposed.terms.trim().split(/\s+/).length
-                          : 0}{" "}
-                        / 10 words
+                        {payment.terms.trim().split(/\s+/).length} / 10 words
                       </p>
                     </div>
 
                     <div>
                       <label className="block font-medium">Amount</label>
-                      <textarea
+                      <input
                         name="amount"
-                        value={proposed.amount}
+                        value={payment.amount}
                         onChange={(e) =>
-                          handlePaymentsChange(e, Index, "amount")
+                          handlePaymentsChange(e, index, "amount")
                         }
-                        className="w-50 p-2 border border-primary-subtle rounded focus:outline-none  focus:bg-white focus:ring-0 bg-[#F5FBFF] h-[6vh]"
+                        className="w-full p-2 border border-primary-subtle rounded focus:outline-none focus:bg-white focus:ring-0 bg-[#F5FBFF]"
                         required
                       />
                     </div>
@@ -2362,7 +3043,7 @@ const CreateProposal = () => {
 
                   <button
                     type="button"
-                    onClick={() => removePayments(Index)}
+                    onClick={() => removePayments(index)}
                     className="mt-2 p-1 bg-red-200 text-red-500 px-2 rounded"
                   >
                     Remove Payments Terms
@@ -2374,7 +3055,6 @@ const CreateProposal = () => {
                 type="button"
                 onClick={addPayments}
                 className="m-4 p-2 bg-[#0d6efd] text-white rounded hover:bg-[#afcdf7]"
-                id="addBtn"
               >
                 Add Payments Terms
               </button>
@@ -2383,7 +3063,6 @@ const CreateProposal = () => {
             <button
               type="submit"
               className="m-4 px-5 py-2 bg-[#0d6efd] text-white rounded hover:bg-[#afcdf7]"
-              id="addBtn"
             >
               Create Proposal
             </button>

@@ -23,7 +23,7 @@ const Login = () => {
       return handleError("All fields are require");
     }
     try {
-      const url = "http://localhost:5000/auth/Login";
+      const url = "https://proposal-backend-r6dj.onrender.com/auth/Login";
       const response = await fetch(url, {
         method: "POST",
         headers: {

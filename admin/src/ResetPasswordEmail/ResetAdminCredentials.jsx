@@ -217,9 +217,6 @@ const ResetAdminCredentials = () => {
             </button>
           </div>
         </form>
-        <p className="text-sm text-gray-600 mt-2">
-          Note: At least one of new email or new password is required
-        </p>
       </div>
     </div>
   );

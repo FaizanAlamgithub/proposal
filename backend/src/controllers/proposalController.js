@@ -106,7 +106,6 @@ const generatePassword = () => Math.floor(1000 + Math.random() * 9000);
 //   }
 // };
 
-
 exports.createProposal = async (req, res) => {
   try {
     const {
@@ -144,7 +143,9 @@ exports.createProposal = async (req, res) => {
       !scopeOfWork.objective ||
       !timelineWeeks.timeLine
     ) {
-      return res.status(400).json({ error: "Nested required fields are missing." });
+      return res
+        .status(400)
+        .json({ error: "Nested required fields are missing." });
     }
 
     // Generate auto password
@@ -202,6 +203,47 @@ exports.getProposals = async (req, res) => {
   }
 };
 
+// // Get All Archived Proposals
+// exports.getAllArchivedProposals = async (req, res) => {
+//   try {
+//     console.log("Fetching archived proposals...");
+
+//     const archivedProposals = await Proposal.find({ isArchived: true });
+
+//     if (archivedProposals.length === 0) {
+//       return res.status(404).json({ message: "No archived proposals found" });
+//     }
+
+//     res.status(200).json(archivedProposals);
+//   } catch (error) {
+//     console.error("Error fetching archived proposals:", error);
+//     res.status(500).json({
+//       message: "Error retrieving archived proposals",
+//       error: error.message,
+//     });
+//   }
+// };
+
+// Get All Archived Proposals
+exports.getAllArchivedProposals = async (req, res) => {
+  try {
+    const archivedProposals = await Proposal.find({ isArchived: true });
+
+    // ✅ Return an empty array instead of a 404 error
+    if (archivedProposals.length === 0) {
+      return res.status(200).json([]);
+    }
+
+    res.status(200).json(archivedProposals);
+  } catch (error) {
+    console.error("Error fetching archived proposals:", error.message);
+    res.status(500).json({
+      message: "Internal server error. Please try again.",
+      error: error.message,
+    });
+  }
+};
+
 // Get a single proposal by ID
 exports.getProposalById = async (req, res) => {
   try {
@@ -252,7 +294,11 @@ exports.clientLogin = async (req, res) => {
     const proposal = await Proposal.findOne({ proposalPassword }).lean();
 
     if (!proposal) {
-      return res.status(401).json({ error: "Invalid proposal password." });
+      return res.status(201).json({ error: "Invalid proposal password." });
+    }
+
+    if (proposal.isArchived) {
+      return res.status(201).json({ message: "This proposal is archived." });
     }
 
     // Send proposal details (without password)
@@ -358,5 +404,55 @@ exports.deleteProposal = async (req, res) => {
     res.json({ message: "Proposal deleted successfully" });
   } catch (error) {
     res.status(500).json({ error: "Server error", details: error.message });
+  }
+};
+
+// Archive a Proposal
+exports.archiveProposal = async (req, res) => {
+  try {
+    const { id } = req.params;
+
+    // Find proposal by ID and update archived to true
+    const proposal = await Proposal.findByIdAndUpdate(
+      id,
+      { isArchived: true },
+      { new: true } // Return updated proposal
+    );
+
+    if (!proposal) {
+      return res.status(404).json({ message: "Proposal not found" });
+    }
+
+    res
+      .status(200)
+      .json({ message: "Proposal archived successfully", proposal });
+  } catch (error) {
+    console.error("Error archiving proposal:", error);
+    res.status(500).json({ message: "Error archiving proposal", error });
+  }
+};
+
+// Unarchive a Proposal
+exports.UnArchiveProposal = async (req, res) => {
+  try {
+    const { id } = req.params;
+
+    // Find proposal by ID and update archived to true
+    const proposal = await Proposal.findByIdAndUpdate(
+      id,
+      { isArchived: false },
+      { new: true } // Return updated proposal
+    );
+
+    if (!proposal) {
+      return res.status(404).json({ message: "Proposal not found" });
+    }
+
+    res
+      .status(200)
+      .json({ message: "Proposal archived successfully", proposal });
+  } catch (error) {
+    console.error("Error archiving proposal:", error);
+    res.status(500).json({ message: "Error archiving proposal", error });
   }
 };

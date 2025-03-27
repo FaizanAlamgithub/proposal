@@ -52,6 +52,7 @@ const ProposalSchema = new mongoose.Schema(
         amount: { type: Number },
       },
     ],
+    isArchived: { type: Boolean, default: false },
   },
   { timestamps: true }
 );

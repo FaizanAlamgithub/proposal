@@ -9,12 +9,22 @@ const {
   deleteProposal,
   clientLogin,
   acceptProposal,
+  archiveProposal,
+  getAllArchivedProposals,
+  UnArchiveProposal,
 } = require("../controllers/proposalController");
 
 const router = express.Router();
 
 router.post("/proposals/create", createProposal); // Create a proposal
 router.get("/proposals", getProposals); // Get all proposals
+// Archive a proposal by ID
+router.put("/proposals/archive/:id", archiveProposal);
+// Get all archived proposals
+router.get("/proposals/archived", getAllArchivedProposals);
+// Unarchive proposal
+router.put("/proposals/unarchive/:id", UnArchiveProposal);
+
 router.get("/proposals/:id", getProposalById); // Get a proposal by ID
 router.put("/proposals/edit/:id", updateProposal); // Update a proposal
 router.delete("/proposals/delete/:id", deleteProposal); // Delete a proposal

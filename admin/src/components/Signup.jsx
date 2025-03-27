@@ -1,7 +1,8 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { ToastContainer } from "react-toastify";
 import { handleError, handleSuccess } from "../utils";
+import { AppContent } from "../context/AppContext";
 
 const Signup = () => {
   const [signupInfo, setSignupInfo] = useState({
@@ -9,6 +10,8 @@ const Signup = () => {
     email: "",
     password: "",
   });
+
+  const { backendUrl } = useContext(AppContent);
   const navigate = useNavigate();
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -24,7 +27,7 @@ const Signup = () => {
       return handleError("All fields are require");
     }
     try {
-      const url = "http://localhost:5000/auth/signup";
+      const url = `${backendUrl}/auth/signup`;
       const response = await fetch(url, {
         method: "POST",
         headers: {
@@ -52,8 +55,13 @@ const Signup = () => {
   };
   return (
     <div className="d-flex align-items-center justify-content-center vh-100 bg-light">
+      <button
+        onClick={() => navigate("/super-admin-dashboard")}
+        className="btn btn-close position-absolute top-0 end-0 m-3"
+        aria-label="Close"
+      ></button>{" "}
       <div className="card shadow-lg p-4 rounded" style={{ width: "350px" }}>
-        <h3 className="text-center mb-3">Sign Up</h3>
+        <h3 className="text-center mb-3">Admin Account</h3>
         <form onSubmit={handleSignup}>
           <div className="mb-3">
             <label htmlFor="name" className="form-label">
@@ -98,12 +106,12 @@ const Signup = () => {
             />
           </div>
           <button type="submit" className="btn btn-primary w-100">
-            Sign Up
+            Create Admin Account
           </button>
         </form>
-        <span className="text-center mt-3">
+        {/* <span className="text-center mt-3">
           Already have an account? <Link to="/admin-login">Login</Link>
-        </span>
+        </span> */}
       </div>
       <ToastContainer />
     </div>

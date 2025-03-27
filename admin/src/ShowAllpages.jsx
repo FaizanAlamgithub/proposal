@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useRef } from "react";
+import React, { useEffect, useState, useRef, useContext } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import Proposal from "../../client/src/pages/Proposal";
 import TableOfContent from "../../client/src/pages/TableOfContent";
@@ -16,6 +16,7 @@ import Script from "../../client/src/Script";
 
 import jsPDF from "jspdf";
 import html2canvas from "html2canvas";
+import { AppContent } from "./context/AppContext";
 
 function ShowAllpages() {
   const { id } = useParams(); // Get proposalId from URL
@@ -24,6 +25,8 @@ function ShowAllpages() {
   const [error, setError] = useState(null);
   const pagesRef = useRef(null);
   const [downloading, setDownloading] = useState(false);
+
+  const { backendUrl } = useContext(AppContent);
   const navigate = useNavigate();
 
   const downloadPDF = async () => {
@@ -122,9 +125,7 @@ function ShowAllpages() {
   useEffect(() => {
     const fetchProposal = async () => {
       try {
-        const response = await fetch(
-          `http://localhost:5000/api/proposals/${id}`
-        );
+        const response = await fetch(`${backendUrl}/api/proposals/${id}`);
         if (!response.ok) {
           throw new Error("Failed to fetch proposal");
         }

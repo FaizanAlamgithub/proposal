@@ -160,14 +160,18 @@
 
 // export default EditProposal;
 
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { handleError, handleSuccess } from "../utils";
 import { ToastContainer } from "react-toastify";
+import { AppContent } from "../context/AppContext";
 
 const EditProposal = () => {
   const { id } = useParams(); // Get proposal ID from URL
   const navigate = useNavigate();
+
+  const { backendUrl } = useContext(AppContent);
+
   const [proposal, setProposal] = useState({
     companyName: "",
     clientName: "",
@@ -207,7 +211,7 @@ const EditProposal = () => {
 
   // Fetch existing proposal data
   useEffect(() => {
-    fetch(`http://localhost:5000/api/proposals/${id}`)
+    fetch(`${backendUrl}/api/proposals/${id}`)
       .then((response) => response.json())
       .then((data) => setProposal(data))
       .catch((error) => console.error("Error fetching proposal:", error));
@@ -355,7 +359,7 @@ const EditProposal = () => {
     e.preventDefault();
     try {
       const response = await fetch(
-        `http://localhost:5000/api/proposals/edit/${id}`,
+        `${backendUrl}/api/proposals/edit/${id}`,
         {
           method: "PUT",
           headers: { "Content-Type": "application/json" },

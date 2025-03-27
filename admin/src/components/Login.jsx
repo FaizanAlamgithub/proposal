@@ -1,13 +1,16 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { ToastContainer } from "react-toastify";
 import { handleError, handleSuccess } from "../utils";
+import { AppContent } from "../context/AppContext";
 
 const Login = () => {
   const [loginInfo, setLoginInfo] = useState({
     email: "",
     password: "",
   });
+
+  const { backendUrl } = useContext(AppContent);
   const navigate = useNavigate();
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -23,7 +26,7 @@ const Login = () => {
       return handleError("All fields are require");
     }
     try {
-      const url = "http://localhost:5000/auth/Login";
+      const url = `${backendUrl}/auth/Login`;
       const response = await fetch(url, {
         method: "POST",
         headers: {
@@ -35,7 +38,7 @@ const Login = () => {
       const { message, success, error, jwtToken, name } = result;
       if (success) {
         handleSuccess(message);
-        localStorage.setItem("token", jwtToken);
+        localStorage.setItem("admin_token", jwtToken);
         localStorage.setItem("loggedInUser", name);
         setTimeout(() => {
           navigate("/dashboard");
@@ -101,7 +104,7 @@ const Login = () => {
       <div className="bg-white p-8 rounded-lg shadow-lg w-[400px] h-[380px] text-center">
         {/* Title Container with Bottom Border */}
         <div className="border-b border-gray-300 text-center py-3">
-          <h2 className="text-2xl font-medium text-[#606060]">Login</h2>
+          <h2 className="text-2xl font-medium text-[#606060]">Admin Login</h2>
         </div>
 
         <form onSubmit={handleLogin} className="pt-4">
@@ -120,18 +123,22 @@ const Login = () => {
             id="password"
             name="password"
             onChange={handleChange}
-            placeholder="Create a password"
+            placeholder="Enter a password"
             value={loginInfo.password}
           />
           <button
             type="submit"
             className="bg-black text-white px-3 py-2.5 rounded w-full mb-3"
           >
-            Login
+            Admin Login
           </button>
         </form>
         <span className="text-center mt-3">
-          Already have an account? <Link to="/admin-signup">Signup</Link>
+          Login as Super Admin?{" "}
+          <Link to="/super-admin-login" className="text-primary">
+            {" "}
+            Super Admin
+          </Link>
         </span>
       </div>
     </div>

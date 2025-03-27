@@ -1,10 +1,13 @@
 import React from "react";
+import { useContext } from "react";
+import { AppContent } from "../context/AppContext";
 
 const DownloadProposal = ({ proposalId }) => {
+  const { backendUrl } = useContext(AppContent);
   const handleDownload = async () => {
     try {
       const response = await fetch(
-        `http://localhost:5000/api/proposals/download/${proposalId}`,
+        `${backendUrl}/api/proposals/download/${proposalId}`,
         {
           method: "GET",
           headers: {

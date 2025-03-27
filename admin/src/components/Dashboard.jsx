@@ -561,25 +561,27 @@
 
 // export default Dashboard;
 
-import React, { useState, useEffect, useCallback } from "react";
+import React, { useState, useEffect, useCallback, useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import { handleError, handleSuccess } from "../utils";
 import { ToastContainer, toast } from "react-toastify";
 import { Copy } from "lucide-react";
-import DeleteProposalModal from "../modal/DeleteProposalModal";
+import { AppContent } from "../context/AppContext";
+// import DeleteProposalModal from "../modal/DeleteProposalModal";
 
 function Dashboard({ downloadPDF }) {
   const [loggedInAdmin, setLoggedInAdmin] = useState("");
   const [proposals, setProposals] = useState([]);
-  const [showDeleteModal, setShowDeleteModal] = useState(false);
-  const [selectedProposalId, setSelectedProposalId] = useState(null);
+  // const [showDeleteModal, setShowDeleteModal] = useState(false);
+  // const [selectedProposalId, setSelectedProposalId] = useState(null);
   const [copiedId, setCopiedId] = useState(null);
 
+  const { backendUrl } = useContext(AppContent);
   const navigate = useNavigate();
 
   // Logout function
   const logoutAdmin = useCallback(() => {
-    localStorage.removeItem("token");
+    localStorage.removeItem("admin_token");
     localStorage.removeItem("loggedInUser");
     localStorage.removeItem("tokenExpiration");
     handleSuccess("Session expired. Please log in again.");
@@ -589,15 +591,15 @@ function Dashboard({ downloadPDF }) {
   // Fetch proposals
   const fetchProposals = useCallback(async () => {
     try {
-      const token = localStorage.getItem("token");
-      if (!token) throw new Error("Unauthorized access. Please log in.");
+      const admin_token = localStorage.getItem("admin_token");
+      if (!admin_token) throw new Error("Unauthorized access. Please log in.");
 
       const response = await fetch(
-        `http://localhost:5000/api/proposals/?admin=true`,
+        `${backendUrl}/api/proposals/?admin=true`,
         {
           method: "GET",
           headers: {
-            Authorization: `Bearer ${token}`,
+            Authorization: `Bearer ${admin_token}`,
             "Content-Type": "application/json",
           },
         }
@@ -606,20 +608,50 @@ function Dashboard({ downloadPDF }) {
       if (!response.ok) throw new Error("Failed to fetch proposals");
 
       const result = await response.json();
-      if (!Array.isArray(result)) throw new Error("Invalid response format");
+      if (!Array.isArray(result)) {
+        throw new Error("Invalid response format");
+      }
 
-      setProposals(result);
+      // Filter out archived proposals
+      const activeProposals = result.filter((proposal) => !proposal.isArchived);
+
+      setProposals(activeProposals);
     } catch (error) {
       handleError(error.message);
     }
   }, []);
 
+  // Archive proposal by id
+  // Archive Proposal
+  const handleArchiveProposal = async (id) => {
+    try {
+      const admin_token = localStorage.getItem("admin_token");
+      const response = await fetch(
+        `${backendUrl}/api/proposals/archive/${id}`,
+        {
+          method: "PUT",
+          headers: {
+            Authorization: `Bearer ${admin_token}`,
+            "Content-Type": "application/json",
+          },
+        }
+      );
+
+      if (!response.ok) throw new Error("Failed to archive proposal");
+
+      toast.success("Proposal archived successfully");
+      setProposals((prev) => prev.filter((p) => p._id !== id));
+    } catch (error) {
+      toast.error(error.message);
+    }
+  };
+
   // Auto Logout & Fetch Proposals on Mount
   useEffect(() => {
-    const token = localStorage.getItem("token");
+    const admin_token = localStorage.getItem("admin_token");
     let expirationTimestamp = localStorage.getItem("tokenExpiration");
 
-    if (token) {
+    if (admin_token) {
       setLoggedInAdmin(localStorage.getItem("loggedInUser") || "Admin");
       fetchProposals();
 
@@ -670,58 +702,71 @@ function Dashboard({ downloadPDF }) {
     });
   };
 
-  // Open Delete Modal
-  const openDeleteModal = (id) => {
-    setSelectedProposalId(id);
-    setShowDeleteModal(true);
+  // // Open Delete Modal
+  // const openDeleteModal = (id) => {
+  //   setSelectedProposalId(id);
+  //   setShowDeleteModal(true);
+  // };
+
+  // // Close Delete Modal
+  // const closeDeleteModal = () => {
+  //   setSelectedProposalId(null);
+  //   setShowDeleteModal(false);
+  // };
+
+  // Archive Page
+  const handleArchive = () => {
+    const url = `${window.location.origin}/proposal/archive`;
+    window.open(url, "_blank");
   };
 
-  // Close Delete Modal
-  const closeDeleteModal = () => {
-    setSelectedProposalId(null);
-    setShowDeleteModal(false);
-  };
+  // // Delete proposal
+  // const handleDelete = async () => {
+  //   if (!selectedProposalId) return;
 
-  // Delete proposal
-  const handleDelete = async () => {
-    if (!selectedProposalId) return;
+  //   try {
+  //     const token = localStorage.getItem("token");
+  //     const response = await fetch(
+  //       `http://localhost:5000/api/proposals/delete/${selectedProposalId}`,
+  //       {
+  //         method: "DELETE",
+  //         headers: {
+  //           Authorization: `Bearer ${token}`,
+  //           "Content-Type": "application/json",
+  //         },
+  //       }
+  //     );
 
-    try {
-      const token = localStorage.getItem("token");
-      const response = await fetch(
-        `http://localhost:5000/api/proposals/delete/${selectedProposalId}`,
-        {
-          method: "DELETE",
-          headers: {
-            Authorization: `Bearer ${token}`,
-            "Content-Type": "application/json",
-          },
-        }
-      );
+  //     if (!response.ok) throw new Error("Failed to delete proposal");
 
-      if (!response.ok) throw new Error("Failed to delete proposal");
-
-      toast.success("Proposal deleted successfully");
-      setProposals((prev) => prev.filter((p) => p._id !== selectedProposalId));
-      closeDeleteModal();
-    } catch (error) {
-      toast.error(error.message);
-    }
-  };
+  //     toast.success("Proposal deleted successfully");
+  //     setProposals((prev) => prev.filter((p) => p._id !== selectedProposalId));
+  //     closeDeleteModal();
+  //   } catch (error) {
+  //     toast.error(error.message);
+  //   }
+  // };
 
   return (
     <div className="container mt-5">
       <h1>{loggedInAdmin}</h1>
       <h2 className="mb-4">Admin Panel - Proposals</h2>
-      <button onClick={handleLogout} className="btn btn-secondary mb-3">
-        Logout
-      </button>
-      <button
-        onClick={() => navigate("/create-proposal")}
-        className="btn btn-primary mb-3 ms-2"
-      >
-        + Create Proposal
-      </button>
+      <div className="flex justify-between">
+        <div>
+          <button onClick={handleLogout} className="btn btn-secondary mb-3">
+            Logout
+          </button>
+          <button
+            onClick={() => navigate("/create-proposal")}
+            className="btn btn-primary mb-3 ms-2"
+          >
+            + Create Proposal
+          </button>
+        </div>
+        <button className="btn btn-primary mb-3 ms-2" onClick={handleArchive}>
+          Archived proposal
+        </button>
+      </div>
 
       <table className="table table-bordered">
         <thead className="table-dark">
@@ -731,7 +776,7 @@ function Dashboard({ downloadPDF }) {
             <th>Created Date</th>
             <th>Expiry Date</th>
             <th>Proposal ID</th>
-            <th>Password</th>
+            <th>Access Proposal</th>
             <th>Action</th>
           </tr>
         </thead>
@@ -803,11 +848,17 @@ function Dashboard({ downloadPDF }) {
                   >
                     Edit
                   </button>
-                  <button
+                  {/* <button
                     className="btn btn-danger btn-sm me-2"
                     onClick={() => openDeleteModal(item._id)}
                   >
                     Delete
+                  </button> */}
+                  <button
+                    onClick={() => handleArchiveProposal(item._id)}
+                    className="btn btn-primary btn-sm me-2"
+                  >
+                    Archive
                   </button>
                   <button
                     onClick={() => downloadPDF(item._id)}
@@ -828,11 +879,11 @@ function Dashboard({ downloadPDF }) {
         </tbody>
       </table>
       <ToastContainer />
-      <DeleteProposalModal
+      {/* <DeleteProposalModal
         show={showDeleteModal}
         handleClose={closeDeleteModal}
         handleDelete={handleDelete}
-      />
+      /> */}
     </div>
   );
 }

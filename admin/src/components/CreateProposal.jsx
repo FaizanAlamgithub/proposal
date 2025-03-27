@@ -2396,13 +2396,16 @@
 
 // export default CreateProposal;
 
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { handleError, handleSuccess } from "../utils";
 import { ToastContainer } from "react-toastify";
+import { AppContent } from "../context/AppContext";
 
 const CreateProposal = () => {
   const navigate = useNavigate();
+
+  const { backendUrl } = useContext(AppContent);
 
   const [proposal, setProposal] = useState({
     companyName: "",
@@ -2565,14 +2568,11 @@ const CreateProposal = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await fetch(
-        "http://localhost:5000/api/proposals/create",
-        {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify(proposal),
-        }
-      );
+      const response = await fetch(`${backendUrl}/api/proposals/create`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(proposal),
+      });
 
       if (!response.ok) {
         throw new Error("Failed to create proposal");

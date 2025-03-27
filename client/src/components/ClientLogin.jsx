@@ -238,6 +238,7 @@ import ExpiredProposalModal from "../modal/ExpiredProposalModal"; // Import moda
 const ClientLogin = ({ setProposal }) => {
   const [password, setPassword] = useState("");
   const [expiredModal, setExpiredModal] = useState(false); // Modal state
+  const [isArchived, setIsArchived] = useState(false);
   const navigate = useNavigate();
 
   const handleLogin = async (e) => {
@@ -257,23 +258,39 @@ const ClientLogin = ({ setProposal }) => {
 
       const data = await response.json();
 
-      if (!response.ok || !data.proposal || !data.proposal._id) {
+      if (response.ok && data.proposal && data.proposal._id) {
+        // Successful login for active proposal
+        setProposal(data.proposal);
+        navigate(`/proposal/${data.proposal._id}`);
+      } else if (
+        response.status === 201 &&
+        data.message === "This proposal is archived."
+      ) {
+        // Archived proposal
+        setIsArchived(true);
         setExpiredModal(true);
-        return;
+      } else {
+        // Expired or other error (assuming backend might handle expiration)
+        setIsArchived(false);
+        setExpiredModal(true);
       }
-
-      setProposal(data.proposal);
-      navigate(`/proposal/${data.proposal._id}`);
     } catch (err) {
+      setIsArchived(false); // Default to expired message for unexpected errors
       setExpiredModal(true); // Show modal instead of toast
     }
+  };
+
+  const handleCloseModal = () => {
+    setExpiredModal(false);
+    setIsArchived(false); // Reset for next attempt
   };
 
   return (
     <div className="flex justify-center items-center h-screen bg-gray-100">
       <ExpiredProposalModal
         show={expiredModal}
-        handleClose={() => setExpiredModal(false)}
+        handleClose={handleCloseModal}
+        isArchived={isArchived}
       />
 
       <div className="bg-white p-8 rounded-lg shadow-lg text-center w-[350px] h-[300px]">

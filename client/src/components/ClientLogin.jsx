@@ -231,9 +231,10 @@
 
 // export default ClientLogin;
 
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import ExpiredProposalModal from "../modal/ExpiredProposalModal"; // Import modal
+import { AppContent } from "../AppContextClient/AppContent";
 
 const ClientLogin = ({ setProposal }) => {
   const [password, setPassword] = useState("");
@@ -241,20 +242,19 @@ const ClientLogin = ({ setProposal }) => {
   const [isArchived, setIsArchived] = useState(false);
   const navigate = useNavigate();
 
+  const { backendUrl } = useContext(AppContent);
+
   const handleLogin = async (e) => {
     e.preventDefault();
 
     try {
-      const response = await fetch(
-        "http://localhost:5000/api/proposals/login",
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({ proposalPassword: password }),
-        }
-      );
+      const response = await fetch(`${backendUrl}/api/proposals/login`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ proposalPassword: password }),
+      });
 
       const data = await response.json();
 

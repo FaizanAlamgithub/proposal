@@ -52,35 +52,38 @@ import { Routes, Route, BrowserRouter, Navigate } from "react-router-dom";
 import ClientLogin from "./components/ClientLogin";
 import AllPages from "./components/client/AllPages";
 import "react-toastify/dist/ReactToastify.css";
+import { AppcontextProvider } from "./AppContextClient/AppContent";
 
 function App() {
   const [proposal, setProposal] = useState(null);
 
   return (
     <BrowserRouter>
-      <Routes>
-        {/* Login Route */}
-        <Route
-          path="/access-proposal"
-          element={<ClientLogin setProposal={setProposal} />}
-        />
-        <Route path="/" element={<Navigate to="/access-proposal" />} />
+      <AppcontextProvider>
+        <Routes>
+          {/* Login Route */}
+          <Route
+            path="/access-proposal"
+            element={<ClientLogin setProposal={setProposal} />}
+          />
+          <Route path="/" element={<Navigate to="/access-proposal" />} />
 
-        {/* Proposal Route with ID */}
-        <Route
-          path="/proposal/:id"
-          element={
-            proposal ? (
-              <AllPages proposal={proposal} />
-            ) : (
-              <Navigate to="/access-proposal" />
-            )
-          }
-        />
+          {/* Proposal Route with ID */}
+          <Route
+            path="/proposal/:id"
+            element={
+              proposal ? (
+                <AllPages proposal={proposal} />
+              ) : (
+                <Navigate to="/access-proposal" />
+              )
+            }
+          />
 
-        {/* Catch-all Route */}
-        <Route path="*" element={<Navigate to="/" />} />
-      </Routes>
+          {/* Catch-all Route */}
+          <Route path="*" element={<Navigate to="/" />} />
+        </Routes>
+      </AppcontextProvider>
     </BrowserRouter>
   );
 }

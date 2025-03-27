@@ -10,7 +10,7 @@ const adminRouter = require("./routes/adminDetailRoute.js");
 
 const app = express();
 
-const allowedOrigins = ["http://localhost:5173", "http://localhost:3000"]; // if your frontend running another url you can also add here by seperate coma
+const allowedOrigins = ["https://proposal-admin.onrender.com", "https://proposal-client.onrender.com"]; // if your frontend running another url you can also add here by seperate coma
 
 app.use(express.json());
 app.use(bodyParser.json());

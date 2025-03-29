@@ -5,7 +5,7 @@ import { toast } from "react-toastify";
 export const AppContent = createContext();
 
 export const AppcontextProvider = (props) => {
-  const backendUrl = "https://proposal-backend-tzo5.onrender.com";
+  const backendUrl = "http://localhost:5000";
 
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [adminData, setAdminData] = useState(false);

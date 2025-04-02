@@ -5,7 +5,7 @@ function NextSteps({ proposal }) {
   return (
     // <div className="box section-11">
     //   <div className="header">
-    //     <div className="header-text-1">
+    //     <div className="header-text">
     //       <p>Proposal for</p>
     //       <p className="company-name">
     //         {proposal ? proposal.companyName : "Loading..."}
@@ -62,9 +62,13 @@ function NextSteps({ proposal }) {
 
     <div className="box section-11">
       <div className="header">
-        <div className="header-text-1">
-          <p>Proposal for</p>
-          <p className="company-name">{proposal.companyName || "Loading..."}</p>
+        <div className="header-text">
+          <p>
+            Proposal for
+            <span className="company-name">
+              {proposal ? proposal.companyName : "Loading..."}
+            </span>
+          </p>
         </div>
         <div className="header-text-2">
           {/* <p>Powered by Humans, Fuelled by Creativity</p> */}

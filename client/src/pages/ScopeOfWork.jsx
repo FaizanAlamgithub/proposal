@@ -5,11 +5,12 @@ function ScopeOfWork({ proposal }) {
     <>
       <div className="box section-6">
         <div className="header">
-          <div className="header-text-1">
-            <p>Proposal for</p>
-
-            <p className="company-name">
-              {proposal ? proposal.companyName : "Loading..."}
+          <div className="header-text">
+            <p>
+              Proposal for
+              <span className="company-name">
+                {proposal ? proposal.companyName : "Loading..."}
+              </span>
             </p>
           </div>
           <div className="header-text-2">
@@ -24,9 +25,7 @@ function ScopeOfWork({ proposal }) {
               <p>Work</p>
             </div>
             <div className="section-6-text2">
-              <p>
-                {proposal ? proposal.scopeOfWork.title : "Loading..."}
-              </p>
+              <p>{proposal ? proposal.scopeOfWork.title : "Loading..."}</p>
               <div className="objective-container">
                 <p>Objective</p>
                 <p className="objective-content">

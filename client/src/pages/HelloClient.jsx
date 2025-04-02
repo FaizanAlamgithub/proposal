@@ -5,11 +5,12 @@ function HelloClient({ proposal }) {
     <>
       <div className="box section-3">
         <div className="header">
-          <div className="header-text-1">
-            <p>Proposal for</p>
-
-            <p className="company-name">
-              {proposal ? proposal.companyName : "Loading..."}
+          <div className="header-text">
+            <p className="text-center">
+              Proposal for
+              <span className="company-name">
+                {proposal ? proposal.companyName : "Loading..."}
+              </span>
             </p>
           </div>
           <div className="header-text-2">

@@ -101,10 +101,12 @@ function ProposedInvestment({ proposal }) {
           style={{ pageBreakAfter: "always", minHeight: "100vh" }}
         >
           <div className="header">
-            <div className="header-text-1">
-              <p>Proposal for</p>
-              <p className="company-name">
-                {proposal ? proposal.companyName : "Loading..."}
+            <div className="header-text">
+              <p>
+                Proposal for
+                <span className="company-name">
+                  {proposal ? proposal.companyName : "Loading..."}
+                </span>
               </p>
             </div>
             <div className="header-text-2">

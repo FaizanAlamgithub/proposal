@@ -54,7 +54,7 @@
 //           style={{ pageBreakAfter: "always", minHeight: "100vh" }}
 //         >
 //           <div className="header">
-//             <div className="header-text-1">
+//             <div className="header-text">
 //               <p>Proposal for</p>
 
 //               <p className="company-name">
@@ -158,7 +158,7 @@
 //       {chunkedData.map((pageData, index) => (
 //         <div className="box section-7" key={index}>
 //           <div className="header">
-//             <div className="header-text-1">
+//             <div className="header-text">
 //               <p>Proposal for</p>
 //               <p className="company-name">
 //                 {proposal ? proposal.companyName : "Loading..."}
@@ -309,10 +309,12 @@ function ScopeOfWork({ proposal }) {
       {chunkedData.map((pageData, index) => (
         <div className="box section-7" key={index}>
           <div className="header">
-            <div className="header-text-1">
-              <p>Proposal for</p>
-              <p className="company-name">
-                {proposal.companyName || "Loading..."}
+            <div className="header-text">
+              <p>
+                Proposal for
+                <span className="company-name">
+                  {proposal ? proposal.companyName : "Loading..."}
+                </span>
               </p>
             </div>
             <div className="header-text-2">

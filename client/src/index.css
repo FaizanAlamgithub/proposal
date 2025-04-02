@@ -240,11 +240,9 @@ body {
   font-weight: 400;
 }
 
-.header-text-1 {
-  display: flex;
-  align-items: center;
-  justify-content: center;
+.header-text {
   font-size: 0.7rem;
+  float: left;
 }
 
 .header-text-2 img {
@@ -253,7 +251,7 @@ body {
   padding-right: 1rem;
 }
 
-.header-text-1 .company-name {
+.header-text .company-name {
   color: #616161;
   margin-left: 0.2rem;
 }
@@ -1118,7 +1116,7 @@ body {
   .header {
     padding: 0.5rem;
   }
-  .header-text-1 {
+  .header-text {
     font-size: 0.7rem;
   }
   .header-text-2 {
@@ -1376,7 +1374,7 @@ body {
   .header {
     padding: 0.8rem;
   }
-  .header-text-1 {
+  .header-text {
     font-size: 1rem;
   }
   .header-text-2 {
@@ -1776,7 +1774,7 @@ body {
   .header {
     padding: 0.5rem;
   }
-  .header-text-1 p {
+  .header-text {
     font-size: 0.4rem;
   }
   .header-text-2 img {
@@ -1874,7 +1872,7 @@ body {
     padding: 0 1rem;
     height: 100vh;
   }
-  .header-text-1,
+  .header-text,
   .header-text-2 {
     font-size: 0.5rem;
   }
